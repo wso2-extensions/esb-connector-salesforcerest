@@ -29,7 +29,11 @@
     <parameter name="apiUrl" description="The instance URL for your organization"/>
     <parameter name="registryPath"
                description="Registry Path of the Connector where the values are stored"/>
-    <parameter name="intervalTime" description="The Interval time to check the accessToken validity"/>
+    <parameter name="intervalTime"
+               description="The Interval time to check the accessToken validity"/>
+    <parameter name="username" description="The username for the salesforce"/>
+    <parameter name="password"
+               description="The password for the salesforce which means the password with security key"/>
     <sequence>
         <property name="uri.var.accessToken" expression="$func:accessToken"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
@@ -40,7 +44,21 @@
         <property name="uri.var.apiUrl" expression="$func:apiUrl"/>
         <property name="uri.var.registryPath" expression="$func:registryPath"/>
         <property name="uri.var.intervalTime" expression="$func:intervalTime"/>
-
+        <property name="uri.var.username" expression="$func:username"/>
+        <property name="uri.var.password" expression="$func:password"/>
+        <filter source="boolean($ctx:uri.var.username) and boolean($ctx:uri.var.password) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"
+                regex="true">
+            <then>
+                <property name="Accept-Encoding" scope="transport" action="remove"/>
+                <call>
+                    <endpoint>
+                        <http method="post"
+                              uri-template="legacy-encoding:{uri.var.hostName}/services/oauth2/token?grant_type=password&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;username={uri.var.username}&amp;password={uri.var.password}"/>
+                    </endpoint>
+                </call>
+                <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>
+            </then>
+        </filter>
         <filter source="boolean($ctx:uri.var.refreshToken) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId) and boolean($ctx:uri.var.accessToken)"
                 regex="true">
             <then>

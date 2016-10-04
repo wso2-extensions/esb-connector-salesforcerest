@@ -56,7 +56,7 @@
                               uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=password&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;username={+uri.var.username}&amp;password={+uri.var.password}"/>
                     </endpoint>
                 </call>
-                <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>+
+                <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>
             </then>
         </filter>
         <filter source="boolean($ctx:uri.var.refreshToken) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId) and boolean($ctx:uri.var.accessToken)"

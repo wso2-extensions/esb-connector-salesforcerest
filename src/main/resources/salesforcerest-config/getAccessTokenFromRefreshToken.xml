@@ -25,20 +25,6 @@
         <property name="uri.var.refreshToken" expression="$func:refreshToken"/>
         <property name="uri.var.clientSecret" expression="$func:clientSecret"/>
         <property name="uri.var.clientId" expression="$func:clientId"/>
-        <payloadFactory media-type="json">
-            <format>
-                {
-                "refresh_token": "$1",
-                "client_secret": "$2",
-                "client_id": "$3"
-                }
-            </format>
-            <args>
-                <arg expression="$ctx:uri.var.refreshToken"/>
-                <arg expression="$ctx:uri.var.clientSecret"/>
-                <arg expression="$ctx:uri.var.clientId"/>
-            </args>
-        </payloadFactory>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
@@ -80,7 +66,3 @@
         <header name="Pragma" action="remove" scope="transport"/>
     </sequence>
 </template>
-
-
-
-

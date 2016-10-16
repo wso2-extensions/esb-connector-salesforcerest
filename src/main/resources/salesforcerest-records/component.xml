@@ -58,6 +58,12 @@
                 External Id
             </description>
         </component>
+        <component name="upsertUsingExternalId">
+            <file>upsertUsingExternalId.xml</file>
+            <description>Updating a record or Insert a new Record if there is no record associate
+                with the Id using External ID.
+            </description>
+        </component>
     </subComponents>
 </component>
 

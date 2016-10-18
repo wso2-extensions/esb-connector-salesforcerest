@@ -15,7 +15,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template name="upsertUsingExternalId" xmlns="http://ws.apache.org/ns/synapse">
+<template name="upsert" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sobject" description="The type of sobject"/>
     <parameter name="externalIDField" description="The external Id Field of the sobject"/>
     <parameter name="Id" description="The value of the customExtIdField"/>

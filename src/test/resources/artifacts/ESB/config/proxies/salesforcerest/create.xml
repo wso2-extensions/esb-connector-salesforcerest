@@ -44,8 +44,8 @@
             </salesforcerest.init>
             <log category="INFO" level="full" separator=","/>
             <salesforcerest.create>
-                <sobject>{$ctx:sobject}</sobject>
-                <sObjectName>{$ctx:sObjectName}</sObjectName>
+                <sObjectName>{$ctx:sobject}</sObjectName>
+                <sObject>{$ctx:sObjectName}</sObject>
             </salesforcerest.create>
             <send/>
         </inSequence>

@@ -45,7 +45,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
-        init("salesforcerest-connector-1.0.3");
+        init("salesforcerest-connector-1.0.4-SNAPSHOT");
         esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
         esbRequestHeadersMap.put("Content-Type", "application/json");
 

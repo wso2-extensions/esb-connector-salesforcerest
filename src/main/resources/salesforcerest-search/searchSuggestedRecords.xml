@@ -25,7 +25,7 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestions?q={+uri.var.stringForSearch}&amp;sobject={+uri.var.sobject}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestions?q={uri.var.stringForSearch}&amp;sobject={uri.var.sobject}"/>
             </endpoint>
         </call>
     </sequence>

@@ -50,6 +50,7 @@
                 regex="true">
             <then>
                 <property name="Accept-Encoding" scope="transport" action="remove"/>
+                <property name="NO_ENTITY_BODY" value="true" type="BOOLEAN" scope="axis2"/>
                 <call>
                     <endpoint>
                         <http method="post"

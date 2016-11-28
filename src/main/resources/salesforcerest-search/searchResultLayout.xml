@@ -23,7 +23,7 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/layout?q={+uri.var.sObjectList}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/layout?q={uri.var.sObjectList}"/>
             </endpoint>
         </call>
     </sequence>

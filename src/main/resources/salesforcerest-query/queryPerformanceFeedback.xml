@@ -23,7 +23,7 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/query/?explain={+uri.var.queryString}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/query/?explain={uri.var.queryString}"/>
             </endpoint>
         </call>
     </sequence>

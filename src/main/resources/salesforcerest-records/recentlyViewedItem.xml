@@ -23,7 +23,7 @@
         <call>
             <endpoint>
                 <http method="Get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/recent/?limit={+uri.var.limit}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/recent/?limit={uri.var.limit}"/>
             </endpoint>
         </call>
     </sequence>

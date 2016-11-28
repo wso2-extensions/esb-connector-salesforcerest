@@ -28,7 +28,7 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.externalObject}/{uri.var.externalId}?fields={+uri.var.externalFields}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.externalObject}/{uri.var.externalId}?fields={uri.var.externalFields}"/>
             </endpoint>
         </call>
     </sequence>

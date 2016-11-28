@@ -27,7 +27,7 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sobject}/{uri.var.rowId}?fields={+uri.var.fields}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sobject}/{uri.var.rowId}?fields={uri.var.fields}"/>
             </endpoint>
         </call>
     </sequence>

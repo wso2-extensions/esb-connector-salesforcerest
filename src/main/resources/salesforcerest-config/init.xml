@@ -53,7 +53,7 @@
                 <call>
                     <endpoint>
                         <http method="post"
-                              uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=password&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;username={+uri.var.username}&amp;password={+uri.var.password}"/>
+                              uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=password&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;username={uri.var.username}&amp;password={uri.var.password}"/>
                     </endpoint>
                 </call>
                 <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>

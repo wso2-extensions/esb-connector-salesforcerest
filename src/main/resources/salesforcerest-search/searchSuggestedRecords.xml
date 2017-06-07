@@ -17,15 +17,15 @@
 -->
 <template name="searchSuggestedRecords" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="stringForSearch" description="The SOQL query to execute the search"/>
-    <parameter name="sobject" description="The type of the object"/>
+    <parameter name="sObjectName" description="The type of the sObject"/>
     <sequence>
         <property name="uri.var.stringForSearch" expression="$func:stringForSearch"/>
-        <property name="uri.var.sobject" expression="$func:sobject"/>
+        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestions?q={uri.var.stringForSearch}&amp;sobject={uri.var.sobject}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestions?q={uri.var.stringForSearch}&amp;sobject={uri.var.sObjectName}"/>
             </endpoint>
         </call>
     </sequence>

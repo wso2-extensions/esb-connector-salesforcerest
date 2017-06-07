@@ -16,16 +16,16 @@
    under the License.
 -->
 <template name="delete" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sobject" description="The type of sobject."/>
+    <parameter name="sObjectName" description="The type of sObject."/>
     <parameter name="idToDelete" description="The Id of the object will be going to delete."/>
     <sequence>
-        <property name="uri.var.sobject" expression="$func:sobject"/>
+        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="uri.var.idToDelete" expression="$func:idToDelete"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
                 <http method="delete"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sobject}/{uri.var.idToDelete}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.idToDelete}"/>
             </endpoint>
         </call>
     </sequence>

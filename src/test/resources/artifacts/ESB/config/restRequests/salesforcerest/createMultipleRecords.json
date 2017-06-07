@@ -6,14 +6,14 @@
   "clientSecret": "%s(clientSecret)",
   "hostName": "%s(hostName)",
   "apiVersion": "%s(apiVersion)",
-  "sobject": "%s(sobject)",
+  "sObjectName": "%s(sObjectName)",
   "registryPath": "%s(registryPath)",
   "intervalTime": "%s(intervalTime)",
-  "sObjectName": {
+  "fieldAndValue": {
     "records": [
       {
         "attributes": {
-          "type": "%s(sobject)",
+          "type": "%s(sObjectName)",
           "referenceId": "%s(refId1)"
         },
         "name": "Hari",
@@ -22,7 +22,7 @@
       },
       {
         "attributes": {
-          "type": "%s(sobject)",
+          "type": "%s(sObjectName)",
           "referenceId": "%s(refId2)"
         },
         "name": "Hariss",

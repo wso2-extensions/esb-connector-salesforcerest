@@ -16,18 +16,18 @@
    under the License.
 -->
 <template name="sObjectGetDeleted" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sobject" description="The type of sobject"/>
+    <parameter name="sObjectName" description="The type of sObject"/>
     <parameter name="startTime" description="The begin time to retrieve the deleted sobject"/>
     <parameter name="endTime" description="The finish to retrieve the deleted sobject"/>
     <sequence>
-        <property name="uri.var.sobject" expression="$func:sobject"/>
+        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="uri.var.startTime" expression="$func:startTime"/>
         <property name="uri.var.endTime" expression="$func:endTime"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sobject}/deleted/?start={uri.var.startTime}&amp;end={uri.var.endTime}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/deleted/?start={uri.var.startTime}&amp;end={uri.var.endTime}"/>
             </endpoint>
         </call>
     </sequence>

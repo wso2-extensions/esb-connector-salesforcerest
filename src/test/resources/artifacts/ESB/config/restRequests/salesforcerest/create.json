@@ -8,8 +8,8 @@
   "apiVersion": "%s(apiVersion)",
   "registryPath": "%s(registryPath)",
   "intervalTime": "%s(intervalTime)",
-  "sobject": "%s(sobject)",
-  "sObjectName": {
+  "sObjectName": "%s(sObjectName)",
+  "fieldAndValue": {
     "name": "%s(createName)",
     "description": "%s(createDescription)"
   }

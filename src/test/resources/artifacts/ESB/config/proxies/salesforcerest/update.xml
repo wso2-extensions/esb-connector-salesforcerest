@@ -22,7 +22,7 @@
         <inSequence>
             <property name="accessToken" expression="json-eval($.accessToken)"/>
             <property name="apiUrl" expression="json-eval($.apiUrl)"/>
-            <property name="sobject" expression="json-eval($.sobject)"/>
+            <property name="fieldAndValue" expression="json-eval($.fieldAndValue)"/>
             <property name="Id" expression="json-eval($.Id)"/>
             <property name="sObjectName" expression="json-eval($.sObjectName)"/>
             <property name="clientId" expression="json-eval($.clientId)"/>
@@ -45,7 +45,7 @@
             </salesforcerest.init>
             <log category="INFO" level="full" separator=","/>
             <salesforcerest.update>
-                <sobject>{$ctx:sobject}</sobject>
+                <fieldAndValue>{$ctx:fieldAndValue}</fieldAndValue>
                 <sObjectName>{$ctx:sObjectName}</sObjectName>
                 <Id>{$ctx:Id}</Id>
             </salesforcerest.update>

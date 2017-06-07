@@ -16,14 +16,14 @@
    under the License.
 -->
 <template name="recentListViews" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sobjectType" description="The type of sobject"/>
+    <parameter name="sObjectName" description="The type of sObject"/>
     <sequence>
-        <property name="uri.var.sobjectType" expression="$func:sobjectType"/>
+        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
                 <http method="Get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sobjectType}/listviews/recent"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/listviews/recent"/>
             </endpoint>
         </call>
     </sequence>

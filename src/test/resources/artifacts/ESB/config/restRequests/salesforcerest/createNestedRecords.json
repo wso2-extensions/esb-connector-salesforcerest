@@ -7,13 +7,13 @@
   "hostName": "%s(hostName)",
   "apiVersion": "%s(apiVersion)",
   "intervalTime": "%s(intervalTime)",
-  "sobject": "%s(sobject)",
+  "sObjectName": "%s(sObjectName)",
   "registryPath": "%s(registryPath)",
-  "sObjectName": {
+  "fieldAndValue": {
     "records": [
       {
         "attributes": {
-          "type": "%s(sobject)",
+          "type": "%s(sObjectName)",
           "referenceId": "ref1"
         },
         "name": "SampleAccount1",
@@ -26,7 +26,7 @@
           "records": [
             {
               "attributes": {
-                "type": "%s(sobject1)",
+                "type": "%s(sObjectName1)",
                 "referenceId": "ref2"
               },
               "lastname": "Smith",
@@ -35,7 +35,7 @@
             },
             {
               "attributes": {
-                "type": "%s(sobject1)",
+                "type": "%s(sObjectName1)",
                 "referenceId": "ref3"
               },
               "lastname": "Evans",
@@ -47,7 +47,7 @@
       },
       {
         "attributes": {
-          "type": "%s(sobject)",
+          "type": "%s(sObjectName)",
           "referenceId": "ref4"
         },
         "name": "SampleAccount2",
@@ -60,7 +60,7 @@
           "records": [
             {
               "attributes": {
-                "type": "%s(sobject)",
+                "type": "%s(sObjectName)",
                 "referenceId": "ref5"
               },
               "name": "SampleChildAccount1",
@@ -76,7 +76,7 @@
           "records": [
             {
               "attributes": {
-                "type": "%s(sobject1)",
+                "type": "%s(sObjectName1)",
                 "referenceId": "ref6"
               },
               "lastname": "Jones",

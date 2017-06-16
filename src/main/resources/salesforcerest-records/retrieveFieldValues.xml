@@ -16,18 +16,18 @@
    under the License.
 -->
 <template name="retrieveFieldValues" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sobject" description="The type of sobject."/>
+    <parameter name="sObjectName" description="The type of sObject."/>
     <parameter name="rowId" description="The row Id of the object."/>
     <parameter name="fields" description="The comma separated field values."/>
     <sequence>
-        <property name="uri.var.sobject" expression="$func:sobject"/>
+        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="uri.var.rowId" expression="$func:rowId"/>
         <property name="uri.var.fields" expression="$func:fields"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sobject}/{uri.var.rowId}?fields={uri.var.fields}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.rowId}?fields={uri.var.fields}"/>
             </endpoint>
         </call>
     </sequence>

@@ -16,26 +16,26 @@
    under the License.
 -->
 <template name="update" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sobject" description="The type of sobject"/>
+    <parameter name="sObjectName" description="The type of sObject"/>
     <parameter name="Id" description="The Id of the sobject will be update"/>
-    <parameter name="sObjectName" description="The value of the field of a particular sObject"/>
+    <parameter name="fieldAndValue" description="The value of the field of a particular sObject"/>
     <sequence>
-        <property name="uri.var.sobject" expression="$func:sobject"/>
-        <property name="uri.var.Id" expression="$func:Id"/>
         <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
+        <property name="uri.var.Id" expression="$func:Id"/>
+        <property name="uri.var.fieldAndValue" expression="$func:fieldAndValue"/>
         <payloadFactory media-type="json">
             <format>
                 $1
             </format>
             <args>
-                <arg expression="get-property('uri.var.sObjectName')"/>
+                <arg expression="get-property('uri.var.fieldAndValue')"/>
             </args>
         </payloadFactory>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
                 <http method="patch"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sobject}/{uri.var.Id}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.Id}"/>
             </endpoint>
         </call>
     </sequence>

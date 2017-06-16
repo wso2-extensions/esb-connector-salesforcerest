@@ -6,11 +6,11 @@
   "clientSecret": "%s(clientSecret)",
   "hostName": "%s(hostName)",
   "apiVersion": "%s(apiVersion)",
-  "sobject": "%s(sobject)",
+  "sObjectName": "%s(sObjectName)",
   "registryPath": "%s(registryPath)",
   "Id": "%s(Id)",
   "intervalTime": "%s(intervalTime)",
-  "sObjectName": {
+  "fieldAndValue": {
     "name": "%s(updateApiName)",
     "description": "%s(updateApiDescription)"
   }

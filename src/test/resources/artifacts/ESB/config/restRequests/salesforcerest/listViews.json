@@ -6,7 +6,7 @@
   "clientSecret": "%s(clientSecret)",
   "hostName": "%s(hostName)",
   "apiVersion": "%s(apiVersion)",
-  "sobjectType": "%s(sobjectType)",
+  "sObjectName": "%s(sObjectName)",
   "intervalTime": "%s(intervalTime)",
   "registryPath": "%s(registryPath)"
 }

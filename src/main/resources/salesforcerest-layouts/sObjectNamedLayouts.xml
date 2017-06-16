@@ -16,16 +16,16 @@
    under the License.
 -->
 <template name="sObjectNamedLayouts" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="object" description="The type of sobject"/>
+    <parameter name="sObjectName" description="The type of sObject"/>
     <parameter name="layoutName" description="The name of the layout of the object"/>
     <sequence>
-        <property name="uri.var.object" expression="$func:object"/>
+        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="uri.var.layoutName" expression="$func:layoutName"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
                 <http method="Get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.object}/describe/namedLayouts/{uri.var.layoutName}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/describe/namedLayouts/{uri.var.layoutName}"/>
             </endpoint>
         </call>
     </sequence>

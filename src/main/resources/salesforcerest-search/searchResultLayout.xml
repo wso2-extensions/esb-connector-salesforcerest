@@ -16,14 +16,14 @@
    under the License.
 -->
 <template name="searchResultLayout" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sObjectList" description="object list with comma separator"/>
+    <parameter name="sObjectNameList" description="The comma separated sObject types"/>
     <sequence>
-        <property name="uri.var.sObjectList" expression="$func:sObjectList"/>
+        <property name="uri.var.sObjectNameList" expression="$func:sObjectNameList"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/layout?q={uri.var.sObjectList}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/layout?q={uri.var.sObjectNameList}"/>
             </endpoint>
         </call>
     </sequence>

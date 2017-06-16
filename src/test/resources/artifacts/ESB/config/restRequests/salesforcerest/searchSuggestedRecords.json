@@ -7,7 +7,7 @@
   "hostName": "%s(hostName)",
   "apiVersion": "%s(apiVersion)",
   "stringForSearch": "%s(stringForSearch)",
-  "sobject": "%s(sobject)",
+  "sObjectName": "%s(sObjectName)",
   "intervalTime": "%s(intervalTime)",
   "registryPath": "%s(registryPath)"
 }

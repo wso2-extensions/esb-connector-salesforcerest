@@ -3,47 +3,42 @@ Product: WSO2 ESB Connector for Salesforce REST API + Integration Tests
  Pre-requisites:
 
     - Maven 3.x
-    - Java 1.6 or above
-    - The org.wso2.esb.integration.integration-base project is required. The test suite has been configured to download this project automatically. If the automatic download fails, download the following project and compile it using the mvn clean install command to update your local repository:
-                 https://github.com/wso2/esb-connectors/tree/master/integration-base-1.0.1
+    - Java 1.8
 
     Tested Platforms:
 
-    - Microsoft WINDOWS V-7
-    - Ubuntu 13.04
-    - WSO2 ESB 4.9.0
-
+    - Mac OS 10.12.6
+    - WSO2 EI 6.1.1
 
 
 Steps to follow in setting integration test.
 
 
- 1. Download ESB 4.9.0 from official website.
+ 1. Download EI 6.1.1 from official website.
 
- 2. Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "<SALESFORCEREST_CONNECTOR_HOME>/repository/".
-
-
- 3. Create a Salesforce account and create a connected app.
+ 2. Create a Salesforce account and create a connected app.
        i)  Using the URL "https://salesforce.com" create an account.
        ii) Create a connected app to get the clientId and clientSecret. Refer below link to create connected app.
             https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_defining_remote_access_applications.htm.
 
- 4.Before you start performing various operations with the connector, make sure to import the Salesforce certificate to your ESB client keystore.
+ 3.Before you start performing various operations with the connector, make sure to import the Salesforce certificate to your ESB client keystore.
 
-   Follow the steps below to import the Salesforce certificate into the ESB client keystone:
+   Follow the steps below to import the Salesforce certificate into the EI client keystore and wso2carbon keystore:
 
        i.Go to your Salesforce account (e.g.,https://ap2.salesforce.com), and click the lock icon on the address bar to view the certificate.
        ii.Have a look at the certificate details and export the certificate to the file system.
        iii.Import the certificate into the ESB client keystone via the Management Console or by running the following command.
 
-       keytool -importcert -file <certificate file> -keystore <ESB>/repository/resources/security/client-truststore.jks -alias "SFDCCertImport"
+       keytool -importcert -file <certificate file> -keystore <EI>/repository/resources/security/client-truststore.jks -alias "SFDCCertImport"
+       keytool -importcert -file <certificate file> -keystore <EI>/repository/resources/security/wso2carbon.jks.jks -alias "SFDCCertImport"
 
+ 4. Compress modified EI as wso2ei-6.1.1.zip and copy that zip file in to location "<SALESFORCEREST_CONNECTOR_HOME>/repository/".
 
  5. Update the salesforcerest properties file at location "<SALESFORCEREST_CONNECTOR_HOME>/src/test/resources/artifacts/ESB/connector/config" as below.
 
        i)apiUrl 							- 	The URL of the salesforce connected app.
        ii)apiVersion                        -   The api version for the connected app(New version is better because some of the features are supported only on the new 											          version).
-       ii)refreshToken                      -   The refresh token to access the API.
+       iii)refreshToken                     -   The refresh token to access the API.
        iv)clientId                          -   The Consumer key of API to access the connected app.
        v)clientSecret                       -   The consumer key of API to access the connected app.
        vi)hostName                          -   Value of the hostname to authenticate salesforce(If you are using sandbox then the hostName is "https://test.salesforce.com" 											          instead of "https://login.salesforce.com").
@@ -90,8 +85,7 @@ Steps to follow in setting integration test.
        xxxxvii)intervalTime                 -   The Interval time to check the accessToken validity
 Properties iii), vii) and xiv) needs to be changed before running the integration test each time.
 You can put the value for nextRecordsUrl(xviii) property when the results/response of query or queryAll have too large of records only. If you have too large of records only you can get passed integration test at queryMore and queryAllMore.
-Don't put the same value to xiv) and (xiii, xvi).
-
+Don't put the same value to xxiv) and (xxviii, xxx).
 
  6.  Navigate to "{SALESFORCEREST_CONNECTOR_HOME}/" and run the following command.
              $ mvn clean install

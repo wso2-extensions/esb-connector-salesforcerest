@@ -88,4 +88,4 @@ You can put the value for nextRecordsUrl(xviii) property when the results/respon
 Don't put the same value to xxiv) and (xxviii, xxx).
 
  6.  Navigate to "{SALESFORCEREST_CONNECTOR_HOME}/" and run the following command.
-             $ mvn clean install
+             $ mvn clean install -Dskip-tests=false

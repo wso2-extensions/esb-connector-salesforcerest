@@ -25,7 +25,19 @@
         <call>
             <endpoint>
                 <http method="delete"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.idToDelete}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.idToDelete}">
+                    <timeout>
+                        <duration>{$ctx:timeout}</duration>
+                        <responseAction>fault</responseAction>
+                    </timeout>
+                    <suspendOnFailure>
+                        <errorCodes>-1</errorCodes>
+                        <progressionFactor>1.0</progressionFactor>
+                    </suspendOnFailure>
+                    <markForSuspension>
+                        <errorCodes>-1</errorCodes>
+                    </markForSuspension>
+                </http>
             </endpoint>
         </call>
     </sequence>

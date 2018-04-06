@@ -29,7 +29,19 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestTitleMatches?q={uri.var.searchString}&amp;language={uri.var.language}&amp;publishStatus={uri.var.status}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestTitleMatches?q={uri.var.searchString}&amp;language={uri.var.language}&amp;publishStatus={uri.var.status}">
+                    <timeout>
+                        <duration>{$ctx:timeout}</duration>
+                        <responseAction>fault</responseAction>
+                    </timeout>
+                    <suspendOnFailure>
+                        <errorCodes>-1</errorCodes>
+                        <progressionFactor>1.0</progressionFactor>
+                    </suspendOnFailure>
+                    <markForSuspension>
+                        <errorCodes>-1</errorCodes>
+                    </markForSuspension>
+                </http>
             </endpoint>
         </call>
     </sequence>

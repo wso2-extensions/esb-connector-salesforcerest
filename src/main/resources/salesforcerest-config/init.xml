@@ -31,6 +31,7 @@
                description="Registry Path of the Connector where the values are stored"/>
     <parameter name="intervalTime"
                description="The Interval time to check the accessToken validity"/>
+    <parameter name="timeout" description="Timeout duration of the API request."/>
     <parameter name="username" description="The username for the salesforce"/>
     <parameter name="password"
                description="The password for the salesforce which means the password with security key"/>
@@ -46,15 +47,42 @@
         <property name="uri.var.intervalTime" expression="$func:intervalTime"/>
         <property name="uri.var.username" expression="$func:username"/>
         <property name="uri.var.password" expression="$func:password"/>
+        <property name="timeout" expression="$func:timeout"/>
+        <script language="js">
+            <![CDATA[
+                var timeout = mc.getProperty("uri.var.timeout");
+                if (timeout != null && timeout != "") {
+                    timeout = 30000;
+                }
+                mc.setProperty("timeout", timeout);
+            ]]>
+        </script>
         <filter source="boolean($ctx:uri.var.username) and boolean($ctx:uri.var.password) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"
                 regex="true">
             <then>
                 <property name="Accept-Encoding" scope="transport" action="remove"/>
                 <property name="NO_ENTITY_BODY" value="true" type="BOOLEAN" scope="axis2"/>
+                <payloadFactory media-type="json">
+                    <format></format>
+                    <args></args>
+                </payloadFactory>
+                <property name="FORCE_POST_PUT_NOBODY" value="true" scope="axis2" type="BOOLEAN"/>
                 <call>
                     <endpoint>
                         <http method="post"
-                              uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=password&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;username={uri.var.username}&amp;password={uri.var.password}"/>
+                              uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=password&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;username={uri.var.username}&amp;password={uri.var.password}">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
                     </endpoint>
                 </call>
                 <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>

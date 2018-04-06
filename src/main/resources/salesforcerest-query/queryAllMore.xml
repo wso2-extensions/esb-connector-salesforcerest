@@ -24,7 +24,19 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/queryAll/{uri.var.nextRecordsUrl}"/>
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/queryAll/{uri.var.nextRecordsUrl}">
+                    <timeout>
+                        <duration>{$ctx:timeout}</duration>
+                        <responseAction>fault</responseAction>
+                    </timeout>
+                    <suspendOnFailure>
+                        <errorCodes>-1</errorCodes>
+                        <progressionFactor>1.0</progressionFactor>
+                    </suspendOnFailure>
+                    <markForSuspension>
+                        <errorCodes>-1</errorCodes>
+                    </markForSuspension>
+                </http>
             </endpoint>
         </call>
     </sequence>

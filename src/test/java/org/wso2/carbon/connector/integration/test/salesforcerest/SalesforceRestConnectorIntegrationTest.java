@@ -30,6 +30,7 @@ import org.wso2.connector.integration.test.base.RestResponse;
 
 import java.io.IOException;
 import java.lang.String;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +46,8 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
+        addCertificatesToEIKeyStore("client-truststore.jks", "wso2carbon");
+
         String connectorName = System.getProperty("connector_name") + "-connector-" +
                 System.getProperty("connector_version") + ".zip";
         init(connectorName);
@@ -54,8 +57,35 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         apiRequestHeadersMap.put("Accept-Charset", "UTF-8");
         apiRequestHeadersMap.put("Content-Type", "application/json");
 
+        getApiConfigProperties();
+        getAccessToken();
+
         String accessToken = connectorProperties.getProperty("accessToken");
         apiRequestHeadersMap.put("Authorization", "Bearer " + accessToken);
+
+        LocalDate startDate = LocalDate.now().minusDays(10);
+        LocalDate endDate = LocalDate.now().minusDays(2);
+        connectorProperties.put("startTime",startDate + connectorProperties.getProperty("startTime"));
+        connectorProperties.put("endTime",startDate + connectorProperties.getProperty("endTime"));
+        connectorProperties.put("apiStartTime",startDate + connectorProperties.getProperty("apiStartTime"));
+        connectorProperties.put("apiEndTime",startDate + connectorProperties.getProperty("apiEndTime"));
+    }
+
+    private void getAccessToken() throws IOException, JSONException {
+
+        Map<String, String> apiTokenRequestHeadersMap = new HashMap<String, String>();
+        Map<String, String> apiParametersMap = new HashMap<String, String>();
+        apiTokenRequestHeadersMap.put("Content-Type", "application/x-www-form-urlencoded");
+        RestResponse<JSONObject> apiTokenRestResponse =
+                sendJsonRestRequest(connectorProperties.getProperty("hostName") +
+                                "/services/oauth2/token?grant_type=refresh_token&client_id=" +
+                                connectorProperties.getProperty("clientId")+"&client_secret=" +
+                                connectorProperties.getProperty("clientSecret")+"&refresh_token=" +
+                                connectorProperties.getProperty("refreshToken"), "POST",
+                        apiTokenRequestHeadersMap, "", apiParametersMap);
+
+        String accessToken = apiTokenRestResponse.getBody().get("access_token").toString();
+        connectorProperties.put("accessToken",accessToken);
     }
 
     /**
@@ -133,21 +163,6 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     }
 
     /**
-     * Test case for sObjectRows method.
-     */
-    @Test(enabled = true, description = "salesforcerest {sObjectRows} integration test.")
-    public void sObjectRows() throws IOException, JSONException {
-
-        String methodName = "sObjectRows";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "sObjectRows.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/" + connectorProperties.getProperty("rowId");
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("LastModifiedDate"), apiRestResponse.getBody().getString("LastModifiedDate"));
-    }
-
-    /**
      * Test case for listResourcesByApiVersion method.
      */
     @Test(enabled = true, description = "salesforcerest {listResourcesByApiVersion} integration test.")
@@ -186,21 +201,6 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         String methodName = "queryPerformanceFeedback";
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "queryPerformanceFeedback.json");
         String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?explain=" + connectorProperties.getProperty("queryString");
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("plans"), apiRestResponse.getBody().getString("plans"));
-    }
-
-    /**
-     * Test case for listviewQueryPerformanceFeedback method.
-     */
-    @Test(enabled = true, description = "salesforcerest {listviewQueryPerformanceFeedback} integration test.")
-    public void listviewQueryPerformanceFeedback() throws IOException, JSONException {
-
-        String methodName = "listviewQueryPerformanceFeedback";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "listviewQueryPerformanceFeedback.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?explain=" + connectorProperties.getProperty("listViewID");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -311,21 +311,6 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     }
 
     /**
-     * Test case for retrieveFieldValues method.
-     */
-    @Test(enabled = true, description = "salesforcerest {retrieveFieldValues} integration test.")
-    public void retrieveFieldValues() throws IOException, JSONException {
-
-        String methodName = "retrieveFieldValues";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "retrieveFieldValues.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/" + connectorProperties.getProperty("rowId") + "?fields=" + connectorProperties.getProperty("fields");
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().toString(), apiRestResponse.getBody().toString());
-    }
-
-    /**
      * Test case for search method.
      */
     @Test(enabled = true, description = "salesforcerest {search} integration test.")
@@ -377,9 +362,28 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     @Test(enabled = true, description = "salesforcerest {getUserInformation} integration test.")
     public void getUserInformation() throws IOException, JSONException {
 
+        String apiUserEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?q=" + connectorProperties.getProperty("userQueryString");
+        RestResponse<JSONObject> apiUserRestResponse = sendJsonRestRequest(apiUserEndPoint, "GET", apiRequestHeadersMap);
+        String userId = apiUserRestResponse.getBody().getJSONArray("records").getJSONObject(0). getString("Id");
+        connectorProperties.put("userId", userId);
+
         String methodName = "getUserInformation";
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "getUserInformation.json");
         String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/User/" + connectorProperties.getProperty("userId");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+    }
+
+    /**
+     * Test case for resetPassword method.
+     */
+    @Test(enabled = false, dependsOnMethods = {"getUserInformation"}, description = "salesforcerest {resetPassword} integration test.")
+    public void resetPassword() throws IOException, JSONException {
+
+        String methodName = "resetPassword";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "resetPassword.json");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/"+ connectorProperties.getProperty("apiVersion")+"/sobjects/User/"+connectorProperties.getProperty("userId")+"/password";
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -395,6 +399,8 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "listViews.json");
         String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/listviews";
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        String listViewId = esbRestResponse.getBody().getJSONArray("listviews").getJSONObject(0).getString("id");
+        connectorProperties.put("listViewID",listViewId);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbRestResponse.getBody().getString("listviews"), apiRestResponse.getBody().getString("listviews"));
@@ -403,7 +409,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     /**
      * Test case for listViewById method.
      */
-    @Test(enabled = true, description = "salesforcerest {listViewById} integration test.")
+    @Test(enabled = true, dependsOnMethods = {"listViews"}, description = "salesforcerest {listViewById} integration test.")
     public void listViewById() throws IOException, JSONException {
 
         String methodName = "listViewById";
@@ -413,6 +419,49 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbRestResponse.getBody().getString("developerName"), apiRestResponse.getBody().getString("developerName"));
+    }
+
+    /**
+     * Positive test case for describeListViewById method with mandatory parameters.
+     */
+    @Test(enabled = true, dependsOnMethods = {"listViewById"}, description = "salesforcerest {describeListViewById} integration test with mandatory parameters.")
+    public void describeListViewByIdWithMandatoryParameters() throws IOException, JSONException {
+        String methodName = "describeListViewById";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "describeListViewById.json");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/listviews/" + connectorProperties.getProperty("listViewID") + "/describe";
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(esbRestResponse.getBody().getString("query"), apiRestResponse.getBody().getString("query"));
+    }
+
+    /**
+     * Test case for listviewQueryPerformanceFeedback method.
+     */
+    @Test(enabled = true, dependsOnMethods = {"describeListViewByIdWithMandatoryParameters"}, description = "salesforcerest {listviewQueryPerformanceFeedback} integration test.")
+    public void listviewQueryPerformanceFeedback() throws IOException, JSONException {
+
+        String methodName = "listviewQueryPerformanceFeedback";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "listviewQueryPerformanceFeedback.json");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?explain=" + connectorProperties.getProperty("listViewID");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(esbRestResponse.getBody().getString("plans"), apiRestResponse.getBody().getString("plans"));
+    }
+
+    /**
+     * Positive test case for listViewResults method with mandatory parameters.
+     */
+    @Test(enabled = true, dependsOnMethods = {"listviewQueryPerformanceFeedback"}, description = "salesforcerest {listViewResults} integration test with mandatory parameters.")
+    public void listViewResultsWithMandatoryParameters() throws IOException, JSONException {
+        String methodName = "listViewResults";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "listViewResults.json");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/listviews/" + connectorProperties.getProperty("listViewID") + "/results";
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(esbRestResponse.getBody().getString("columns"), apiRestResponse.getBody().getString("columns"));
     }
 
     /**
@@ -455,6 +504,9 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "create.json");
         String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+
+        String id = esbRestResponse.getBody().getString("id").toString();
+        connectorProperties.put("id",id);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 201);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbRestResponse.getBody().getString("id"), apiRestResponse.getBody().getJSONArray("recentItems").getJSONObject(0).getString("Id"));
@@ -463,43 +515,59 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     /**
      * Test case for update method.
      */
-    @Test(enabled = true, description = "salesforcerest {update} integration test.")
+    @Test(enabled = true, dependsOnMethods = {"create"}, description = "salesforcerest {update} integration test.")
     public void update() throws IOException, JSONException {
 
         String methodName = "update";
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "update.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/" + connectorProperties.getProperty("Id");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/" + connectorProperties.getProperty("id");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap, "updateApi.json");
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
     }
 
     /**
+     * Test case for sObjectRows method.
+     */
+    @Test(enabled = true, dependsOnMethods = {"update"}, description = "salesforcerest {sObjectRows} integration test.")
+    public void sObjectRows() throws IOException, JSONException {
+
+        String methodName = "sObjectRows";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "sObjectRows.json");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/" + connectorProperties.getProperty("id");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(esbRestResponse.getBody().getString("LastModifiedDate"), apiRestResponse.getBody().getString("LastModifiedDate"));
+    }
+
+    /**
+     * Test case for retrieveFieldValues method.
+     */
+    @Test(enabled = true, dependsOnMethods = {"sObjectRows"}, description = "salesforcerest {retrieveFieldValues} integration test.")
+    public void retrieveFieldValues() throws IOException, JSONException {
+
+        String methodName = "retrieveFieldValues";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "retrieveFieldValues.json");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/" + connectorProperties.getProperty("id") + "?fields=" + connectorProperties.getProperty("fields");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(esbRestResponse.getBody().toString(), apiRestResponse.getBody().toString());
+    }
+
+    /**
      * Test case for delete method.
      */
-    @Test(enabled = true, description = "salesforcerest {delete} integration test.")
+    @Test(enabled = true, dependsOnMethods = {"retrieveFieldValues"}, description = "salesforcerest {delete} integration test.")
     public void delete() throws IOException, JSONException {
 
         String methodName = "delete";
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "delete.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/" + connectorProperties.getProperty("idToDelete");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/" + connectorProperties.getProperty("id");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
-    }
-
-    /**
-     * Test case for resetPassword method.
-     */
-    @Test(enabled = false, description = "salesforcerest {resetPassword} integration test.")
-    public void resetPassword() throws IOException, JSONException {
-
-        String methodName = "resetPassword";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "resetPassword.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/"+ connectorProperties.getProperty("apiVersion")+"/sobjects/User/"+connectorProperties.getProperty("userId")+"/password";
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
     }
 
     /**
@@ -674,34 +742,6 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).getString("buttonLayoutSection"), apiRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).getString("buttonLayoutSection"));
-    }
-
-    /**
-     * Positive test case for describeListViewById method with mandatory parameters.
-     */
-    @Test(enabled = true, description = "salesforcerest {describeListViewById} integration test with mandatory parameters.")
-    public void describeListViewByIdWithMandatoryParameters() throws IOException, JSONException {
-        String methodName = "describeListViewById";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "describeListViewById.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/listviews/" + connectorProperties.getProperty("listViewID") + "/describe";
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("query"), apiRestResponse.getBody().getString("query"));
-    }
-
-    /**
-     * Positive test case for listViewResults method with mandatory parameters.
-     */
-    @Test(enabled = true, description = "salesforcerest {listViewResults} integration test with mandatory parameters.")
-    public void listViewResultsWithMandatoryParameters() throws IOException, JSONException {
-        String methodName = "listViewResults";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "listViewResults.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/listviews/" + connectorProperties.getProperty("listViewID") + "/results";
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("columns"), apiRestResponse.getBody().getString("columns"));
     }
 
     /**

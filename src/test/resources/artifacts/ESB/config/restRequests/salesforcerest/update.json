@@ -8,7 +8,7 @@
   "apiVersion": "%s(apiVersion)",
   "sObjectName": "%s(sObjectName)",
   "registryPath": "%s(registryPath)",
-  "Id": "%s(Id)",
+  "Id": "%s(id)",
   "intervalTime": "%s(intervalTime)",
   "fieldAndValue": {
     "name": "%s(updateName)",

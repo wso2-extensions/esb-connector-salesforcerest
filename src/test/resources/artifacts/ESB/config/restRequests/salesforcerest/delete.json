@@ -7,7 +7,7 @@
   "hostName": "%s(hostName)",
   "apiVersion": "%s(apiVersion)",
   "sObjectName": "%s(sObjectName)",
-  "idToDelete": "%s(idToDelete)",
+  "idToDelete": "%s(id)",
   "intervalTime": "%s(intervalTime)",
   "registryPath": "%s(registryPath)"
 }

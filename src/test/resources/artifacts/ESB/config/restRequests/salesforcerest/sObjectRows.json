@@ -7,7 +7,7 @@
   "hostName": "%s(hostName)",
   "apiVersion": "%s(apiVersion)",
   "sObjectName": "%s(sObjectName)",
-  "rowId": "%s(rowId)",
+  "rowId": "%s(id)",
   "intervalTime": "%s(intervalTime)",
   "registryPath": "%s(registryPath)"
 }

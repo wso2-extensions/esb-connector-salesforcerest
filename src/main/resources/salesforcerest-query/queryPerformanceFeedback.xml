@@ -23,7 +23,7 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/query/?explain={+uri.var.queryString}">
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/query/?explain={uri.var.queryString}">
                     <timeout>
                         <duration>{$ctx:timeout}</duration>
                         <responseAction>fault</responseAction>

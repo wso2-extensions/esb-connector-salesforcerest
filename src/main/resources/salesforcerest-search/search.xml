@@ -23,7 +23,7 @@
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/?q={+uri.var.searchString}">
+                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/?q={uri.var.searchString}">
                     <timeout>
                         <duration>{$ctx:timeout}</duration>
                         <responseAction>fault</responseAction>

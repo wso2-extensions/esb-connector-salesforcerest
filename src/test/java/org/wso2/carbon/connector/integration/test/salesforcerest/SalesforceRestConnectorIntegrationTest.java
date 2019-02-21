@@ -185,7 +185,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
 
         String methodName = "query";
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "query.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?q=" + connectorProperties.getProperty("queryString");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?q=" + connectorProperties.getProperty("apiQueryString");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -200,7 +200,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
 
         String methodName = "queryPerformanceFeedback";
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "queryPerformanceFeedback.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?explain=" + connectorProperties.getProperty("queryString");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?explain=" + connectorProperties.getProperty("apiQueryString");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -215,7 +215,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
 
         String methodName = "queryAll";
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "queryAll.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/queryAll/?q=" + connectorProperties.getProperty("queryString");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/queryAll/?q=" + connectorProperties.getProperty("apiQueryString");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -318,7 +318,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
 
         String methodName = "search";
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "search.json");
-        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/search/?q=" + connectorProperties.getProperty("searchString");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/search/?q=" + connectorProperties.getProperty("apiSearchString");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -362,7 +362,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     @Test(enabled = true, description = "salesforcerest {getUserInformation} integration test.")
     public void getUserInformation() throws IOException, JSONException {
 
-        String apiUserEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?q=" + connectorProperties.getProperty("userQueryString");
+        String apiUserEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/query/?q=" + connectorProperties.getProperty("apiUserQueryString");
         RestResponse<JSONObject> apiUserRestResponse = sendJsonRestRequest(apiUserEndPoint, "GET", apiRequestHeadersMap);
         String userId = apiUserRestResponse.getBody().getJSONArray("records").getJSONObject(0). getString("Id");
         connectorProperties.put("userId", userId);

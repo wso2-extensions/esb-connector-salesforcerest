@@ -6,6 +6,7 @@ The Salesforce REST [Connector](https://docs.wso2.com/display/EI640/Working+with
 
 | Connector version | Supported Salesforce REST API version | Supported WSO2 ESB/EI version |
 | ------------- | ------------- | ------------- |
+| [1.0.6](https://github.com/wso2-extensions/esb-connector-salesforcerest/tree/org.wso2.carbon.connector.salesforcerest-1.0.6) | v32.0 | ESB 5.0.0, EI 6.1.0, 6.1.1, 6.2.0, 6.3.0, 6.4.0 |
 | [1.0.5](https://github.com/wso2-extensions/esb-connector-salesforcerest/tree/org.wso2.carbon.connector.salesforcerest-1.0.5) | v32.0 | ESB 5.0.0, EI 6.1.0, 6.1.1, 6.2.0, 6.3.0, 6.4.0 |
 | [1.0.4](https://github.com/wso2-extensions/esb-connector-salesforcerest/tree/org.wso2.carbon.connector.salesforcerest-1.0.4) | v32.0 | ESB 4.9.0, 5.0.0  |
 

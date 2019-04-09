@@ -1,4 +1,4 @@
-##  Integration tests for WSO2 ESB Salesforce REST connector
+##  Integration tests for WSO2 EI Salesforce REST connector
 ### Pre-requisites:
 
     - Maven 3.x
@@ -6,14 +6,14 @@
 
  ### Tested Platforms:
 
-    - Mac OS 10.12.6
-    - WSO2 EI 6.4.0
+    - Ubuntu 16.04
+    - WSO2 EI 6.5.0
 
 
 Steps to follow in setting integration test.
 
 
- 1. Download EI 6.4.0 from official website.
+ 1. Download EI 6.5.0 from official website.
 
  2. Create a Salesforce account and create a connected app.
 

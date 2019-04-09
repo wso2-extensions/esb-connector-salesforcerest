@@ -100,7 +100,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("sobjects"), apiRestResponse.getBody().getString("sobjects"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("sobjects").length(), apiRestResponse.getBody().getJSONArray("sobjects").length());
     }
 
     /**
@@ -130,7 +130,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("objectDescribe"), apiRestResponse.getBody().getString("objectDescribe"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONObject("objectDescribe").toString(), apiRestResponse.getBody().getJSONObject("objectDescribe").toString());
     }
 
     /**
@@ -189,7 +189,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("records"), apiRestResponse.getBody().getString("records"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("records").toString(), apiRestResponse.getBody().getJSONArray("records").toString());
     }
 
     /**
@@ -204,7 +204,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("plans"), apiRestResponse.getBody().getString("plans"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("plans").length(), apiRestResponse.getBody().getJSONArray("plans").length());
     }
 
     /**
@@ -219,7 +219,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("records"), apiRestResponse.getBody().getString("records"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("records").toString(), apiRestResponse.getBody().getJSONArray("records").toString());
     }
 
     /**
@@ -262,7 +262,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("layout"), apiRestResponse.getBody().getString("layout"));
+        Assert.assertEquals(esbRestResponse.getBody().toString(), apiRestResponse.getBody().toString());
     }
 
     /**
@@ -403,7 +403,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         connectorProperties.put("listViewID",listViewId);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("listviews"), apiRestResponse.getBody().getString("listviews"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("listviews").length(), apiRestResponse.getBody().getJSONArray("listviews").length());
     }
 
     /**
@@ -447,7 +447,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("plans"), apiRestResponse.getBody().getString("plans"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("plans").toString(), apiRestResponse.getBody().getJSONArray("plans").toString());
     }
 
     /**
@@ -461,7 +461,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("columns"), apiRestResponse.getBody().getString("columns"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("columns").toString(), apiRestResponse.getBody().getJSONArray("columns").toString());
     }
 
     /**
@@ -476,7 +476,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("listviews"), apiRestResponse.getBody().getString("listviews"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("listviews").toString(), apiRestResponse.getBody().getJSONArray("listviews").toString());
     }
 
     /**
@@ -491,7 +491,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("approvals"), apiRestResponse.getBody().getString("approvals"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONObject("approvals").toString(), apiRestResponse.getBody().getJSONObject("approvals").toString());
     }
 
     /**
@@ -672,7 +672,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).getString("buttonLayoutSection"), apiRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).getString("buttonLayoutSection"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).toString(), apiRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).toString());
     }
 
     /**
@@ -686,7 +686,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).getString("buttonLayoutSection"), apiRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).getString("buttonLayoutSection"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).toString(), apiRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).toString());
     }
 
     /**
@@ -700,7 +700,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("Account"), apiRestResponse.getBody().getString("Account"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONObject("Account").toString(), apiRestResponse.getBody().getJSONObject("Account").toString());
     }
 
     /**
@@ -727,7 +727,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("compactLayouts").getJSONObject(0).getString("actions"), apiRestResponse.getBody().getJSONArray("compactLayouts").getJSONObject(0).getString("actions"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("compactLayouts").getJSONObject(0).toString(), apiRestResponse.getBody().getJSONArray("compactLayouts").getJSONObject(0).toString());
     }
 
     /**
@@ -741,7 +741,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).getString("buttonLayoutSection"), apiRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).getString("buttonLayoutSection"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).toString(), apiRestResponse.getBody().getJSONArray("layouts").getJSONObject(0).toString());
     }
 
     /**
@@ -769,7 +769,7 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getString("ConcurrentAsyncGetReportInstances"), apiRestResponse.getBody().getString("ConcurrentAsyncGetReportInstances"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONObject("ConcurrentAsyncGetReportInstances").toString(), apiRestResponse.getBody().getJSONObject("ConcurrentAsyncGetReportInstances").toString());
     }
 
     /**

@@ -51,10 +51,10 @@
         <script language="js">
             <![CDATA[
                 var timeout = mc.getProperty("uri.var.timeout");
-                if (timeout != null && timeout != "") {
+                if (timeout == null || timeout == "") {
                     timeout = 30000;
                 }
-                mc.setProperty("timeout", timeout);
+                mc.setProperty("timeout", timeout.toString());
             ]]>
         </script>
         <filter source="boolean($ctx:uri.var.username) and boolean($ctx:uri.var.password) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"

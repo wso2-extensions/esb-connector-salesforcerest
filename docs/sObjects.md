@@ -615,6 +615,7 @@ Given below is a sample response for the sObjectRows operation.
 Following example illustrates how to connect to Salesforce with the init operation and sObjectGetUpdated operation.
 
 1. Create a sample proxy as below :
+
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="sObjectGetUpdated"
        statistics="disable" trace="disable" transports="https http">
@@ -632,6 +633,7 @@ Following example illustrates how to connect to Salesforce with the init operati
             <property name="apiVersion" expression="json-eval($.apiVersion)"/>
             <property name="registryPath" expression="json-eval($.registryPath)"/>
             <property name="intervalTime" expression="json-eval($.intervalTime)"/>
+            <property name="blocking" expression="json-eval($.blocking)"/>
             <salesforcerest.init>
                 <accessToken>{$ctx:accessToken}</accessToken>
                 <apiUrl>{$ctx:apiUrl}</apiUrl>
@@ -642,6 +644,7 @@ Following example illustrates how to connect to Salesforce with the init operati
                 <refreshToken>{$ctx:refreshToken}</refreshToken>
                 <registryPath>{$ctx:registryPath}</registryPath>
                 <intervalTime>{$ctx:intervalTime}</intervalTime>
+                <blocking>{$ctx:blocking}</blocking>
             </salesforcerest.init>
             <log category="INFO" level="full" separator=","/>
             <salesforcerest.sObjectGetUpdated>

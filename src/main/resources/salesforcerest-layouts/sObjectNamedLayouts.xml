@@ -22,23 +22,47 @@
         <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="uri.var.layoutName" expression="$func:layoutName"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <call>
-            <endpoint>
-                <http method="Get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/describe/namedLayouts/{uri.var.layoutName}">
-                    <timeout>
-                        <duration>{$ctx:timeout}</duration>
-                        <responseAction>fault</responseAction>
-                    </timeout>
-                    <suspendOnFailure>
-                        <errorCodes>-1</errorCodes>
-                        <progressionFactor>1.0</progressionFactor>
-                    </suspendOnFailure>
-                    <markForSuspension>
-                        <errorCodes>-1</errorCodes>
-                    </markForSuspension>
-                </http>
-            </endpoint>
-        </call>
+        <filter source="$ctx:salesforceRestBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="Get"
+                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/describe/namedLayouts/{uri.var.layoutName}">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="Get"
+                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/describe/namedLayouts/{uri.var.layoutName}">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
     </sequence>
 </template>

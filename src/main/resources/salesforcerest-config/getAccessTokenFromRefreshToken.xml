@@ -31,24 +31,48 @@
             <args></args>
         </payloadFactory>
         <property name="FORCE_POST_PUT_NOBODY" value="true" scope="axis2" type="BOOLEAN"/>
-        <call>
-            <endpoint>
-                <http method="post"
-                      uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=refresh_token&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;refresh_token={uri.var.refreshToken}&amp;format=json">
-                    <timeout>
-                        <duration>{$ctx:timeout}</duration>
-                        <responseAction>fault</responseAction>
-                    </timeout>
-                    <suspendOnFailure>
-                        <errorCodes>-1</errorCodes>
-                        <progressionFactor>1.0</progressionFactor>
-                    </suspendOnFailure>
-                    <markForSuspension>
-                        <errorCodes>-1</errorCodes>
-                    </markForSuspension>
-                </http>
-            </endpoint>
-        </call>
+        <filter source="$ctx:salesforceRestBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="post"
+                              uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=refresh_token&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;refresh_token={uri.var.refreshToken}&amp;format=json">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="post"
+                              uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=refresh_token&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;refresh_token={uri.var.refreshToken}&amp;format=json">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
         <!-- Setting the new access token to the property. -->
         <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>
         <property name="uri.var.apiUrl" expression="json-eval($.instance_url)"/>

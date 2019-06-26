@@ -79,6 +79,7 @@ Add the following <salesforcerest.init> method in your configuration:
     <apiVersion>{$ctx:apiVersion}</apiVersion>
     <registryPath>{$ctx:registryPath}</registryPath>
     <intervalTime>{$ctx:intervalTime}</intervalTime>
+    <blocking>{$ctx:blocking}</blocking>
   </salesforcerest.init>
 ```
 **Properties** 
@@ -91,6 +92,7 @@ Add the following <salesforcerest.init> method in your configuration:
 * clientSecret:  The consumer secret of the connected application that you created.
 * intervalTime:  The time interval in milliseconds, after which you need to check the validity of the access token.
 * registryPath:  The registry path of the connector. You must specify the registry path as follows: registryPath = “connectors/salesforcerest”.
+* blocking: Indicates whether the connector needs to perform blocking invocations to Salesforce. (Supported in WSO2 ESB 4.9.0 and later.)
 
 **Sample Request**
 
@@ -106,7 +108,8 @@ Following is a sample REST request that can be handled by the init operation.
   "registryPath":"connectors/salesforcerest",
   "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
   "intervalTime" : "100000",
-  "apiUrl":"https://ap2.salesforce.com"
+  "apiUrl":"https://ap2.salesforce.com",
+  "blocking" : "false"
 }
 ```
 
@@ -125,6 +128,7 @@ Following is a sample REST request that can be handled by the init operation.
     <apiVersion>{$ctx:apiVersion}</apiVersion>
     <username>{$ctx:username}</username>
     <password>{$ctx:password}</password>
+    <blocking>{$ctx:blocking}</blocking>
 </salesforcerest.init>
 ```
 **Properties** 
@@ -135,7 +139,7 @@ Following is a sample REST request that can be handled by the init operation.
 * clientSecret:  The consumer secret of the connected application that you created.
 * username: The username for the salesforce.
 * password: The password for the salesforce (Need to append the password with security key).
-
+* blocking: Indicates whether the connector needs to perform blocking invocations to Salesforce. (Supported in WSO2 ESB 4.9.0 and later.)
 
 **Sample Request**
 
@@ -149,7 +153,8 @@ Following is a sample REST request that can be handled by the init operation for
   "apiVersion": "v32.0",
   "username": "tharis63@outlook.com",
   "password": "xxxxxxxxxxxxxxxxxxxxxx",
-  "apiUrl":"https://ap2.salesforce.com"
+  "apiUrl":"https://ap2.salesforce.com",
+  "blocking" : "false"
 }
 ```
 

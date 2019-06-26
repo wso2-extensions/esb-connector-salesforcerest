@@ -26,23 +26,47 @@
         <property name="uri.var.language" expression="$func:language"/>
         <property name="uri.var.status" expression="$func:status"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <call>
-            <endpoint>
-                <http method="get"
-                      uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestTitleMatches?q={uri.var.searchString}&amp;language={uri.var.language}&amp;publishStatus={uri.var.status}">
-                    <timeout>
-                        <duration>{$ctx:timeout}</duration>
-                        <responseAction>fault</responseAction>
-                    </timeout>
-                    <suspendOnFailure>
-                        <errorCodes>-1</errorCodes>
-                        <progressionFactor>1.0</progressionFactor>
-                    </suspendOnFailure>
-                    <markForSuspension>
-                        <errorCodes>-1</errorCodes>
-                    </markForSuspension>
-                </http>
-            </endpoint>
-        </call>
+        <filter source="$ctx:salesforceRestBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="get"
+                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestTitleMatches?q={uri.var.searchString}&amp;language={uri.var.language}&amp;publishStatus={uri.var.status}">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestTitleMatches?q={uri.var.searchString}&amp;language={uri.var.language}&amp;publishStatus={uri.var.status}">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
     </sequence>
 </template>

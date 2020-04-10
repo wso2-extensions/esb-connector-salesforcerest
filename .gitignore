@@ -9,7 +9,6 @@ target
 .idea
 *.class
 
-
 # Package Files #
 *.war
 *.ear

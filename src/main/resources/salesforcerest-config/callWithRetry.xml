@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+<template name="callWithRetry" xmlns="http://ws.apache.org/ns/synapse">
+    <sequence>
+        <!--<log level="custom">-->
+            <!--<property name="###########%%%%%%%%%%%%%%%%%%%%" value="This is from call template"/>-->
+        <!--</log>-->
+        <!--<log category="ERROR" level="custom">-->
+            <!--<property name="###########%%%%%%%%%%%%%%%%%%%%to call" expression="$ctx:uri.var.callEndpointUri"/>-->
+        <!--</log>-->
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="{uri.var.callEndpointUri}">
+                    <timeout>
+                        <duration>{$ctx:timeout}</duration>
+                        <responseAction>fault</responseAction>
+                    </timeout>
+                    <suspendOnFailure>
+                        <errorCodes>-1</errorCodes>
+                        <progressionFactor>1.0</progressionFactor>
+                    </suspendOnFailure>
+                    <markForSuspension>
+                        <errorCodes>-1</errorCodes>
+                    </markForSuspension>
+                </http>
+            </endpoint>
+        </call>
+        <!--<log level="custom">-->
+            <!--&lt;!&ndash;<property name="%%%%%%%%%%%%%# http code" expression="$trp:HTTP/1.1" />&ndash;&gt;-->
+            <!--<property name="%%%%%%%%%%%%%# http code" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>-->
+        <!--</log>-->
+        <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
+        <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
+            <then>
+                <log level="custom">
+                    <property name="%%%%%%%%%%%%%# http code" value="code received as 4xx"/>
+                </log>
+            </then>
+        </filter>
+        <filter source="$ctx:httpCode" regex="2[0-9][0-9]">
+            <then>
+                <log level="custom">
+                    <property name="%%%%%%%%%%%%%# http code" value="code received as 2xx"/>
+                </log>
+            </then>
+        </filter>
+        <!--<log level="full"/>-->
+    </sequence>
+</template>

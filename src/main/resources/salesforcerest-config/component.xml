@@ -22,6 +22,10 @@
             <file>init.xml</file>
             <description>Initial configuration file for salesforce rest connector</description>
         </component>
+        <component name="callWithRetry">
+            <file>callWithRetry.xml</file>
+            <description>Templating the retry call</description>
+        </component>
         <component name="getAccessTokenFromRefreshToken">
             <file>getAccessTokenFromRefreshToken.xml</file>
             <description>Getting Access Token from refresh token</description>

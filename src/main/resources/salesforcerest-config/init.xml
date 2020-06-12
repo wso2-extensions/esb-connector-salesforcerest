@@ -27,8 +27,6 @@
     <parameter name="clientId"
                description="Value of your API Key given when you registered your application with salesforce."/>
     <parameter name="apiUrl" description="The instance URL for your organization"/>
-    <parameter name="registryPath"
-               description="Registry Path of the Connector where the values are stored"/>
     <parameter name="intervalTime"
                description="The Interval time to check the accessToken validity"/>
     <parameter name="timeout" description="Timeout duration of the API request."/>
@@ -37,6 +35,7 @@
                description="The password for the salesforce which means the password with security key"/>
     <parameter name="blocking" description="Set to true to perform the blocking invocations to Salesforce."/>
     <sequence>
+        <!--todo: remove uri.var-->
         <property name="uri.var.accessToken" expression="$func:accessToken"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.hostName" expression="$func:hostName"/>
@@ -44,7 +43,7 @@
         <property name="uri.var.clientSecret" expression="$func:clientSecret"/>
         <property name="uri.var.clientId" expression="$func:clientId"/>
         <property name="uri.var.apiUrl" expression="$func:apiUrl"/>
-        <property name="uri.var.registryPath" expression="$func:registryPath"/>
+        <property name="uri.var.accessTokenRegistryPath" value="connectors/salesforcerest/accessToken"/>
         <property name="uri.var.intervalTime" expression="$func:intervalTime"/>
         <property name="uri.var.username" expression="$func:username"/>
         <property name="uri.var.password" expression="$func:password"/>
@@ -54,11 +53,15 @@
             <![CDATA[
                 var timeout = mc.getProperty("uri.var.timeout");
                 if (timeout == null || timeout == "") {
-                    timeout = 30000;
+                    timeout = 3000;
                 }
                 mc.setProperty("timeout", timeout.toString());
             ]]>
         </script>
+        <enrich>
+            <source clone="true" type="body"/>
+            <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+        </enrich>
         <filter source="boolean($ctx:uri.var.username) and boolean($ctx:uri.var.password) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"
                 regex="true">
             <then>
@@ -114,71 +117,21 @@
                 <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>
             </then>
         </filter>
-        <filter source="boolean($ctx:uri.var.refreshToken) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId) and boolean($ctx:uri.var.accessToken)"
+        <!--<call-template target="callWithRetry">-->
+            <!--<with-param name="message" value="HELLO WORLD!!!!!!" />-->
+        <!--</call-template>-->
+        <filter source="boolean($ctx:uri.var.refreshToken) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"
                 regex="true">
             <then>
-                <filter source="boolean($ctx:uri.var.intervalTime)" regex="false">
-                    <then>
-                        <property name="uri.var.intervalTime"
-                                  value="3000000"/>
-                    </then>
-                </filter>
-                <filter source="boolean(get-property('uri.var.registryPath'))" regex="true">
-                    <then>
-                        <property name="uri.var.accessTokenRegistryPath"
-                                  expression="fn:concat($ctx:uri.var.registryPath, '/accessToken' )"/>
-                        <property name="uri.var.timeRegistryPath"
-                                  expression="fn:concat($ctx:uri.var.registryPath, '/time' )"/>
-                    </then>
-                </filter>
-                <property name="uri.var.accessToken.reg"
-                          expression="get-property('registry', $ctx:uri.var.accessTokenRegistryPath)"/>
-                <property name="systemTime" expression="get-property('SYSTEM_TIME')"
-                          scope="default"/>
-                <filter source="$ctx:uri.var.accessToken.reg=''" regex="true">
-                    <then>
-                        <script language="js">
-                            <![CDATA[
-                           importPackage(Packages.org.apache.synapse.config);
-                           var newAccess = mc.getProperty('uri.var.accessToken');
-                           var newAccessRegistryPath = mc.getProperty('uri.var.accessTokenRegistryPath');
-                           var newSysTime = mc.getProperty('systemTime');
-                           var newTimeRegistryPath = mc.getProperty('uri.var.timeRegistryPath');
-                           if(newAccess != null && newAccess != ''){
-                               //Create the registry entry if no such entry exists.
-                               mc.getConfiguration().getRegistry().newResource(newAccessRegistryPath,false);
-                               mc.getConfiguration().getRegistry().updateResource(newAccessRegistryPath,newAccess);
-                               mc.getConfiguration().getRegistry().newResource(newTimeRegistryPath, false);
-                               mc.getConfiguration().getRegistry().updateResource(newTimeRegistryPath, newSysTime);
-                           }
-                           ]]>
-                        </script>
-                    </then>
-                    <else>
-                        <property name="uri.var.accessToken"
-                                  expression="$ctx:uri.var.accessToken.reg"/>
-                    </else>
-                </filter>
-                <property name="registryTime"
-                          expression="get-property('registry', $ctx:uri.var.timeRegistryPath)"/>
-                <script language="js"><![CDATA[
-                    var time1 = mc.getProperty("systemTime");
-                    var time2 = mc.getProperty("registryTime");
-                    var timeTaken = time1 - time2;
-                    mc.setProperty("INTERVAL_TIME", timeTaken);
-                   ]]>
-                </script>
-                <!--If the access token is not in the registry(first call) or time interval less than 50 minutes , then get a new access token by calling getAccessTokenByRefreshToken method and store the time into registry-->
-                <filter source="$ctx:INTERVAL_TIME &gt;$ctx:uri.var.intervalTime or $ctx:uri.var.accessToken=''"
-                        regex="true">
-                    <then>
-                        <salesforcerest.getAccessTokenFromRefreshToken/>
-                    </then>
-                </filter>
+                <class name="org.wso2.carbon.connector.salesforcerest.RefreshAccessToken"/>
             </then>
         </filter>
         <header name="Authorization"
                 expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
                 scope="transport"/>
+        <enrich>
+            <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+            <target type="body"/>
+        </enrich>
     </sequence>
 </template>

@@ -18,49 +18,117 @@
   -->
 <template name="callWithRetry" xmlns="http://ws.apache.org/ns/synapse">
     <sequence>
-        <!--<log level="custom">-->
-            <!--<property name="###########%%%%%%%%%%%%%%%%%%%%" value="This is from call template"/>-->
-        <!--</log>-->
-        <!--<log category="ERROR" level="custom">-->
-            <!--<property name="###########%%%%%%%%%%%%%%%%%%%%to call" expression="$ctx:uri.var.callEndpointUri"/>-->
-        <!--</log>-->
-        <call>
-            <endpoint>
-                <http method="get"
-                      uri-template="{uri.var.callEndpointUri}">
-                    <timeout>
-                        <duration>{$ctx:timeout}</duration>
-                        <responseAction>fault</responseAction>
-                    </timeout>
-                    <suspendOnFailure>
-                        <errorCodes>-1</errorCodes>
-                        <progressionFactor>1.0</progressionFactor>
-                    </suspendOnFailure>
-                    <markForSuspension>
-                        <errorCodes>-1</errorCodes>
-                    </markForSuspension>
-                </http>
-            </endpoint>
-        </call>
-        <!--<log level="custom">-->
-            <!--&lt;!&ndash;<property name="%%%%%%%%%%%%%# http code" expression="$trp:HTTP/1.1" />&ndash;&gt;-->
-            <!--<property name="%%%%%%%%%%%%%# http code" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>-->
-        <!--</log>-->
-        <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
-        <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
+        <filter source="$ctx:salesforceRestBlocking" regex="true">
             <then>
-                <log level="custom">
-                    <property name="%%%%%%%%%%%%%# http code" value="code received as 4xx"/>
-                </log>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="get"
+                              uri-template="{uri.var.callEndpointUri}">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
+                    </endpoint>
+                </call>
+                <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
+                <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
+                    <then>
+                        <enrich>
+                            <source clone="true" type="body"/>
+                            <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                        </enrich>
+                        <class name="org.wso2.carbon.connector.salesforcerest.RefreshAccessToken"/>
+                        <header name="Authorization"
+                                expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
+                                scope="transport"/>
+                        <enrich>
+                            <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                            <target type="body"/>
+                        </enrich>
+                        <call blocking="true">
+                            <endpoint>
+                                <http method="get"
+                                      uri-template="{uri.var.callEndpointUri}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </then>
+                </filter>
             </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                              uri-template="{uri.var.callEndpointUri}">
+                            <timeout>
+                                <duration>{$ctx:timeout}</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>-1</errorCodes>
+                                <progressionFactor>1.0</progressionFactor>
+                            </suspendOnFailure>
+                            <markForSuspension>
+                                <errorCodes>-1</errorCodes>
+                            </markForSuspension>
+                        </http>
+                    </endpoint>
+                </call>
+                <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
+                <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
+                    <then>
+                        <enrich>
+                            <source clone="true" type="body"/>
+                            <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                        </enrich>
+                        <class name="org.wso2.carbon.connector.salesforcerest.RefreshAccessToken"/>
+                        <header name="Authorization"
+                                expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
+                                scope="transport"/>
+                        <enrich>
+                            <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                            <target type="body"/>
+                        </enrich>
+                        <call>
+                            <endpoint>
+                                <http method="get"
+                                      uri-template="{uri.var.callEndpointUri}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </then>
+                </filter>
+            </else>
         </filter>
-        <filter source="$ctx:httpCode" regex="2[0-9][0-9]">
-            <then>
-                <log level="custom">
-                    <property name="%%%%%%%%%%%%%# http code" value="code received as 2xx"/>
-                </log>
-            </then>
-        </filter>
-        <!--<log level="full"/>-->
     </sequence>
 </template>

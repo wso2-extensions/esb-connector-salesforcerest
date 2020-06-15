@@ -117,15 +117,6 @@
                 <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>
             </then>
         </filter>
-        <!--<call-template target="callWithRetry">-->
-            <!--<with-param name="message" value="HELLO WORLD!!!!!!" />-->
-        <!--</call-template>-->
-        <filter source="boolean($ctx:uri.var.refreshToken) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"
-                regex="true">
-            <then>
-                <class name="org.wso2.carbon.connector.salesforcerest.RefreshAccessToken"/>
-            </then>
-        </filter>
         <header name="Authorization"
                 expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
                 scope="transport"/>

@@ -24,53 +24,7 @@
         <property name="uri.var.rowId" expression="$func:rowId"/>
         <property name="uri.var.fields" expression="$func:fields"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <filter source="$ctx:salesforceRestBlocking" regex="true">
-            <then>
-                <call blocking="true">
-                    <endpoint>
-                        <http method="get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.rowId}?fields={uri.var.fields}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </then>
-            <else>
-                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$ctx:uri.var.sObjectName,'/',$ctx:uri.var.rowId,'?fields=',$ctx:uri.var.fields)"/>
-                <salesforcerest.callWithRetry/>
-                <!--<log category="ERROR" level="custom">-->
-                    <!--<property name="%%%%%%%%%%%%%%%%%callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$ctx:uri.var.sObjectName,'/',$ctx:uri.var.rowId,'?fields=',$ctx:uri.var.fields)"/>-->
-                <!--</log>-->
-                <!--<property name="callEndpointUri2" expression="$ctx:uri.var.apiUrl/services/data/$ctx:uri.var.apiVersion/sobjects/$ctx:uri.var.sObjectName/$ctx:uri.var.rowId?fields=$ctx:uri.var.fields"/>-->
-                <!--<call>-->
-                    <!--<endpoint>-->
-                        <!--<http method="get"-->
-                              <!--uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.rowId}?fields={uri.var.fields}">-->
-                            <!--<timeout>-->
-                                <!--<duration>{$ctx:timeout}</duration>-->
-                                <!--<responseAction>fault</responseAction>-->
-                            <!--</timeout>-->
-                            <!--<suspendOnFailure>-->
-                                <!--<errorCodes>-1</errorCodes>-->
-                                <!--<progressionFactor>1.0</progressionFactor>-->
-                            <!--</suspendOnFailure>-->
-                            <!--<markForSuspension>-->
-                                <!--<errorCodes>-1</errorCodes>-->
-                            <!--</markForSuspension>-->
-                        <!--</http>-->
-                    <!--</endpoint>-->
-                <!--</call>-->
-            </else>
-        </filter>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$ctx:uri.var.sObjectName,'/',$ctx:uri.var.rowId,'?fields=',$ctx:uri.var.fields)"/>
+        <salesforcerest.callWithRetry/>
     </sequence>
 </template>

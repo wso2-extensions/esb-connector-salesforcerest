@@ -22,13 +22,13 @@
             <file>init.xml</file>
             <description>Initial configuration file for salesforce rest connector</description>
         </component>
-        <component name="callWithRetryGet">
-            <file>callWithRetryGet.xml</file>
-            <description>Templating the retry call for http method GET</description>
+        <component name="callWithRetry">
+            <file>callWithRetry.xml</file>
+            <description>Templating the retry call</description>
         </component>
-        <component name="callWithRetryPost">
-            <file>callWithRetryPost.xml</file>
-            <description>Templating the retry call for http method POST</description>
+        <component name="callOptions">
+            <file>callOptions.xml</file>
+            <description>Templating the http call types GET, POST, etc.</description>
         </component>
         <component name="getAccessTokenFromRefreshToken">
             <file>getAccessTokenFromRefreshToken.xml</file>

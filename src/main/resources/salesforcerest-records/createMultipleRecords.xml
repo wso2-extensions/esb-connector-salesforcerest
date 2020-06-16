@@ -29,6 +29,7 @@
             </args>
         </payloadFactory>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/composite/tree/',$func:sObjectName)"/>
-        <salesforcerest.callWithRetryPost/>
+        <property name="httpMethod" value="post"/>
+        <salesforcerest.callWithRetry/>
     </sequence>
 </template>

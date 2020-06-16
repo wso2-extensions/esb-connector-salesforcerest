@@ -19,50 +19,8 @@
     <parameter name="searchString" description="The SOQL query to execute the search"/>
     <parameter name="language" description="The language of the query"/>
     <sequence>
-        <property name="uri.var.searchString" expression="$func:searchString"/>
-        <property name="uri.var.language" expression="$func:language"/>
-        <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <filter source="$ctx:salesforceRestBlocking" regex="true">
-            <then>
-                <call blocking="true">
-                    <endpoint>
-                        <http method="get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestSearchQueries?q={uri.var.searchString}&amp;language={uri.var.language}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </then>
-            <else>
-                <call>
-                    <endpoint>
-                        <http method="get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/search/suggestSearchQueries?q={uri.var.searchString}&amp;language={uri.var.language}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </else>
-        </filter>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/search/suggestSearchQueries/?q=',$func:searchString,'&amp;language=',$func:language)"/>
+        <property name="httpMethod" value="get"/>
+        <salesforcerest.callWithRetry/>
     </sequence>
 </template>

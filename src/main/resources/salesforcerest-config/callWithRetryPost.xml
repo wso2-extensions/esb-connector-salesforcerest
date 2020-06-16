@@ -16,13 +16,18 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-<template name="callWithRetry" xmlns="http://ws.apache.org/ns/synapse">
+<template name="callWithRetryPost" xmlns="http://ws.apache.org/ns/synapse">
     <sequence>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
+        <enrich>
+            <source clone="true" type="body"/>
+            <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+        </enrich>
         <filter source="$ctx:salesforceRestBlocking" regex="true">
             <then>
                 <call blocking="true">
                     <endpoint>
-                        <http method="get"
+                        <http method="post"
                               uri-template="{uri.var.callEndpointUri}">
                             <timeout>
                                 <duration>{$ctx:timeout}</duration>
@@ -41,10 +46,6 @@
                 <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
                 <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
                     <then>
-                        <enrich>
-                            <source clone="true" type="body"/>
-                            <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-                        </enrich>
                         <class name="org.wso2.carbon.connector.salesforcerest.RefreshAccessToken"/>
                         <header name="Authorization"
                                 expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
@@ -55,7 +56,7 @@
                         </enrich>
                         <call blocking="true">
                             <endpoint>
-                                <http method="get"
+                                <http method="post"
                                       uri-template="{uri.var.callEndpointUri}">
                                     <timeout>
                                         <duration>{$ctx:timeout}</duration>
@@ -96,10 +97,6 @@
                 <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
                 <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
                     <then>
-                        <enrich>
-                            <source clone="true" type="body"/>
-                            <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-                        </enrich>
                         <class name="org.wso2.carbon.connector.salesforcerest.RefreshAccessToken"/>
                         <header name="Authorization"
                                 expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"

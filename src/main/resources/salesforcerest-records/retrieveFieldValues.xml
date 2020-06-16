@@ -20,11 +20,7 @@
     <parameter name="rowId" description="The row Id of the object."/>
     <parameter name="fields" description="The comma separated field values."/>
     <sequence>
-        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
-        <property name="uri.var.rowId" expression="$func:rowId"/>
-        <property name="uri.var.fields" expression="$func:fields"/>
-        <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$ctx:uri.var.sObjectName,'/',$ctx:uri.var.rowId,'?fields=',$ctx:uri.var.fields)"/>
-        <salesforcerest.callWithRetry/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$func:sObjectName,'/',$func:rowId,'?fields=',$func:fields)"/>
+        <salesforcerest.callWithRetryGet/>
     </sequence>
 </template>

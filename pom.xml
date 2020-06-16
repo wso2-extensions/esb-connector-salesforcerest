@@ -42,7 +42,7 @@
         <rampart.wso2.version>1.6.1.wso2v18</rampart.wso2.version>
         <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
         <integration.base.version>1.0.3</integration.base.version>
-        <skip-tests>true</skip-tests>
+        <skip-tests>false</skip-tests>
     </properties>
     <dependencies>
         <dependency>

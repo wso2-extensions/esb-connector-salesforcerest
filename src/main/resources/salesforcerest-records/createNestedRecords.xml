@@ -19,7 +19,6 @@
     <parameter name="sObjectName" description="The type of sObject"/>
     <parameter name="fieldAndValue" description="The value of the field of a particular sObject"/>
     <sequence>
-        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="uri.var.fieldAndValue" expression="$func:fieldAndValue"/>
         <payloadFactory media-type="json">
             <format>

@@ -111,5 +111,97 @@
                 </else>
             </filter>
         </filter>
+        <!--for HTTP method DELETE-->
+        <filter source="$ctx:httpMethod" regex="delete">
+            <filter source="$ctx:salesforceRestBlocking" regex="true">
+                <then>
+                    <property name="REST_URL_POSTFIX" action="remove" scope="axis2"/>
+                    <call blocking="true">
+                        <endpoint>
+                            <http method="delete"
+                                  uri-template="{uri.var.callEndpointUri}">
+                                <timeout>
+                                    <duration>{$ctx:timeout}</duration>
+                                    <responseAction>fault</responseAction>
+                                </timeout>
+                                <suspendOnFailure>
+                                    <errorCodes>-1</errorCodes>
+                                    <progressionFactor>1.0</progressionFactor>
+                                </suspendOnFailure>
+                                <markForSuspension>
+                                    <errorCodes>-1</errorCodes>
+                                </markForSuspension>
+                            </http>
+                        </endpoint>
+                    </call>
+                </then>
+                <else>
+                    <call>
+                        <endpoint>
+                            <http method="delete"
+                                  uri-template="{uri.var.callEndpointUri}">
+                                <timeout>
+                                    <duration>{$ctx:timeout}</duration>
+                                    <responseAction>fault</responseAction>
+                                </timeout>
+                                <suspendOnFailure>
+                                    <errorCodes>-1</errorCodes>
+                                    <progressionFactor>1.0</progressionFactor>
+                                </suspendOnFailure>
+                                <markForSuspension>
+                                    <errorCodes>-1</errorCodes>
+                                </markForSuspension>
+                            </http>
+                        </endpoint>
+                    </call>
+                </else>
+            </filter>
+        </filter>
+        <!--for HTTP method PATCH-->
+        <filter source="$ctx:httpMethod" regex="patch">
+            <filter source="$ctx:salesforceRestBlocking" regex="true">
+                <then>
+                    <property name="REST_URL_POSTFIX" action="remove" scope="axis2"/>
+                    <call blocking="true">
+                        <endpoint>
+                            <http method="patch"
+                                  uri-template="{uri.var.callEndpointUri}">
+                                <timeout>
+                                    <duration>{$ctx:timeout}</duration>
+                                    <responseAction>fault</responseAction>
+                                </timeout>
+                                <suspendOnFailure>
+                                    <errorCodes>-1</errorCodes>
+                                    <progressionFactor>1.0</progressionFactor>
+                                </suspendOnFailure>
+                                <markForSuspension>
+                                    <errorCodes>-1</errorCodes>
+                                </markForSuspension>
+                            </http>
+                        </endpoint>
+                    </call>
+                </then>
+                <else>
+                    <call>
+                        <endpoint>
+                            <http method="patch"
+                                  uri-template="{uri.var.callEndpointUri}">
+                                <timeout>
+                                    <duration>{$ctx:timeout}</duration>
+                                    <responseAction>fault</responseAction>
+                                </timeout>
+                                <suspendOnFailure>
+                                    <errorCodes>-1</errorCodes>
+                                    <progressionFactor>1.0</progressionFactor>
+                                </suspendOnFailure>
+                                <markForSuspension>
+                                    <errorCodes>-1</errorCodes>
+                                </markForSuspension>
+                            </http>
+                        </endpoint>
+                    </call>
+                </else>
+            </filter>
+        </filter>
     </sequence>
 </template>

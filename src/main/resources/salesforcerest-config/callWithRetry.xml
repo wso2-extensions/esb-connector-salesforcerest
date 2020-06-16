@@ -18,10 +18,12 @@
   -->
 <template name="callWithRetry" xmlns="http://ws.apache.org/ns/synapse">
     <sequence>
-        <enrich>
-            <source clone="true" type="body"/>
-            <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-        </enrich>
+        <filter source="$ctx:httpMethod" regex="(post|patch)">
+            <enrich>
+                <source clone="true" type="body"/>
+                <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+            </enrich>
+        </filter>
         <salesforcerest.callOptions/>
         <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
         <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
@@ -30,10 +32,12 @@
                 <header name="Authorization"
                         expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
                         scope="transport"/>
-                <enrich>
-                    <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-                    <target type="body"/>
-                </enrich>
+                <filter source="$ctx:httpMethod" regex="(post|patch)">
+                    <enrich>
+                        <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                        <target type="body"/>
+                    </enrich>
+                </filter>
                 <salesforcerest.callOptions/>
             </then>
         </filter>

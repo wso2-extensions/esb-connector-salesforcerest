@@ -46,11 +46,11 @@
                 <blocking>{$ctx:blocking}</blocking>
             </salesforcerest.init>
             <log category="INFO" level="full" separator=","/>
-            <salesforcerest.sObjectGetUpdated>
-                <sObjectName>{$ctx:sObjectName}</sObjectName>
-                <startTime>{$ctx:startTime}</startTime>
-                <endTime>{$ctx:endTime}</endTime>
-            </salesforcerest.sObjectGetUpdated>
+            <!--<salesforcerest.sObjectGetUpdated>-->
+                <!--<sObjectName>{$ctx:sObjectName}</sObjectName>-->
+                <!--<startTime>{$ctx:startTime}</startTime>-->
+                <!--<endTime>{$ctx:endTime}</endTime>-->
+            <!--</salesforcerest.sObjectGetUpdated>-->
             <send/>
         </inSequence>
     </target>

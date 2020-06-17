@@ -46,11 +46,11 @@
                 <blocking>{$ctx:blocking}</blocking>
             </salesforcerest.init>
             <log category="INFO" level="full" separator=","/>
-            <salesforcerest.sObjectGetDeleted>
-                <sObjectName>{$ctx:sObjectName}</sObjectName>
-                <startTime>{$ctx:startTime}</startTime>
-                <endTime>{$ctx:endTime}</endTime>
-            </salesforcerest.sObjectGetDeleted>
+            <!--<salesforcerest.sObjectGetDeleted>-->
+                <!--<sObjectName>{$ctx:sObjectName}</sObjectName>-->
+                <!--<startTime>{$ctx:startTime}</startTime>-->
+                <!--<endTime>{$ctx:endTime}</endTime>-->
+            <!--</salesforcerest.sObjectGetDeleted>-->
             <send/>
         </inSequence>
     </target>

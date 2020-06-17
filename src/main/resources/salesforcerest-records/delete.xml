@@ -19,7 +19,7 @@
     <parameter name="sObjectName" description="The type of sObject."/>
     <parameter name="idToDelete" description="The Id of the object will be going to delete."/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$func:sObjectName),'/',$func:idToDelete)"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$func:sObjectName,'/',$func:idToDelete)"/>
         <property name="httpMethod" value="delete"/>
         <salesforcerest.callWithRetry/>
     </sequence>

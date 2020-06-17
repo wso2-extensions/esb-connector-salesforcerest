@@ -19,7 +19,7 @@
     <parameter name="sObjectName" description="The type of sObject"/>
     <parameter name="listViewID" description="The value of the Id of listview"/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$func:sObjectName,'/listviews/,$func:listViewID,'/results')"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$func:sObjectName,'/listviews/',$func:listViewID,'/results')"/>
         <property name="httpMethod" value="get"/>
         <salesforcerest.callWithRetry/>
     </sequence>

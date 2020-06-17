@@ -18,7 +18,7 @@
 <template name="getDescribeSpecificAction" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="actionName" description="The specific action name to retrieve the action "/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/quickActions/',$func:actionName,'describe')"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/quickActions/',$func:actionName,'/describe')"/>
         <property name="httpMethod" value="get"/>
         <salesforcerest.callWithRetry/>
     </sequence>

@@ -42,18 +42,6 @@
             <file>sObjectRows.xml</file>
             <description>Accesses records based on the specified object ID</description>
         </component>
-        <component name="sObjectGetDeleted">
-            <file>sObjectGetDeleted.xml</file>
-            <description>Retrieves the list of individual records that have been deleted within the
-                given timespan for the specified object
-            </description>
-        </component>
-        <component name="sObjectGetUpdated">
-            <file>sObjectGetUpdated.xml</file>
-            <description>Retrieves the list of individual records that have been updated (added or
-                changed) within the given timespan for the specified object
-            </description>
-        </component>
         <component name="listAvailableApiVersion">
             <file>listAvailableApiVersion.xml</file>
             <description>List summary information about each REST API version currently available.

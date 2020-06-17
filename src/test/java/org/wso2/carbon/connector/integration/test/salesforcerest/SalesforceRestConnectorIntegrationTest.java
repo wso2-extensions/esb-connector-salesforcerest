@@ -134,13 +134,13 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     }
 
 //    /**
-//     * Test case for sObjectGetDeleted method.
+//     * Test case for getDeleted method.
 //     */
-//    @Test(enabled = true, description = "salesforcerest {sObjectGetDeleted} integration test.")
-//    public void sObjectGetDeleted() throws IOException, JSONException {
+//    @Test(enabled = true, description = "salesforcerest {getDeleted} integration test.")
+//    public void getDeleted() throws IOException, JSONException {
 //
-//        String methodName = "sObjectGetDeleted";
-//        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "sObjectGetDeleted.json");
+//        String methodName = "getDeleted";
+//        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "getDeleted.json");
 //        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/deleted/?start=" + connectorProperties.getProperty("apiStartTime") + "&end=" + connectorProperties.getProperty("apiEndTime");
 //        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 //        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);

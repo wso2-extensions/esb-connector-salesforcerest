@@ -18,49 +18,8 @@
 <template name="getDefaultValueOfAction" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="actionName" description="The specific action name to retrieve the action "/>
     <sequence>
-        <property name="uri.var.actionName" expression="$func:actionName"/>
-        <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <filter source="$ctx:salesforceRestBlocking" regex="true">
-            <then>
-                <call blocking="true">
-                    <endpoint>
-                        <http method="Get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/quickActions/{uri.var.actionName}/defaultValues">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </then>
-            <else>
-                <call>
-                    <endpoint>
-                        <http method="Get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/quickActions/{uri.var.actionName}/defaultValues">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </else>
-        </filter>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/quickActions/',$func:actionName,'defaultValues')"/>
+        <property name="httpMethod" value="get"/>
+        <salesforcerest.callWithRetry/>
     </sequence>
 </template>

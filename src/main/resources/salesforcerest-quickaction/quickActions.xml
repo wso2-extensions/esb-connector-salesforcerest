@@ -17,48 +17,8 @@
 -->
 <template name="quickActions" xmlns="http://ws.apache.org/ns/synapse">
     <sequence>
-        <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <filter source="$ctx:salesforceRestBlocking" regex="true">
-            <then>
-                <call blocking="true">
-                    <endpoint>
-                        <http method="Get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/quickActions">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </then>
-            <else>
-                <call>
-                    <endpoint>
-                        <http method="Get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/quickActions">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </else>
-        </filter>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/quickActions')"/>
+        <property name="httpMethod" value="get"/>
+        <salesforcerest.callWithRetry/>
     </sequence>
 </template>

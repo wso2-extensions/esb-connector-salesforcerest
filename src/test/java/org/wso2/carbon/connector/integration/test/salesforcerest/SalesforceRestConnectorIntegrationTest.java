@@ -133,34 +133,34 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
         Assert.assertEquals(esbRestResponse.getBody().getJSONObject("objectDescribe").toString(), apiRestResponse.getBody().getJSONObject("objectDescribe").toString());
     }
 
-//    /**
-//     * Test case for getDeleted method.
-//     */
-//    @Test(enabled = true, description = "salesforcerest {getDeleted} integration test.")
-//    public void getDeleted() throws IOException, JSONException {
-//
-//        String methodName = "getDeleted";
-//        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "getDeleted.json");
-//        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/deleted/?start=" + connectorProperties.getProperty("apiStartTime") + "&end=" + connectorProperties.getProperty("apiEndTime");
-//        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-//        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-//        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-//        Assert.assertEquals(esbRestResponse.getBody().getString("earliestDateAvailable"), apiRestResponse.getBody().getString("earliestDateAvailable"));
-//    }
-//
-//    /**
-//     * Test case for sObjectGetUpdated method.
-//     */
-//    @Test(enabled = true, description = "salesforcerest {sObjectGetUpdated} integration test.")
-//    public void sObjectGetUpdated() throws IOException, JSONException {
-//
-//        String methodName = "sObjectGetUpdated";
-//        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "sObjectGetUpdated.json");
-//        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/updated/?start=" + connectorProperties.getProperty("apiStartTime") + "&end=" + connectorProperties.getProperty("apiEndTime");
-//        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-//        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-//        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-//    }
+    /**
+     * Test case for getDeleted method.
+     */
+    @Test(enabled = true, description = "salesforcerest {getDeleted} integration test.")
+    public void getDeleted() throws IOException, JSONException {
+
+        String methodName = "getDeleted";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "getDeleted.json");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/deleted/?start=" + connectorProperties.getProperty("apiStartTime") + "&end=" + connectorProperties.getProperty("apiEndTime");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(esbRestResponse.getBody().getString("earliestDateAvailable"), apiRestResponse.getBody().getString("earliestDateAvailable"));
+    }
+
+    /**
+     * Test case for getUpdated method.
+     */
+    @Test(enabled = true, description = "salesforcerest {getUpdated} integration test.")
+    public void getUpdated() throws IOException, JSONException {
+
+        String methodName = "getUpdated";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "getUpdated.json");
+        String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/services/data/" + connectorProperties.getProperty("apiVersion") + "/sobjects/" + connectorProperties.getProperty("sObjectName") + "/updated/?start=" + connectorProperties.getProperty("apiStartTime") + "&end=" + connectorProperties.getProperty("apiEndTime");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+    }
 
     /**
      * Test case for listResourcesByApiVersion method.

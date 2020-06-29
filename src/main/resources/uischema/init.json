@@ -1,0 +1,176 @@
+{
+  "connectorName": "salesforcerest",
+  "connectionName": "init",
+  "title": "Init Salesforcerest Connection",
+  "help": "<h1>Salesforcerest Connector</h1> <b>The Salesforce REST connector initializes connection through init operation</b>",
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "SALESFORCEREST_CONNECTION_1",
+        "required": "true",
+        "helpTip": "The name for the salesforcerest connection",
+        "validation": "nameWithoutSpecialCharactors"
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "accessToken",
+                    "displayName": "Access Token",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Value of the Access Token to access the api via request"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "apiVersion",
+                    "displayName": "API Version",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Access token of the organizational account."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "hostName",
+                    "displayName": "Host Name",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Value of the hostname to authenticate salesforce."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "refreshToken",
+                    "displayName": "Refresh Token",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "value of the refresh token."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "clientSecret",
+                    "displayName": "Client Secret",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Value of your secret key given when you registered your application with salesforce."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "clientId",
+                    "displayName": "Client ID",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Value of your API Key given when you registered your application with salesforce."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "apiUrl",
+                    "displayName": "API URL",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The instance URL for your organization"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "timeout",
+                    "displayName": "Timeout",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "3000",
+                    "required": "false",
+                    "helpTip": "Timeout duration of the API request."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "username",
+                    "displayName": "Username",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The username for the salesforce."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "password",
+                    "displayName": "Password",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The password for the salesforce which means the password with security key."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "blocking",
+                    "displayName": "Blocking",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Set to true to perform the blocking invocations to Salesforce."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Advanced",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "readTimeout",
+              "displayName": "Read Timeout",
+              "inputType": "stringOrExpresion",
+              "defaultValue": "",
+              "required": "false",
+              "helpTip":"The socket read timeout value"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

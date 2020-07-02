@@ -1,0 +1,71 @@
+{
+  "connectorName": "salesforcerest",
+  "operationName": "getDeleted",
+  "title": "Get Deleted",
+  "help": "<h1>Get Deleted</h1> <b>Retrieves the list of individual records that have been deleted within the given time span for the specified object</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "init"
+              ],
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sObjectName",
+                    "displayName": "sObject Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The object type whose metadata you want to retrieve."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "start",
+                    "displayName": "Start Time",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The start date and time for deleted lookup"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "end",
+                    "displayName": "End Time",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The end date and time for deleted lookup"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

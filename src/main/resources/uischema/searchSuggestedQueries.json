@@ -1,0 +1,60 @@
+{
+  "connectorName": "salesforcerest",
+  "operationName": "searchSuggestedQueries",
+  "title": "Search Suggested Queries",
+  "help": "<h1>Search Suggested Queries</h1> <b>Searches for queries in Salesforce.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "init"
+              ],
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "searchString",
+                    "displayName": "Search String",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The SOQL query to execute the search"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "language",
+                    "displayName": "Language",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The language of the user’s query. Specifies the language that matching articles are written in"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -19,7 +19,6 @@
     <parameter name="sObjectName" description="The type of sObject"/>
     <parameter name="fieldAndValue" description="The value of the field of a particular sObject"/>
     <sequence>
-        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
         <property name="uri.var.fieldAndValue" expression="$func:fieldAndValue"/>
         <payloadFactory media-type="json">
             <format>
@@ -29,48 +28,8 @@
                 <arg expression="get-property('uri.var.fieldAndValue')"/>
             </args>
         </payloadFactory>
-        <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <filter source="$ctx:salesforceRestBlocking" regex="true">
-            <then>
-                <call blocking="true">
-                    <endpoint>
-                        <http method="post"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </then>
-            <else>
-                <call>
-                    <endpoint>
-                        <http method="post"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </else>
-        </filter>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$func:sObjectName)"/>
+        <property name="httpMethod" value="post"/>
+        <salesforcerest.callWithRetry/>
     </sequence>
 </template>

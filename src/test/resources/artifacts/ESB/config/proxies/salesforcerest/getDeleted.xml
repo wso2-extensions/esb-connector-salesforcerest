@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<proxy xmlns="http://ws.apache.org/ns/synapse" name="sObjectGetUpdated"
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="getDeleted"
        statistics="disable" trace="disable" transports="https http">
     <target>
         <inSequence>
@@ -46,11 +46,11 @@
                 <blocking>{$ctx:blocking}</blocking>
             </salesforcerest.init>
             <log category="INFO" level="full" separator=","/>
-            <salesforcerest.sObjectGetUpdated>
+            <salesforcerest.getDeleted>
                 <sObjectName>{$ctx:sObjectName}</sObjectName>
-                <startTime>{$ctx:startTime}</startTime>
-                <endTime>{$ctx:endTime}</endTime>
-            </salesforcerest.sObjectGetUpdated>
+                <start>{$ctx:startTime}</start>
+                <end>{$ctx:endTime}</end>
+            </salesforcerest.getDeleted>
             <send/>
         </inSequence>
     </target>

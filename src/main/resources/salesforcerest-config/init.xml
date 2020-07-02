@@ -27,14 +27,13 @@
     <parameter name="clientId"
                description="Value of your API Key given when you registered your application with salesforce."/>
     <parameter name="apiUrl" description="The instance URL for your organization"/>
-    <!--<parameter name="intervalTime"-->
-               <!--description="The Interval time to check the accessToken validity"/>-->
     <parameter name="timeout" description="Timeout duration of the API request."/>
     <parameter name="username" description="The username for the salesforce."/>
     <parameter name="password"
                description="The password for the salesforce which means the password with security key."/>
     <parameter name="blocking" description="Set to true to perform the blocking invocations to Salesforce."/>
     <sequence>
+        <!--todo: remove uri.var-->
         <property name="uri.var.accessToken" expression="$func:accessToken"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.hostName" expression="$func:hostName"/>

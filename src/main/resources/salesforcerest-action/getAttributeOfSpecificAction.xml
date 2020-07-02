@@ -19,50 +19,8 @@
     <parameter name="actionType" description="The actionType is either standard or custom"/>
     <parameter name="attribute" description="The attribute of a single standard object"/>
     <sequence>
-        <property name="uri.var.actionType" expression="$func:actionType"/>
-        <property name="uri.var.attribute" expression="$func:attribute"/>
-        <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <filter source="$ctx:salesforceRestBlocking" regex="true">
-            <then>
-                <call blocking="true">
-                    <endpoint>
-                        <http method="Get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/actions/{uri.var.actionType}/{uri.var.attribute}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </then>
-            <else>
-                <call>
-                    <endpoint>
-                        <http method="Get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/actions/{uri.var.actionType}/{uri.var.attribute}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </else>
-        </filter>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/actions/',$func:actionType,'/',$func:attribute)"/>
+        <property name="httpMethod" value="get"/>
+        <salesforcerest.callWithRetry/>
     </sequence>
 </template>

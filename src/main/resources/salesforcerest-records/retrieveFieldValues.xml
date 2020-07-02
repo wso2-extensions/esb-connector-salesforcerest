@@ -20,51 +20,8 @@
     <parameter name="rowId" description="The row Id of the object."/>
     <parameter name="fields" description="The comma separated field values."/>
     <sequence>
-        <property name="uri.var.sObjectName" expression="$func:sObjectName"/>
-        <property name="uri.var.rowId" expression="$func:rowId"/>
-        <property name="uri.var.fields" expression="$func:fields"/>
-        <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <filter source="$ctx:salesforceRestBlocking" regex="true">
-            <then>
-                <call blocking="true">
-                    <endpoint>
-                        <http method="get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.rowId}?fields={uri.var.fields}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </then>
-            <else>
-                <call>
-                    <endpoint>
-                        <http method="get"
-                              uri-template="{uri.var.apiUrl}/services/data/{uri.var.apiVersion}/sobjects/{uri.var.sObjectName}/{uri.var.rowId}?fields={uri.var.fields}">
-                            <timeout>
-                                <duration>{$ctx:timeout}</duration>
-                                <responseAction>fault</responseAction>
-                            </timeout>
-                            <suspendOnFailure>
-                                <errorCodes>-1</errorCodes>
-                                <progressionFactor>1.0</progressionFactor>
-                            </suspendOnFailure>
-                            <markForSuspension>
-                                <errorCodes>-1</errorCodes>
-                            </markForSuspension>
-                        </http>
-                    </endpoint>
-                </call>
-            </else>
-        </filter>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$func:sObjectName,'/',$func:rowId,'?fields=',$func:fields)"/>
+        <property name="httpMethod" value="get"/>
+        <salesforcerest.callWithRetry/>
     </sequence>
 </template>

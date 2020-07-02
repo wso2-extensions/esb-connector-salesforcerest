@@ -26,5 +26,9 @@
             <file>resetPassword.xml</file>
             <description>Reset Password for Salesforce account for a specific User.</description>
         </component>
+        <component name="setPassword">
+            <file>setPassword.xml</file>
+            <description>Set new password for Salesforce account for a specific User.</description>
+        </component>
     </subComponents>
 </component>

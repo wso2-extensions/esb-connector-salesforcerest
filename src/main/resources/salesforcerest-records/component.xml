@@ -26,6 +26,20 @@
             <file>delete.xml</file>
             <description>Delete sObject(s) synapse library</description>
         </component>
+        <component name="getDeleted">
+            <file>getDeleted.xml</file>
+            <description>
+                Retrieves the list of individual records that have been deleted within the given timespan for the
+                specified object.
+            </description>
+        </component>
+        <component name="getUpdated">
+            <file>getUpdated.xml</file>
+            <description>
+                Retrieves the list of individual records that have been updated within the given timespan for the
+                specified object.
+            </description>
+        </component>
         <component name="update">
             <file>update.xml</file>
             <description>Update or update sObject(s) synapse library</description>

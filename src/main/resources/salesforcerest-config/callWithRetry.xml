@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+<template name="callWithRetry" xmlns="http://ws.apache.org/ns/synapse">
+    <sequence>
+        <filter source="$ctx:httpMethod" regex="(post|patch)">
+            <enrich>
+                <source clone="true" type="body"/>
+                <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+            </enrich>
+        </filter>
+        <salesforcerest.callOptions/>
+        <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
+        <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
+            <then>
+                <class name="org.wso2.carbon.connector.salesforcerest.RefreshAccessToken"/>
+                <header name="Authorization"
+                        expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
+                        scope="transport"/>
+                <filter source="$ctx:httpMethod" regex="(post|patch)">
+                    <enrich>
+                        <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                        <target type="body"/>
+                    </enrich>
+                </filter>
+                <salesforcerest.callOptions/>
+            </then>
+        </filter>
+    </sequence>
+</template>

@@ -10,7 +10,8 @@ For a sample proxy service that illustrates how to work with users, see [Sample 
 | Operation        | Description |
 | ------------- |-------------|
 | [getUserInformation](#retrieving-information-for-a-user)    | Retrieves information about a specific user. |
-| [resetPassword](#resetting-the-password)      | Resets the password of a specific user. |
+| [resetPassword](#resetting-the-password)      | Resets the password of a specific user to a system generated password. |
+| [setPassword](#setting-the-password)      | Sets the password of a specific user to a specified password. |
 
 ### Operation details
 
@@ -116,7 +117,52 @@ Given below is a sample response for the resetPassword operation.
 }
 ```
 
-**Related Salesforce Bulk documentation**
+**Related Salesforce documentation**
+
+[https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm)
+
+[https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_user_password.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_user_password.htm)
+
+#### Setting the password
+
+To set the password of a specific user, use salesforcerest.setPassword and specify the following property.
+
+**resetPassword**
+```xml
+<salesforcerest.setPassword>
+    <userId>{$ctx:userId}</userId>
+    <fieldAndValue>{$ctx:fieldAndValue}</fieldAndValue>
+</salesforcerest.setPassword>
+```
+**Properties**
+* userId: The ID of the user.
+* fieldAndValue: JSON containing a value with field 'NewPassword'.
+
+**Sample request**
+
+Following is a sample request that can be handled by the resetPassword operation.
+
+```json
+{
+  "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+  "apiUrl":"https://ap2.salesforce.com",
+  "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+  "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+  "clientSecret": "9104967092887676680",
+  "hostName": "https://login.salesforce.com",
+  "apiVersion": "v32.0",
+  "intervalTime" : "100000",
+  "userId": "00528000000yl7j",
+  "fieldAndValue": {
+      	"NewPassword": "sterergf3baAsWe"
+      }
+}
+```
+**Sample response**
+
+No response body is returned on successfull password change. You will get a 204 response code
+
+**Related Salesforce documentation**
 
 [https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm)
 

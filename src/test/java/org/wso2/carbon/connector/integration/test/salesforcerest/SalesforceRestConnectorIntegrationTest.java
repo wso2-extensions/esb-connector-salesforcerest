@@ -390,6 +390,18 @@ public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegration
     }
 
     /**
+     * Test case for setPassword method.
+     */
+    @Test(enabled = false, dependsOnMethods = {"getUserInformation"}, description = "salesforcerest {setPassword} integration test.")
+    public void setPassword() throws IOException, JSONException {
+        connectorProperties.put("NewPassword", "sdgfkuahsdgfq3A"); // Please edit the value to a new alphanumeric value before enabling this test case
+
+        String methodName = "setPassword";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURLHttp(methodName), "POST", esbRequestHeadersMap, "setPassword.json");
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
+    }
+
+    /**
      * Test case for listViews method.
      */
     @Test(enabled = true, description = "salesforcerest {listViews} integration test.")

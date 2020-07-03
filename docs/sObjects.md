@@ -15,8 +15,6 @@ For a sample proxy service that illustrates how to work with sObjects, see [Samp
 | [listOrganizationLimits](#retrieving-the-limits-information-for-your-organization)    | Retrieves the limits information for your organization. |
 | [listResourcesByApiVersion](#retrieving-resources-available-from-the-api-version)      | Retrieves the resources that are available in a particular API version. |
 | [sObjectBasicInfo](#retrieving-basic-information-for-a-specific-object-type)   | Describes the individual metadata for the specified object.|
-| [sObjectGetDeleted](#retrieving-a-list-of-deleted-records)      | Retrieves a list of individual records that have been deleted within the given timespan for the specified object. |
-| [sObjectGetUpdated](#retrieving-a-list-of-updated-records)    | Retrieves a list of individual records that have been updated within the given timespan for the specified object. |
 | [sObjectPlatformAction](#retrieving-the-description-of-the-platformaction)       | Retrieves the description of the PlatformAction. |
 | [sObjectRows](retrieving-details-of-a-specific-record)   | Retrieves records based on the specified object ID.|
 
@@ -380,116 +378,7 @@ Given below is a sample response for the sObjectNamedLayouts operation.
 **Related Salesforce documentation**
 
 [https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_basic_info.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_basic_info.htm)
-
-
-#### Retrieving a list of deleted records
-
-To retrieve a list of individual records that have been deleted within the given timespan for the specified object, use salesforcerest.sObjectGetDeleted. The date and time should be provided in ISO 8601 format:YYYY-MM-DDThh:mm:ss+hh:mm.
-
-**sObjectGetDeleted**
-```xml
-<salesforcerest.sObjectGetDeleted>
-    <sObjectName>{$ctx:sObjectName}</sObjectName>
-    <startTime>{$ctx:startTime}</startTime>
-    <endTime>{$ctx:endTime}</endTime>
-</salesforcerest.sObjectGetDeleted>
-```
-**Properties**
-* sObjectName: The object type whose metadata you want to retrieve.
-* startTime: Starting date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.
-* endTime: Ending date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.
-
-**Sample request**
-
-Following is a sample request that can be handled by the sObjectGetDeleted operation.
-
-```json
-{
-  "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
-  "apiUrl":"https://ap2.salesforce.com",
-  "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-  "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-  "clientSecret": "9104967092887676680",
-  "hostName": "https://login.salesforce.com",
-  "apiVersion": "v32.0",
-  "sObjectName":"Account",
-  "intervalTime" : "100000",
-  "startTime":"2015-10-05T12:30:30+05:30",
-  "endTime":"2015-10-10T20:30:30+05:30",
-  "registryPath": "connectors/SalesforceRest"
-}
-```
-**Sample response**
-
-Given below is a sample response for the sObjectGetDeleted operation.
-
-```json
-{
-   "earliestDateAvailable":"2018-09-20T07:52:00.000+0000",
-   "deletedRecords":[
-
-   ],
-   "latestDateCovered":"2018-10-27T15:00:00.000+0000"
-}
-```
-
-**Related Salesforce documentation**
-
-[https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getdeleted.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getdeleted.htm)
-
-#### Retrieving a list of updated records
-To retrieve a list of individual records that have been updated within the given timespan for the specified object, use salesforcerest.sObjectGetUpdated. The date and time should be provided in ISO 8601 format:YYYY-MM-DDThh:mm:ss+hh:mm.
-
-**sObjectGetUpdated**
-```xml
-<salesforcerest.sObjectGetUpdated>
-    <sObjectName>{$ctx:sObjectName}</sObjectName>
-    <startTime>{$ctx:startTime}</startTime>
-    <endTime>{$ctx:endTime}</endTime>
-</salesforcerest.sObjectGetUpdated>
-```
-**Properties**
-* sObjectName: The object type whose metadata you want to retrieve.
-* startTime: Starting date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.
-* endTime: Ending date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.
-
-**Sample request**
-
-Following is a sample request that can be handled by the sObjectGetUpdated operation.
-
-```json
-{
-  "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
-  "apiUrl":"https://ap2.salesforce.com",
-  "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-  "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-  "clientSecret": "9104967092887676680",
-  "hostName": "https://login.salesforce.com",
-  "apiVersion": "v32.0",
-  "sObjectName":"Account",
-  "intervalTime" : "100000",
-  "startTime":"2015-10-05T12:30:30+05:30",
-  "endTime":"2015-10-10T20:30:30+05:30",
-  "registryPath": "connectors/SalesforceRest"
-}
-```
-**Sample response**
-
-Given below is a sample response for the sObjectGetUpdated operation.
-
-```json
-{
-   "ids":[
-
-   ],
-   "latestDateCovered":"2018-10-27T15:00:00.000+0000"
-}
-```
-
-**Related Salesforce documentation**
-
-[https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm
-                                                                                                    )
+                                                                                                 )
 
 #### Retrieving the description of the PlatformAction
 

@@ -30,9 +30,5 @@
             <file>callOptions.xml</file>
             <description>Templating the http call types GET, POST, etc.</description>
         </component>
-        <component name="getAccessTokenFromRefreshToken">
-            <file>getAccessTokenFromRefreshToken.xml</file>
-            <description>Getting Access Token from refresh token</description>
-        </component>
     </subComponents>
 </component>

@@ -33,7 +33,7 @@
         <automation.framework.version>4.4.3</automation.framework.version>
         <emma.version>2.1.5320</emma.version>
         <synapse.version>2.1.7-wso2v95</synapse.version>
-        <carbon.mediation.version>4.6.123</carbon.mediation.version>
+        <carbon.mediation.version>4.7.53</carbon.mediation.version>
         <json.version>3.0.0.wso2v1</json.version>
         <org.testng.version>6.1.1</org.testng.version>
         <jets3t.version>0.9.4</jets3t.version>
@@ -42,7 +42,7 @@
         <rampart.wso2.version>1.6.1.wso2v18</rampart.wso2.version>
         <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
         <integration.base.version>1.0.3</integration.base.version>
-        <skip-tests>false</skip-tests>
+        <skip-tests>true</skip-tests>
     </properties>
     <dependencies>
         <dependency>

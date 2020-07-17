@@ -27,10 +27,11 @@
     <url>http://wso2.org</url>
     <properties>
         <connector.name>salesforcerest</connector.name>
-        <product.ei.version>6.5.0</product.ei.version>
+        <!--<product.ei.version>6.5.0</product.ei.version>-->
+        <product.mi.version>1.2.0-beta</product.mi.version>
         <carbon.kernel.version>4.4.17</carbon.kernel.version>
-        <automation.framework.utils.version>4.4.2</automation.framework.utils.version>
-        <automation.framework.version>4.4.3</automation.framework.version>
+        <!--<automation.framework.utils.version>4.5.0</automation.framework.utils.version>-->
+        <automation.framework.version>4.5.0</automation.framework.version>
         <emma.version>2.1.5320</emma.version>
         <synapse.version>2.1.7-wso2v95</synapse.version>
         <carbon.mediation.version>4.7.53</carbon.mediation.version>
@@ -41,8 +42,8 @@
         <rampart.apache.version>1.6.1-wso2v18</rampart.apache.version>
         <rampart.wso2.version>1.6.1.wso2v18</rampart.wso2.version>
         <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
-        <integration.base.version>1.0.3</integration.base.version>
-        <skip-tests>true</skip-tests>
+        <integration.base.version>1.0.5-SNAPSHOT</integration.base.version>
+        <skip-tests>false</skip-tests>
     </properties>
     <dependencies>
         <dependency>
@@ -60,51 +61,51 @@
             <artifactId>json</artifactId>
             <version>${json.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automation</groupId>
-            <artifactId>org.wso2.carbon.automation.engine</artifactId>
-            <version>${automation.framework.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automation</groupId>
-            <artifactId>org.wso2.carbon.automation.extensions</artifactId>
-            <version>${automation.framework.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.jmeter</groupId>
-                    <artifactId>ApacheJMeter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.jmeter</groupId>
-                    <artifactId>ApacheJMeter_core</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.admin.client</artifactId>
-            <version>${automation.framework.utils.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.extensions</artifactId>
-            <version>${automation.framework.utils.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.utils</artifactId>
-            <version>${automation.framework.utils.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.tests</artifactId>
-            <version>${automation.framework.utils.version}</version>
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.carbon.automation</groupId>-->
+            <!--<artifactId>org.wso2.carbon.automation.engine</artifactId>-->
+            <!--<version>${automation.framework.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.carbon.automation</groupId>-->
+            <!--<artifactId>org.wso2.carbon.automation.extensions</artifactId>-->
+            <!--<version>${automation.framework.version}</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.apache.jmeter</groupId>-->
+                    <!--<artifactId>ApacheJMeter</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.apache.jmeter</groupId>-->
+                    <!--<artifactId>ApacheJMeter_core</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.carbon.automationutils</groupId>-->
+            <!--<artifactId>org.wso2.carbon.integration.common.admin.client</artifactId>-->
+            <!--<version>${automation.framework.utils.version}</version>-->
             <!--<scope>compile</scope>-->
-        </dependency>
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.carbon.automationutils</groupId>-->
+            <!--<artifactId>org.wso2.carbon.integration.common.extensions</artifactId>-->
+            <!--<version>${automation.framework.utils.version}</version>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.carbon.automationutils</groupId>-->
+            <!--<artifactId>org.wso2.carbon.integration.common.utils</artifactId>-->
+            <!--<version>${automation.framework.utils.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.carbon.automationutils</groupId>-->
+            <!--<artifactId>org.wso2.carbon.integration.common.tests</artifactId>-->
+            <!--<version>${automation.framework.utils.version}</version>-->
+            <!--&lt;!&ndash;<scope>compile</scope>&ndash;&gt;-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.wso2.carbon.mediation</groupId>
             <artifactId>org.wso2.carbon.connector.core</artifactId>
@@ -142,12 +143,12 @@
             <scope>test</scope>
         </dependency>
         <!--Dependency for Integration Tests-->
-        <dependency>
-            <groupId>org.wso2.carbon.automation</groupId>
-            <artifactId>org.wso2.carbon.automation.test.utils</artifactId>
-            <version>${automation.framework.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.carbon.automation</groupId>-->
+            <!--<artifactId>org.wso2.carbon.automation.test.utils</artifactId>-->
+            <!--<version>${automation.framework.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.wso2.carbon</groupId>
             <artifactId>org.wso2.carbon.logging</artifactId>
@@ -165,29 +166,90 @@
         </dependency>
         <dependency>
             <groupId>org.wso2.ei</groupId>
-            <artifactId>org.wso2.ei.samples</artifactId>
-            <version>${product.ei.version}</version>
+            <artifactId>automation-extensions</artifactId>
+            <version>${product.mi.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.wso2.carbon.automationutils</groupId>
+            <artifactId>org.wso2.carbon.integration.common.admin.client</artifactId>
+            <version>${automation.framework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon.automationutils</groupId>
+            <artifactId>org.wso2.carbon.integration.common.extensions</artifactId>
+            <version>${automation.framework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon.automationutils</groupId>
+            <artifactId>org.wso2.carbon.integration.common.utils</artifactId>
+            <version>${automation.framework.version}</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.ei</groupId>-->
+            <!--<artifactId>org.wso2.ei.samples</artifactId>-->
+            <!--<version>${product.ei.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.wso2.carbon.mediation</groupId>
             <artifactId>org.wso2.carbon.integrator.core</artifactId>
             <version>${carbon.mediation.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.wso2.ei</groupId>
-            <artifactId>integration-test-utils</artifactId>
-            <version>${product.ei.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.ei</groupId>
-            <artifactId>automation-extensions</artifactId>
-            <version>${product.ei.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.ei</groupId>-->
+            <!--<artifactId>integration-test-utils</artifactId>-->
+            <!--<version>${product.ei.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.wso2.ei</groupId>-->
+            <!--<artifactId>automation-extensions</artifactId>-->
+            <!--<version>${product.ei.version}</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>org.wso2.esb.integration</groupId>
             <artifactId>integration-base</artifactId>
             <version>${integration.base.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.wso2.carbon.automation</groupId>
+                    <artifactId>org.wso2.carbon.automation.engine</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.wso2.carbon.automation</groupId>
+                    <artifactId>org.wso2.carbon.automation.extensions</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.wso2.ei</groupId>
+                    <artifactId>automation-extensions</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.wso2.carbon.automationutils</groupId>
+                    <artifactId>org.wso2.carbon.integration.common.admin.client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.wso2.carbon.automationutils</groupId>
+                    <artifactId>org.wso2.carbon.integration.common.extensions</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.wso2.carbon.automationutils</groupId>
+                    <artifactId>org.wso2.carbon.integration.common.utils</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.wso2.carbon.mediation</groupId>
+                    <artifactId>org.wso2.carbon.message.store.stub</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.jmeter</groupId>
+                    <artifactId>ApacheJMeter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.jmeter</groupId>
+                    <artifactId>ApacheJMeter_core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
     <scm>
@@ -315,7 +377,7 @@
                         <sec.verifier.dir>${basedir}/target/security-verifier/</sec.verifier.dir>
                         <maven.test.haltafterfailure>false</maven.test.haltafterfailure>
                         <carbon.zip>
-                            ${basedir}/repository/wso2ei-${product.ei.version}.zip
+                            ${basedir}/repository/wso2mi-${product.mi.version}.zip
                         </carbon.zip>
                         <instr.file>${basedir}/src/test/resources/instrumentation.txt</instr.file>
                         <filters.file>${basedir}/src/test/resources/filters.txt</filters.file>
@@ -351,7 +413,7 @@
                             <resources>
                                 <resource>
                                     <directory>
-                                        ${basedir}/target/tobeCopied/wso2ei-${product.ei.version}/repository/resources/security/
+                                        ${basedir}/target/tobeCopied/wso2mi-${product.mi.version}/repository/resources/security/
                                     </directory>
                                     <includes>
                                         <include>**/*.jks</include>
@@ -372,7 +434,7 @@
                             <resources>
                                 <resource>
                                     <directory>
-                                        ${basedir}/target/tobeCopied/wso2ei-${product.ei.version}/repository/resources/security/
+                                        ${basedir}/target/tobeCopied/wso2mi-${product.mi.version}/repository/resources/security/
                                     </directory>
                                     <includes>
                                         <include>**/*.jks</include>

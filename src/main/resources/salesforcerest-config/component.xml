@@ -21,14 +21,17 @@
         <component name="init">
             <file>init.xml</file>
             <description>Initial configuration file for salesforce rest connector</description>
+            <hidden>true</hidden>
         </component>
         <component name="callWithRetry">
             <file>callWithRetry.xml</file>
             <description>Templating the retry call</description>
+            <hidden>true</hidden>
         </component>
         <component name="callOptions">
             <file>callOptions.xml</file>
             <description>Templating the http call types GET, POST, etc.</description>
+            <hidden>true</hidden>
         </component>
     </subComponents>
 </component>

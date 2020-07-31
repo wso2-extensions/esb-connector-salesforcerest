@@ -18,28 +18,43 @@
   -->
 <template name="callWithRetry" xmlns="http://ws.apache.org/ns/synapse">
     <sequence>
-        <filter source="$ctx:httpMethod" regex="(post|patch)">
-            <enrich>
-                <source clone="true" type="body"/>
-                <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-            </enrich>
-        </filter>
-        <salesforcerest.callOptions/>
-        <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
-        <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
+        <filter source="boolean($ctx:uri.var.refreshToken)" regex="true">
             <then>
-                <class name="org.wso2.carbon.connector.core.RefreshAccessToken"/>
+                <filter source="$ctx:httpMethod" regex="(post|patch)">
+                    <enrich>
+                        <source clone="true" type="body"/>
+                        <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                    </enrich>
+                </filter>
+                <property name="uri.var.accessToken.reg"
+                          expression="get-property('registry', $ctx:uri.var.accessTokenRegistryPath)"/>
+                <header name="Authorization"
+                        expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken.reg )"
+                        scope="transport"/>
+                <salesforcerest.callOptions/>
+                <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
+                <filter source="$ctx:httpCode" regex="4[0-9][0-9]">
+                    <then>
+                        <class name="org.wso2.carbon.connector.core.RefreshAccessToken"/>
+                        <header name="Authorization"
+                                expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
+                                scope="transport"/>
+                        <filter source="$ctx:httpMethod" regex="(post|patch)">
+                            <enrich>
+                                <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                                <target type="body"/>
+                            </enrich>
+                        </filter>
+                        <salesforcerest.callOptions/>
+                    </then>
+                </filter>
+            </then>
+            <else>
                 <header name="Authorization"
                         expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
                         scope="transport"/>
-                <filter source="$ctx:httpMethod" regex="(post|patch)">
-                    <enrich>
-                        <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-                        <target type="body"/>
-                    </enrich>
-                </filter>
                 <salesforcerest.callOptions/>
-            </then>
+            </else>
         </filter>
     </sequence>
 </template>

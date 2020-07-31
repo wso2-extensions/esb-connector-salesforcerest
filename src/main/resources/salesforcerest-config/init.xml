@@ -65,13 +65,13 @@
                 mc.setProperty("timeout", timeout.toString());
             ]]>
         </script>
-        <enrich>
-            <source clone="true" type="body"/>
-            <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-        </enrich>
         <filter source="boolean($ctx:uri.var.username) and boolean($ctx:uri.var.password) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"
                 regex="true">
             <then>
+                <enrich>
+                    <source clone="true" type="body"/>
+                    <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                </enrich>
                 <property name="Accept-Encoding" scope="transport" action="remove"/>
                 <property name="NO_ENTITY_BODY" value="true" type="BOOLEAN" scope="axis2"/>
                 <payloadFactory media-type="json">
@@ -122,14 +122,11 @@
                     </else>
                 </filter>
                 <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>
+                <enrich>
+                    <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                    <target type="body"/>
+                </enrich>
             </then>
         </filter>
-        <header name="Authorization"
-                expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
-                scope="transport"/>
-        <enrich>
-            <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-            <target type="body"/>
-        </enrich>
     </sequence>
 </template>

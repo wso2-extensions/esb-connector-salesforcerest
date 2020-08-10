@@ -36,9 +36,7 @@ import java.util.Map;
 
 public class SalesforceRestConnectorIntegrationTest extends ConnectorIntegrationTestBase {
     private Map<String, String> esbRequestHeadersMap = new HashMap<String, String>();
-
     private Map<String, String> apiRequestHeadersMap = new HashMap<String, String>();
-
 
     /**
      * Set up the environment.

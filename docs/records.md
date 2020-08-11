@@ -605,7 +605,7 @@ To retrieve a list of individual records that have been deleted within the given
 </salesforcerest.getDeleted>
 ```
 **Properties**
-* sObjectName: The object type whose metadata you want to retrieve.
+* sObjectName: The object where you want to look for deleted records.
 * startTime: Starting date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.
 * endTime: Ending date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.
 
@@ -659,7 +659,7 @@ To retrieve a list of individual records that have been updated within the given
 </salesforcerest.getUpdated>
 ```
 **Properties**
-* sObjectName: The object type whose metadata you want to retrieve.
+* sObjectName: The object where you want to look for updated records.
 * startTime: Starting date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.
 * endTime: Ending date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.
 
@@ -698,7 +698,7 @@ Given below is a sample response for the getUpdated operation.
 
 **Related Salesforce documentation**
 
-[https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm
+[https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm)
    
 
 ### Sample configuration

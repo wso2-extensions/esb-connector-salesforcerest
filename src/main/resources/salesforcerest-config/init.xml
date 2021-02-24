@@ -130,6 +130,12 @@
                         <property name="uri.var.timeRegistryPath"
                                   expression="fn:concat($ctx:uri.var.registryPath, '/time' )"/>
                     </then>
+                    <else>
+                        <property name="uri.var.accessTokenRegistryPath"
+                                  value="connectors/salesforcerest/accessToken"/>
+                        <property name="uri.var.timeRegistryPath"
+                                  value="connectors/salesforcerest/time"/>
+                    </else>
                 </filter>
                 <property name="uri.var.accessToken.reg"
                           expression="get-property('registry', $ctx:uri.var.accessTokenRegistryPath)"/>

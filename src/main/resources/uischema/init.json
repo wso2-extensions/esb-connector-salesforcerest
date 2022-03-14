@@ -73,6 +73,17 @@
                 {
                   "type": "attribute",
                   "value": {
+                    "name": "tokenEndpointHostname",
+                    "displayName": "Refresh Token Endpoint",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Endpoint of the refresh token."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
                     "name": "clientSecret",
                     "displayName": "Client Secret",
                     "inputType": "stringOrExpresion",

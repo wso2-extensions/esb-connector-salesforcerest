@@ -33,6 +33,7 @@
         <dependency component="salesforcerest-processrules"/>
         <dependency component="salesforcerest-attachment"/>
         <dependency component="salesforcerest-eventMonitoring"/>
+        <dependency component="salesforcerest-analytics"/>
         <description>wso2 connector for Salesforce REST API</description>
     </component>
     <icon>icon/icon-small.gif</icon>

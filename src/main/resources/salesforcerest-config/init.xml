@@ -59,7 +59,7 @@
                   expression="fn:concat(get-property('uri.var.tokenEndpointHostname'),'/services/oauth2/token')"/>
         <script language="js">
             <![CDATA[
-                var timeout = mc.getProperty("uri.var.timeout");
+                var timeout = mc.getProperty("timeout");
                 if (timeout == null || timeout == "") {
                     timeout = 3000;
                 }

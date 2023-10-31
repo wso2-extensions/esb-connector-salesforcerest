@@ -30,7 +30,7 @@
                 <arg expression="get-property('uri.var.fieldAndValue')"/>
             </args>
         </payloadFactory>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/localizedvalue/record/', $func:developerName, '/', $func:language')"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/localizedvalue/record/', $func:developerName, '/', $func:language)"/>
         <property name="httpMethod" value="post"/>
         <salesforcerest.callWithRetry/>
     </sequence>

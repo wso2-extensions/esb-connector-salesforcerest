@@ -49,17 +49,6 @@
                     "helpTip": "Indicates whether to roll back the entire request when the deletion of any object fails (true) or to continue with the independent deletion of other objects in the request. The default is false.",
                     "required": "false"
                   }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "displayName": "Field and Value",
-                    "defaultValue": "",
-                    "name": "fieldAndValue",
-                    "inputType": "stringOrExpression",
-                    "helpTip": "",
-                    "required": "true"
-                  }
                 }
               ]
             }

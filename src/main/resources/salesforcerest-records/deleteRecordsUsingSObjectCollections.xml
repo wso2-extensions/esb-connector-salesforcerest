@@ -19,25 +19,8 @@
 <template name="deleteRecordsUsingSObjectCollections" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="ids" description="A list of up to 200 IDs of objects to be deleted. The IDs can belong to different object types, including custom objects."/>
     <parameter name="allOrNone" description="Indicates whether to roll back the entire request when the deletion of any object fails (true) or to continue with the independent deletion of other objects in the request. The default is false."/>
-    <parameter name="fieldAndValue"/>
     <sequence>
-        <property name="uri.var.fieldAndValue" expression="$func:fieldAndValue"/>
-        <payloadFactory media-type="json">
-            <format>
-                $1
-            </format>
-            <args>
-                <arg expression="get-property('uri.var.fieldAndValue')"/>
-            </args>
-        </payloadFactory>
-        <property name="queryParams" value=""/>
         <filter source="boolean($func:allOrNone)" regex="true">
-            <then>
-                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'allOrNone=', $func:allOrNone)"/>
-            </then>
-            <else/>
-        </filter>
-        <filter source="boolean($ctx:queryParams)" regex="true">
             <then>
                 <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/composite/sobjects?ids=', $func:ids, '&amp;allOrNone=', $func:allOrNone)"/>
             </then>

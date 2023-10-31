@@ -20,7 +20,7 @@
     <parameter name="developerName" description="The developer name of the flow field."/>
     <parameter name="language" description="Language of the translated field. Possible values are da, nl_NL, fi, fr, de."/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/localizedvalue/record/', $func:developerName, '/', $func:language')"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/localizedvalue/record/', $func:developerName, '/', $func:language)"/>
         <property name="httpMethod" value="get"/>
         <salesforcerest.callWithRetry/>
     </sequence>

@@ -55,9 +55,5 @@
                 regardless of the evaluation criteria. All IDs must be for records on the same object.
             </description>
         </component>
-        <component name="triggerRuleForSpecificProcessRule">
-            <file>triggerRuleForSpecificProcessRule.xml</file>
-            <description>Triggers an active workflow rule regardless of the evaluation criteria.</description>
-        </component>
     </subComponents>
 </component>

@@ -42,7 +42,7 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "displayName": "channel",
+                    "displayName": "Channel",
                     "defaultValue": "",
                     "name": "channel",
                     "inputType": "stringOrExpression",
@@ -53,7 +53,7 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "displayName": "updateViewStat",
+                    "displayName": "Update View Stat",
                     "defaultValue": "",
                     "name": "updateViewStat",
                     "inputType": "stringOrExpression",
@@ -64,7 +64,7 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "displayName": "isUrlName",
+                    "displayName": "Is a Ur lName",
                     "defaultValue": "",
                     "name": "isUrlName",
                     "inputType": "stringOrExpression",

@@ -17,8 +17,19 @@
    under the License.
 -->
 <template name="createUsingQuickAction" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="actionName" description="The specific action name to create the record."/>
+    <parameter name="fieldAndValue" description="The value of the field of a particular sObject."/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/quickActions')"/>
+        <property name="uri.var.fieldAndValue" expression="$func:fieldAndValue"/>
+        <payloadFactory media-type="json">
+            <format>
+                $1
+            </format>
+            <args>
+                <arg expression="get-property('uri.var.fieldAndValue')"/>
+            </args>
+        </payloadFactory>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/quickActions/', $func:actionName)"/>
         <property name="httpMethod" value="post"/>
         <salesforcerest.callWithRetry/>
     </sequence>

@@ -144,5 +144,9 @@
                 using sObject collections
             </description>
         </component>
+        <component name="createUsingQuickAction">
+            <file>createUsingQuickAction.xml</file>
+            <description>Creates a record via a quick action.</description>
+        </component>
     </subComponents>
 </component>

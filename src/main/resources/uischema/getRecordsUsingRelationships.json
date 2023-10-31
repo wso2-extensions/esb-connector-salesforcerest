@@ -60,6 +60,17 @@
                     "helpTip": "The name of the field that contains the relationship",
                     "required": "true"
                   }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Fields",
+                    "defaultValue": "",
+                    "name": "fields",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "A comma-delimited list of fields in the associated relationship record returned in the response body",
+                    "required": "false"
+                  }
                 }
               ]
             }

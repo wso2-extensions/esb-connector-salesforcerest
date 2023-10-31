@@ -26,8 +26,8 @@
             <file>getBlobBodyForDocumentRecord.xml</file>
             <description>Retrieving blob body for a Document record</description>
         </component>
-        <component name="getBlobData">
-            <file>getBlobData.xml</file>
+        <component name="getBlobDataForSpecificObject">
+            <file>getBlobDataForSpecificObject.xml</file>
             <description>
                 Retrieves the specified blob field from an individual record and returns it as binary data
             </description>

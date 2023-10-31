@@ -43,10 +43,10 @@
         </filter>
         <filter source="boolean($ctx:queryParams)" regex="false">
             <then>
-                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion,'/support/knowledgeArticles/, $func:articleId_or_articleUrlName')"/>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/support/knowledgeArticles/', $func:articleId_or_articleUrlName)"/>
             </then>
             <else>
-                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion,'/support/knowledgeArticles?', $func:articleId_or_articleUrlName', fn:substring($ctx:queryParams, 2))"/>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/support/knowledgeArticles/', $func:articleId_or_articleUrlName, '?', fn:substring($ctx:queryParams, 2))"/>
             </else>
         </filter>
         <property name="httpMethod" value="get"/>

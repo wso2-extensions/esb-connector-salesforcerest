@@ -31,5 +31,9 @@
                 resource.
             </description>
         </component>
+        <component name="getEventMonitoringContentFromRecord">
+            <file>getEventMonitoringContentFromRecord.xml</file>
+            <description>Retrieves event monitoring content in binary format.</description>
+        </component>
     </subComponents>
 </component>

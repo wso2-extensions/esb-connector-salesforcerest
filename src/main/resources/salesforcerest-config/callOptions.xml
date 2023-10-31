@@ -18,9 +18,6 @@
   -->
 <template name="callOptions" xmlns="http://ws.apache.org/ns/synapse">
     <sequence>
-        <log level="custom">
-            <property expression="$ctx:uri.var.callEndpointUri" name="uri>>>>>>>>>>>>>>>."/>
-        </log>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <!--for HTTP method GET-->
         <filter source="$ctx:httpMethod" regex="get">

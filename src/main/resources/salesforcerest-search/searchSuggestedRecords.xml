@@ -99,10 +99,10 @@
         </filter>
         <filter source="boolean($ctx:queryParams)" regex="true">
             <then>
-                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/search/suggestions/?q=', $func:stringForSearch, '&amp;sobject=', $func:sObjectName, $ctx:queryParams)"/>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/search/suggestions?q=', $func:stringForSearch, '&amp;sobject=', $func:sObjectName, $ctx:queryParams)"/>
             </then>
             <else>
-                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/search/suggestions/?q=', $func:stringForSearch, '&amp;sobject=', $func:sObjectName)"/>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/search/suggestions?q=', $func:stringForSearch, '&amp;sobject=', $func:sObjectName)"/>
             </else>
         </filter>
         <property name="httpMethod" value="get"/>

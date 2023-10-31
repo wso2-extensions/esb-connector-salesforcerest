@@ -29,7 +29,7 @@
                 <arg expression="get-property('uri.var.fieldAndValue')"/>
             </args>
         </payloadFactory>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/OpportunityLineItem/', $func:OpportunityLineItemId, '/OpportunityLineItemSchedules')"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/OpportunityLineItem/', $func:OpportunityLineItemId, '/OpportunityLineItemSchedules')"/>
         <property name="httpMethod" value="put"/>
         <salesforcerest.callWithRetry/>
     </sequence>

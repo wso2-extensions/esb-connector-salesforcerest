@@ -60,7 +60,7 @@
             </description>
         </component>
         <component name="returnHeadersForTabs">
-            <file>returnHeadersForAppMenuMobileItems.xml</file>
+            <file>returnHeadersForTabs.xml</file>
             <description>Retrieves only the headers that are returned by the tabs operation.</description>
         </component>
     </subComponents>

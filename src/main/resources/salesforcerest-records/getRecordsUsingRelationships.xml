@@ -20,8 +20,16 @@
     <parameter name="sObjectName" description="The name of the object"/>
     <parameter name="id" description="The identifier of the record"/>
     <parameter name="relationshipFieldName" description="The name of the field that contains the relationship"/>
+    <parameter name="fields" description="A comma-delimited list of fields in the associated relationship record returned in the response body."/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/', $func:id, '/', $func:relationshipFieldName)"/>
+        <filter source="boolean($func:fields)" regex="true">
+            <then>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/', $func:id, '/', $func:relationshipFieldName, '?fields=', $func:fields)"/>
+            </then>
+            <else>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/', $func:id, '/', $func:relationshipFieldName)"/>
+            </else>
+        </filter>
         <property name="httpMethod" value="get"/>
         <salesforcerest.callWithRetry/>
     </sequence>

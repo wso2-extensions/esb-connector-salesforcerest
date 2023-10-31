@@ -1,8 +1,8 @@
 {
   "connectorName": "salesforcerest",
-  "operationName": "getDefaultValueOfAction",
-  "title": "Get Default Value Of Action",
-  "help": "<h1>Get Default Value Of Action</h1> <b>Retrieves a specific action’s default values, including default field values.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "operationName": "upsertRecordsUsingSObjectCollections",
+  "title": "Upsert Records Using sObject Collections",
+  "help": "<h1>Upsert Records Using sObject Collections</h1> <b>Either creates or updates (upsert) up to 200 records based on an external ID field using sObject collections.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
   "elements": [
     {
       "type": "attributeGroup",
@@ -35,19 +35,30 @@
                     "defaultValue": "",
                     "name": "sObjectName",
                     "inputType": "stringOrExpression",
-                    "helpTip": "The type of sObject",
+                    "helpTip": "The name of the object.",
                     "required": "true"
                   }
                 },
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "actionName",
-                    "displayName": "Action Name",
-                    "inputType": "stringOrExpression",
+                    "displayName": "External Id Field Name",
                     "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "The specific action name to retrieve the action"
+                    "name": "externalIdFieldName",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The name of the external id field.",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Field And Value",
+                    "defaultValue": "",
+                    "name": "fieldAndValue",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "",
+                    "required": "true"
                   }
                 }
               ]

@@ -1,0 +1,125 @@
+{
+  "connectorName": "salesforcerest",
+  "operationName": "listArticles",
+  "title": "List Articles",
+  "help": "<h1>List Articles</h1> <b>Retrieves a page of online articles for the given language and category through either search or query.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+    "type": "attributeGroup",
+    "value": {
+      "groupName": "General",
+      "elements": [
+        {
+          "type": "attribute",
+          "value": {
+            "name": "configRef",
+            "displayName": "Connection",
+            "inputType": "connection",
+            "allowedConnectionTypes": [
+              "init"
+            ],
+            "defaultValue": "",
+            "required": "true",
+            "helpTip": "Connection to be used"
+          }
+        },
+        {
+          "type": "attributeGroup",
+          "value": {
+            "groupName": "Basic",
+            "elements": [
+              {
+                "type": "attribute",
+                "value": {
+                  "displayName": "Query String",
+                  "defaultValue": "",
+                  "name": "queryString",
+                  "inputType": "stringOrExpression",
+                  "helpTip": "The query string to perform an SOSL search.",
+                  "required": "false"
+                }
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "displayName": "Channel",
+                  "defaultValue": "",
+                  "name": "channel",
+                  "inputType": "stringOrExpression",
+                  "helpTip": "The value of the channel. Defaults to user's context",
+                  "required": "false"
+                }
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "displayName": "Categories",
+                  "defaultValue": "",
+                  "name": "categories",
+                  "inputType": "stringOrExpression",
+                  "helpTip": "The data categories in map json format with a limit of three data category conditions.",
+                  "required": "false"
+                }
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "displayName": "Query Method",
+                  "defaultValue": "",
+                  "name": "queryMethod",
+                  "inputType": "stringOrExpression",
+                  "helpTip": "AT, BELOW, ABOVE, ABOVE_OR_BELOW. Only valid when categories are specified. Defaults to ABOVE_OR_BELOW.",
+                  "required": "false"
+                }
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "displayName": "Sort",
+                  "defaultValue": "",
+                  "name": "sort",
+                  "inputType": "stringOrExpression",
+                  "helpTip": "A sortable field name LastPublishedDate, CreatedDate, Title, ViewScore. Defaults to LastPublishedDate for query and relevance for search.",
+                  "required": "false"
+                }
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "displayName": "Order",
+                  "defaultValue": "",
+                  "name": "order",
+                  "inputType": "stringOrExpression",
+                  "helpTip": "Either ASC or DESC, defaults to DESC. Valid only when sort is valid.",
+                  "required": "false"
+                }
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "displayName": "Page Size",
+                  "defaultValue": "",
+                  "name": "pageSize",
+                  "inputType": "stringOrExpression",
+                  "helpTip": "Defaults to 20. Valid range 1 to 100.",
+                  "required": "false"
+                }
+              },
+              {
+                "type": "attribute",
+                "value": {
+                  "displayName": "Page Number",
+                  "defaultValue": "",
+                  "name": "pageNumber",
+                  "inputType": "stringOrExpression",
+                  "helpTip": "The page number. Defaults to 1.",
+                  "required": "false"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }]
+}

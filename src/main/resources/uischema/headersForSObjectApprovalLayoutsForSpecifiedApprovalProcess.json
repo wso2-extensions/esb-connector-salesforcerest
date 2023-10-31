@@ -1,8 +1,8 @@
 {
   "connectorName": "salesforcerest",
-  "operationName": "getDefaultValueOfAction",
-  "title": "Get Default Value Of Action",
-  "help": "<h1>Get Default Value Of Action</h1> <b>Retrieves a specific action’s default values, including default field values.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "operationName": "headersForSObjectApprovalLayoutsForSpecifiedApprovalProcess",
+  "title": "Headers For sObject Approval Layouts for Specified Approval Process",
+  "help": "<h1>Headers For sObject Approval Layouts for Specified Approval Process</h1> <b>Returns only the headers that are returned by the sObjectApprovalLayoutsForSpecifiedApprovalProcess operation.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
   "elements": [
     {
       "type": "attributeGroup",
@@ -42,12 +42,12 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "actionName",
-                    "displayName": "Action Name",
-                    "inputType": "stringOrExpression",
+                    "displayName": "Approval Process Name",
                     "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "The specific action name to retrieve the action"
+                    "name": "approvalProcessName",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The Name of the approval process",
+                    "required": "true"
                   }
                 }
               ]

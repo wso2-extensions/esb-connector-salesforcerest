@@ -1,0 +1,71 @@
+{
+  "connectorName": "salesforcerest",
+  "operationName": "deleteRecordsUsingSObjectCollections",
+  "title": "Delete Records Using sObject Collections",
+  "help": "<h1>Delete Records Using sObject Collections</h1> <b>Deletes records using sObject collections. Can delete up to 200 records</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "init"
+              ],
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "IDs",
+                    "defaultValue": "",
+                    "name": "ids",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "A list of up to 200 IDs of objects to be deleted. The IDs can belong to different object types, including custom objects.",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "All or None",
+                    "defaultValue": "",
+                    "name": "allOrNone",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "Indicates whether to roll back the entire request when the deletion of any object fails (true) or to continue with the independent deletion of other objects in the request. The default is false.",
+                    "required": "false"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Field and Value",
+                    "defaultValue": "",
+                    "name": "fieldAndValue",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "",
+                    "required": "true"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

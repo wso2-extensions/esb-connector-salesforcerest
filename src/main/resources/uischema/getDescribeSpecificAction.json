@@ -31,6 +31,17 @@
                 {
                   "type": "attribute",
                   "value": {
+                    "displayName": "sObject Name",
+                    "defaultValue": "",
+                    "name": "sObjectName",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The type of sObject",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
                     "name": "actionName",
                     "displayName": "Action Name",
                     "inputType": "stringOrExpression",

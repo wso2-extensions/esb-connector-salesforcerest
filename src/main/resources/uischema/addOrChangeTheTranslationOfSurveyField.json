@@ -1,0 +1,71 @@
+{
+  "connectorName": "salesforcerest",
+  "operationName": "addOrChangeTheTranslationOfSurveyField",
+  "title": "Add Or Change the Translation of Survey Field",
+  "help": "<h1>Add Or Change the Translation of Survey Field</h1> <b>Add or change the translated value of the survey field if a survey field can be translated or is already translated into a particular language.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "init"
+              ],
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Developer Name",
+                    "defaultValue": "",
+                    "name": "developerName",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The developer name of the flow field.",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Language",
+                    "defaultValue": "",
+                    "name": "language",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The translated language of the flow field.",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Field and Value",
+                    "defaultValue": "",
+                    "name": "fieldAndValue",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "",
+                    "required": "true"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (c) 2023, WSO2 LLC (http://www.wso2.com) All Rights Reserved.
+
+   WSO2 LLC licenses this file to you under the Apache License,
+   Version 2.0 (the "License"); you may not use this file except
+   in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied. See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
+<component name="salesforcerest-knowledgeSupport" type="synapse/template">
+    <subComponents>
+        <component name="listKnowledgeRESTApis">
+            <file>listKnowledgeRESTApis.xml</file>
+            <description>
+                Retrieves knowledge support REST APIs that allow both authorized and guest users to
+                retrieve the user’s visible data categories and their associated articles.
+            </description>
+        </component>
+        <component name="listDataCategoryGroups">
+            <file>listDataCategoryGroups.xml</file>
+            <description>Retrieves data category groups that are visible to the current user.</description>
+        </component>
+        <component name="getDataCategoryDetails">
+            <file>getDataCategoryDetails.xml</file>
+            <description>Retrieves data category details and the child categories by a given category.</description>
+        </component>
+        <component name="listArticles">
+            <file>listArticles.xml</file>
+            <description>
+                Retrieves a page of online articles for the given language and category through either search or query.
+            </description>
+        </component>
+        <component name="getArticleDetails">
+            <file>getArticleDetails.xml</file>
+            <description>Retrieves all online article fields, accessible to the user.</description>
+        </component>
+        <component name="getKnowledgeLanguageSettings">
+            <file>getKnowledgeLanguageSettings.xml</file>
+            <description>
+                Retrieves the existing Knowledge language settings, including the default knowledge language
+                and a list of supported Knowledge language information.
+            </description>
+        </component>
+    </subComponents>
+</component>

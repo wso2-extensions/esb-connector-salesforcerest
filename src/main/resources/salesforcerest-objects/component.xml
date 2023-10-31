@@ -65,5 +65,19 @@
                 external ID
             </description>
         </component>
+        <component name="returnHeadersOfSObjectRowsByExternalId">
+            <file>returnHeadersOfSObjectRowsByExternalId.xml</file>
+            <description>
+                Return headers that are returned by sending a GET request to the sObject Rows
+                by External ID resource.
+            </description>
+        </component>
+        <component name="viewRelevantItems">
+            <file>viewRelevantItems.xml</file>
+            <description>
+                Retrieves the current user’s most relevant items that include up to 50 of the most recently viewed
+                or updated records for each object in the user’s global search scope.
+            </description>
+        </component>
     </subComponents>
 </component>

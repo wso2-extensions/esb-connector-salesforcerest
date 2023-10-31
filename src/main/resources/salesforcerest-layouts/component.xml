@@ -45,5 +45,46 @@
             <file>sObjectApprovalLayouts.xml</file>
             <description>Returns a list of approval layouts for a specified object</description>
         </component>
+        <component name="sObjectApprovalLayoutsForSpecifiedApprovalProcess">
+            <file>sObjectApprovalLayoutsForSpecifiedApprovalProcess.xml</file>
+            <description>Returns an approval layout for a named approval process on a specified object.</description>
+        </component>
+        <component name="headersForSObjectApprovalLayouts">
+            <file>headersForSObjectApprovalLayouts.xml</file>
+            <description>Returns only the headers that are returned by the sObjectApprovalLayouts
+                operation</description>
+        </component>
+        <component name="headersForSObjectApprovalLayoutsForSpecifiedApprovalProcess">
+            <file>headersForSObjectApprovalLayoutsForSpecifiedApprovalProcess.xml</file>
+            <description>Returns only the headers that are returned by the
+                sObjectApprovalLayoutsForSpecifiedApprovalProcess operation
+            </description>
+        </component>
+        <component name="headersForSObjectCompactLayouts">
+            <file>headersForSObjectCompactLayouts.xml</file>
+            <description>Returns only the headers that are returned by the sObjectCompactLayouts operation</description>
+        </component>
+        <component name="headersForSObjectLayouts">
+            <file>headersForSObjectLayouts.xml</file>
+            <description>Returns only the headers that are returned by the sObjectLayouts operation</description>
+        </component>
+        <component name="sObjectLayoutsForObjectWithMultipleRecordTypes">
+            <file>sObjectLayoutsForObjectWithMultipleRecordTypes.xml</file>
+            <description>
+                Retrieves lists of page layouts and their descriptions for objects that have
+                more than one record type defined.
+            </description>
+        </component>
+        <component name="headersForSObjectLayoutsForObjectWithMultipleRecordTypes">
+            <file>headersForSObjectLayoutsForObjectWithMultipleRecordTypes.xml</file>
+            <description>
+                Returns only the headers that are returned by the sObjectLayoutsForObjectWithMultipleRecordTypes
+                operation
+            </description>
+        </component>
+        <component name="headersForGlobalSObjectLayouts">
+            <file>headersForGlobalSObjectLayouts.xml</file>
+            <description>Returns only the headers that are returned by the globalSObjectLayouts operation</description>
+        </component>
     </subComponents>
 </component>

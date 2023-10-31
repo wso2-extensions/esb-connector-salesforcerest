@@ -33,5 +33,15 @@
             <description>Retrieving the details of a given attributes of a single standard action.
             </description>
         </component>
+        <component name="returnHTTPHeadersForListOfAction">
+            <file>returnHTTPHeadersForListOfAction.xml</file>
+            <description>Retrieves only the headers that are returned by the getListOfAction operation</description>
+        </component>
+        <component name="returnHTTPHeadersForSpecificListOfAction">
+            <file>returnHTTPHeadersForSpecificListOfAction.xml</file>
+            <description>
+                Retrieves only the headers that are returned by the getSpecificListOfAction operation
+            </description>
+        </component>
     </subComponents>
 </component>

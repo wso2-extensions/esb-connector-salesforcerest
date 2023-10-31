@@ -30,5 +30,42 @@
             <file>setPassword.xml</file>
             <description>Set new password for Salesforce account for a specific User.</description>
         </component>
+        <component name="getUserPasswordExpirationStatus">
+            <file>getUserPasswordExpirationStatus.xml</file>
+            <description>Gets a user’s password expiration status based on the specified user ID</description>
+        </component>
+        <component name="returnHeadersForUserPassword">
+            <file>returnHeadersForUserPassword.xml</file>
+            <description>
+                Returns only the headers that are returned by sending a GET request to the sObject
+                User Password resource.
+            </description>
+        </component>
+        <component name="getSelfServiceUserPasswordExpirationStatus">
+            <file>getSelfServiceUserPasswordExpirationStatus.xml</file>
+            <description>
+                Retrieves a self-service user’s password expiration status based on the specified user ID.
+            </description>
+        </component>
+        <component name="resetSelfServiceUserPassword">
+            <file>resetSelfServiceUserPassword.xml</file>
+            <description>
+                Reset Password for Salesforce account for a specific self-service.
+            </description>
+        </component>
+        <component name="returnHeadersForSelfServiceUserPassword">
+            <file>returnHeadersForSelfServiceUserPassword.xml</file>
+            <description>
+                Returns only the headers that are returned by sending a GET request to the sObject
+                Self-Service User Password resource.
+            </description>
+        </component>
+        <component name="setSelfServiceUserPassword">
+            <file>setSelfServiceUserPassword.xml</file>
+            <description>
+                Sets a self-service user’s password based on the specified user ID. The password provided
+                in the request body replaces the user’s existing password.
+            </description>
+        </component>
     </subComponents>
 </component>

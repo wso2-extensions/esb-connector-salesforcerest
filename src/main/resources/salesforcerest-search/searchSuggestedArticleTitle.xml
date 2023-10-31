@@ -21,8 +21,60 @@
                description="The language of the user’s query. Specifies the language that matching articles are written in"/>
     <parameter name="status"
                description="The article’s publication status. Valid values are Draft, Online or Archived"/>
+    <!-- TODO: multiple values are specified as articleTypes=ka0&articleTypes=ka1 -->
+    <parameter name="articleTypes" description="Three-character ID prefixes indicating the desired article types."/>
+
+    <parameter name="categories" description="The name of the data category group and name of the data category for desired articles, expressed as a JSON mapping."/>
+    <parameter name="channel" description="The channel where the matching articles are visible. Valid values are AllChannels, App, Pkb, Csp, Prm. If channel isn’t specified, the default value is determined by the type of user."/>
+    <parameter name="limit" description="The maximum number of articles to return. If there are more suggested articles than the limit specified, the response body’s hasMoreResults property is true."/>
+    <parameter name="topics" description="The topic of the returned articles."/>
+    <parameter name="validationStatus" description="The validation status of returned articles."/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/search/suggestTitleMatches/?q=',$func:searchString,'&amp;language=',$func:language,'&amp;publishStatus=',$func:status)"/>
+        <property name="queryParams" value=""/>
+        <filter source="boolean($func:articleTypes)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'articleTypes=', $func:articleTypes)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:categories)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'categories=', $func:categories)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:channel)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'channel=', $func:channel)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:limit)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'limit=', $func:limit)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:topics)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'topics=', $func:topics)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:validationStatus)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'validationStatus=', $func:validationStatus)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($ctx:queryParams)" regex="true">
+            <then>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/search/suggestTitleMatches/?q=', $func:searchString, '&amp;language=', $func:language, '&amp;publishStatus=', $func:status, $ctx:queryParams)"/>
+            </then>
+            <else>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/search/suggestTitleMatches/?q=', $func:searchString, '&amp;language=', $func:language, '&amp;publishStatus=', $func:status)"/>
+            </else>
+        </filter>
         <property name="httpMethod" value="get"/>
         <salesforcerest.callWithRetry/>
     </sequence>

@@ -22,5 +22,16 @@
             <file>listApprovals.xml</file>
             <description>Get the List of Approvals.</description>
         </component>
+        <component name="returnHeadersForApprovals">
+            <file>returnHeadersForApprovals.xml</file>
+            <description>Returns only the headers that are returned by the listApprovals operation.</description>
+        </component>
+        <component name="submitApproveOrRejectApprovals">
+            <file>submitApproveOrRejectApprovals.xml</file>
+            <description>
+                Submits a particular record if that entity supports an approval process and one has already been
+                defined. Records can be approved and rejected if the current user is an assigned approver.
+            </description>
+        </component>
     </subComponents>
 </component>

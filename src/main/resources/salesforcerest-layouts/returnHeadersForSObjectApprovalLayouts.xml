@@ -16,20 +16,12 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template name="deleteTheTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="fieldAndValue"/>
+<template name="returnHeadersForSObjectApprovalLayouts" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="sObjectName" description="The type of sObject"/>
     <sequence>
-        <property name="uri.var.fieldAndValue" expression="$func:fieldAndValue"/>
-        <payloadFactory media-type="json">
-            <format>
-                $1
-            </format>
-            <args>
-                <arg expression="get-property('uri.var.fieldAndValue')"/>
-            </args>
-        </payloadFactory>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/localizedvalue/records/delete')"/>
-        <property name="httpMethod" value="post"/>
+        <property name="uri.var.callEndpointUri"
+                  expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/describe/approvalLayouts')"/>
+        <property name="httpMethod" value="head"/>
         <salesforcerest.callWithRetry/>
     </sequence>
 </template>

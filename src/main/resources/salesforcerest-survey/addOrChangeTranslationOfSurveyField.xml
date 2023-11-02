@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template name="addOrChangeTheTranslationOfSurveyField" xmlns="http://ws.apache.org/ns/synapse">
+<template name="addOrChangeTranslationOfSurveyField" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="developerName" description="The developer name of the flow field."/>
     <parameter name="language" description="The translated language of the flow field."/>
     <parameter name="fieldAndValue"/>

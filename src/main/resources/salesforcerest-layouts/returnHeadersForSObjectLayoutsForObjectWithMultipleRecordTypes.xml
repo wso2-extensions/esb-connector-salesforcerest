@@ -16,11 +16,11 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template name="headersForDescribeSpecificAction" xmlns="http://ws.apache.org/ns/synapse">
+<template name="returnHeadersForSObjectLayoutsForObjectWithMultipleRecordTypes" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sObjectName" description="The type of sObject"/>
-    <parameter name="actionName" description="The specific action name to retrieve the action."/>
+    <parameter name="recordTypeId" description="The id of the record type"/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/quickActions/', $func:actionName, '/describe')"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/describe/layouts/', $func:recordTypeId)"/>
         <property name="httpMethod" value="head"/>
         <salesforcerest.callWithRetry/>
     </sequence>

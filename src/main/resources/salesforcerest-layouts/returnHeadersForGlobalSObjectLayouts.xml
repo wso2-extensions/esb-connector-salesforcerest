@@ -16,10 +16,9 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template name="headersForSObjectCompactLayouts" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sObjectName" description="The type of sObject"/>
+<template name="returnHeadersForGlobalSObjectLayouts" xmlns="http://ws.apache.org/ns/synapse">
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/describe/compactLayouts')"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/Global/describe/layouts')"/>
         <property name="httpMethod" value="head"/>
         <salesforcerest.callWithRetry/>
     </sequence>

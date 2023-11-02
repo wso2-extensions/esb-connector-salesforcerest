@@ -18,8 +18,8 @@
 -->
 <component name="salesforcerest-survey" type="synapse/template">
     <subComponents>
-        <component name="addOrChangeTheTranslationOfSurveyField">
-            <file>addOrChangeTheTranslationOfSurveyField.xml</file>
+        <component name="addOrChangeTranslationOfSurveyField">
+            <file>addOrChangeTranslationOfSurveyField.xml</file>
             <description>
                 Add or change the translated value of the survey field if a survey field can be translated or
                 is already translated into a particular language.
@@ -39,8 +39,8 @@
                 into a particular language.
             </description>
         </component>
-        <component name="deleteTheTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages">
-            <file>deleteTheTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages.xml</file>
+        <component name="deleteTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages">
+            <file>deleteTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages.xml</file>
             <description>
                 Delete the translated values of multiple survey fields after survey fields are translated
                 into one or more languages.

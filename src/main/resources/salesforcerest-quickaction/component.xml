@@ -22,9 +22,9 @@
             <file>sObjectAction.xml</file>
             <description>Return a specific object’s actions as well as global actions</description>
         </component>
-        <component name="getSpecificAction">
-            <file>getSpecificAction.xml</file>
-            <description>Return a specific action for a specific object</description>
+        <component name="getSpecificQuickAction">
+            <file>getSpecificQuickAction.xml</file>
+            <description>Return a specific action for an object</description>
         </component>
         <component name="quickActions">
             <file>quickActions.xml</file>
@@ -37,6 +37,38 @@
         <component name="getDefaultValueOfAction">
             <file>getDefaultValueOfAction.xml</file>
             <description>Return a specific action’s default values, including default field values
+            </description>
+        </component>
+        <component name="headersForDescribeSpecificAction">
+            <file>headersForDescribeSpecificAction.xml</file>
+            <description>Returns only the headers that are returned by the getDescribeSpecificAction
+                operation
+            </description>
+        </component>
+        <component name="headersForSObjectAction">
+            <file>headersForSObjectAction.xml</file>
+            <description>Returns only the headers that are returned by the sObjectAction operation</description>
+        </component>
+        <component name="headersForQuickAction">
+            <file>headersForQuickAction.xml</file>
+            <description>Returns only the headers that are returned by the quickActions operation</description>
+        </component>
+        <component name="headersForSpecificQuickAction">
+            <file>headersForSpecificQuickAction.xml</file>
+            <description>Returns only the headers that are returned by the getSpecificAction operation</description>
+        </component>
+        <component name="headersForDefaultValueOfAction">
+            <file>headersForDefaultValueOfAction.xml</file>
+            <description>Returns only the headers that are returned by the getDefaultValueOfAction operation</description>
+        </component>
+        <component name="getDefaultValueOfActionById">
+            <file>getDefaultValueOfActionById.xml</file>
+            <description>Returns the default values for an action specific to the context_id object</description>
+        </component>
+        <component name="headersForDefaultValueOfActionById">
+            <file>headersForDefaultValueOfActionById.xml</file>
+            <description>Returns only the headers that are returned by the getDefaultValueOfActionById
+                operation
             </description>
         </component>
     </subComponents>

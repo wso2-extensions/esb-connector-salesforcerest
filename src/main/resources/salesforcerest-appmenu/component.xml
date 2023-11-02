@@ -34,5 +34,34 @@
                 application.
             </description>
         </component>
+        <component name="listAppMenuTypes">
+            <file>listAppMenuTypes.xml</file>
+            <description>Retrieves a list of App Menu types in the Salesforce app dropdown menu.</description>
+        </component>
+        <component name="listAppMenuItems">
+            <file>listAppMenuItems.xml</file>
+            <description>Retrieves a list of the App Menu items in the Salesforce Lightning dropdown menu.</description>
+        </component>
+        <component name="listAppMenuMobileItems">
+            <file>listAppMenuMobileItems.xml</file>
+            <description>
+                Retrieves a list of the App Menu items in the Salesforce mobile app for Android
+                and iOS and the mobile web navigation menu.
+            </description>
+        </component>
+        <component name="returnHeadersForAppMenuItems">
+            <file>returnHeadersForAppMenuItems.xml</file>
+            <description>Retrieves only the headers that are returned by the listAppMenuItems operation.</description>
+        </component>
+        <component name="returnHeadersForAppMenuMobileItems">
+            <file>returnHeadersForAppMenuMobileItems.xml</file>
+            <description>
+                Retrieves only the headers that are returned by the listAppMenuMobileItems operation.
+            </description>
+        </component>
+        <component name="returnHeadersForTabs">
+            <file>returnHeadersForTabs.xml</file>
+            <description>Retrieves only the headers that are returned by the tabs operation.</description>
+        </component>
     </subComponents>
 </component>

@@ -34,6 +34,15 @@
         <dependency component="salesforcerest-attachment"/>
         <dependency component="salesforcerest-eventMonitoring"/>
         <dependency component="salesforcerest-analytics"/>
+        <dependency component="salesforcerest-composite"/>
+        <dependency component="salesforcerest-productSchedules"/>
+        <dependency component="salesforcerest-consent"/>
+        <dependency component="salesforcerest-embeddedService"/>
+        <dependency component="salesforcerest-knowledgeSupport"/>
+        <dependency component="salesforcerest-platformEvent"/>
+        <dependency component="salesforcerest-portability"/>
+        <dependency component="salesforcerest-survey"/>
+        <dependency component="salesforcerest-scheduling"/>
         <description>wso2 connector for Salesforce REST API</description>
     </component>
     <icon>icon/icon-small.gif</icon>

@@ -78,5 +78,75 @@
                 with the Id using External ID.
             </description>
         </component>
+        <component name="createUsingExternalId">
+            <file>createUsingExternalId.xml</file>
+            <description>Creating a new record based on the field values included in the request body.
+                This resource does not require the use of an external ID field.
+            </description>
+        </component>
+        <component name="deleteUsingExternalId">
+            <file>deleteUsingExternalId.xml</file>
+            <description>Deleting a record based on the value of the specified external ID field.
+            </description>
+        </component>
+        <component name="createUsingSpecificSObjectQuickAction">
+            <file>createUsingSpecificSObjectQuickAction.xml</file>
+            <description>Creating a record via the specified quick action based on the field values included
+                in the request body
+            </description>
+        </component>
+        <component name="getRecordsUsingRelationships">
+            <file>getRecordsUsingRelationships.xml</file>
+            <description>Gets a record based on the specified object, record ID, and relationship field</description>
+        </component>
+        <component name="updateUsingRelationships">
+            <file>updateUsingRelationships.xml</file>
+            <description>
+                Updates a parent record based on the specified object, record ID, and relationship field name
+            </description>
+        </component>
+        <component name="deleteUsingRelationships">
+            <file>deleteUsingRelationships.xml</file>
+            <description>Deletes a parent record based on the specified object, record ID,
+                and relationship field name
+            </description>
+        </component>
+        <component name="getObjectRecordCounts">
+            <file>getObjectRecordCounts.xml</file>
+            <description>Lists information about object record counts in your organization.</description>
+        </component>
+        <component name="createUsingSObjectCollections">
+            <file>createUsingSObjectCollections.xml</file>
+            <description>Creates records using sObject collections. Can add up to 200 records</description>
+        </component>
+        <component name="deleteRecordsUsingSObjectCollections">
+            <file>deleteRecordsUsingSObjectCollections.xml</file>
+            <description>Deletes records using sObject collections. Can delete up to 200 records</description>
+        </component>
+        <component name="getRecordsUsingSObjectCollections">
+            <file>getRecordsUsingSObjectCollections.xml</file>
+            <description>Gets one or more records of the same object type using sObject collections.</description>
+        </component>
+        <component name="getRecordsWithARequestBodyUsingSObjectCollections">
+            <file>getRecordsWithARequestBodyUsingSObjectCollections.xml</file>
+            <description>
+                Gets one or more records of the same object type using sObject collections with a request body.
+            </description>
+        </component>
+        <component name="updateRecordsUsingSObjectCollections">
+            <file>updateRecordsUsingSObjectCollections.xml</file>
+            <description>Updates records using sObject collections. Can update up to 200 records.</description>
+        </component>
+        <component name="upsertRecordsUsingSObjectCollections">
+            <file>upsertRecordsUsingSObjectCollections.xml</file>
+            <description>
+                Either creates or updates (upsert) up to 200 records based on an external ID field
+                using sObject collections
+            </description>
+        </component>
+        <component name="createUsingQuickAction">
+            <file>createUsingQuickAction.xml</file>
+            <description>Creates a record via a quick action.</description>
+        </component>
     </subComponents>
 </component>

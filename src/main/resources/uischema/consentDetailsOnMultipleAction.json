@@ -1,0 +1,115 @@
+{
+  "connectorName": "salesforcerest",
+  "operationName": "consentDetailsOnMultipleAction",
+  "title": "Consent Details on Multiple Action",
+  "help": "<h1>Consent Details on Multiple Action</h1> <b>Retrieves consent details based on multiple actions, like email and track, across specific consent management objects when the records have a lookup relationship</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "init"
+              ],
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "List of Actions",
+                    "defaultValue": "",
+                    "name": "listOfActions",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "Comma-separated list of proposed actions",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "List of Ids",
+                    "defaultValue": "",
+                    "name": "listOfIds",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "Comma-separated list of IDs. The ID can be the record ID or the email address listed on the record.",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Aggregated Consent",
+                    "defaultValue": "",
+                    "name": "aggregatedConsent",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "Whether to enable or disable aggregated consent.",
+                    "required": "false"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Datetime",
+                    "defaultValue": "",
+                    "name": "datetime",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The timestamp for which consent is determined.",
+                    "required": "false"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Policy",
+                    "defaultValue": "",
+                    "name": "policy",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The policy.",
+                    "required": "false"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Purpose",
+                    "defaultValue": "",
+                    "name": "purpose",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The reason for contacting a customer.",
+                    "required": "false"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Verbose",
+                    "defaultValue": "",
+                    "name": "verbose",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "Whether to allow verbose non-verbose responses.",
+                    "required": "false"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

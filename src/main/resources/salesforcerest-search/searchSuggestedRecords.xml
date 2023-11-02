@@ -18,8 +18,93 @@
 <template name="searchSuggestedRecords" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="stringForSearch" description="The SOQL query to execute the search"/>
     <parameter name="sObjectName" description="The type of the sObject"/>
+    <parameter name="fields" description="Lookup fields to be returned in the response. Specify multiple fields using a comma-separated list."/>
+    <parameter name="dynamicFields" description="Used to return additional dynamic fields. Specify multiple options using a comma-separated list."/>
+    <parameter name="groupId" description="One or more unique identifiers of one or more groups that the question to return was posted to. Specify multiple groups using a comma-separated list. Only applicable when the parameter 'type' equals 'question'. Don’t use with the 'userId'."/>
+    <parameter name="ignoreUnsupportedSObjects" description="Indicates what action to take if an unsupported object is included in a request. If it’s set to false, an error is returned. Otherwise, the object is ignored and no error is returned. The default is false."/>
+    <parameter name="limit" description="The maximum number of suggested records to return. If a limit isn’t specified, 5 records are returned by default."/>
+    <parameter name="networkId" description="One or more unique identifiers for the Experience Cloud sites to return the question to. Specify multiple sites using a comma-separated list. Applicable when the parameter 'type' equals 'question' or parameter 'sobject' equals 'user'."/>
+    <parameter name="topicId" description="Specifies the unique identifier of the single topic that the question to return was tagged as. Only applicable when the parameter 'type' equals 'question'."/>
+    <parameter name="type" description="Required when the 'sobject' value is feedItem."/>
+    <parameter name="userId" description="One or more unique identifiers of one or more users who authored the question to return. Specify multiple users using a comma-separated list. Only applicable when the parameter type equals question. Don’t use with the groupId."/>
+    <parameter name="useSearchScope" description="If false, the objects specified in the request are used to suggest records. If true, in addition to the objects specified in the request, the user's search scope is used to suggest records. The search scope is the list of objects a user uses most frequently."/>
+    <parameter name="where" description="A filter that follows the same syntax as the SOQL WHERE clause. URLs encode the expression."/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/search/suggestions/?q=',$func:stringForSearch,'&amp;sobject=',$func:sObjectName)"/>
+        <property name="queryParams" value=""/>
+        <filter source="boolean($func:fields)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'fields=', $func:fields)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:dynamicFields)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'dynamicFields=', $func:dynamicFields)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:groupId)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'groupId=', $func:groupId)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:ignoreUnsupportedSObjects)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'ignoreUnsupportedSObjects=', $func:ignoreUnsupportedSObjects)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:limit)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'limit=', $func:limit)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:networkId)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'networkId=', $func:networkId)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:topicId)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'topicId=', $func:topicId)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:type)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'type=', $func:type)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:userId)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'userId=', $func:userId)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:useSearchScope)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'useSearchScope=', $func:useSearchScope)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($func:where)" regex="true">
+            <then>
+                <property name="queryParams" expression="fn:concat($ctx:queryParams, '&amp;', 'where=', $func:where)"/>
+            </then>
+            <else/>
+        </filter>
+        <filter source="boolean($ctx:queryParams)" regex="true">
+            <then>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/search/suggestions?q=', $func:stringForSearch, '&amp;sobject=', $func:sObjectName, $ctx:queryParams)"/>
+            </then>
+            <else>
+                <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/search/suggestions?q=', $func:stringForSearch, '&amp;sobject=', $func:sObjectName)"/>
+            </else>
+        </filter>
         <property name="httpMethod" value="get"/>
         <salesforcerest.callWithRetry/>
     </sequence>

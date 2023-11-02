@@ -1,0 +1,71 @@
+{
+  "connectorName": "salesforcerest",
+  "operationName": "getDataCategoryDetails",
+  "title": "Get Data Category Details",
+  "help": "<h1>Get Data Category Details</h1> <b>Retrieves data category details and the child categories by a given category.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "init"
+              ],
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Group",
+                    "defaultValue": "",
+                    "name": "group",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The data category group.",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "Category",
+                    "defaultValue": "",
+                    "name": "category",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The data category.",
+                    "required": "true"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "displayName": "sObject Name",
+                    "defaultValue": "",
+                    "name": "sObjectName",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "The type of sObject. Support 'KnowledgeArticleVersion' only.",
+                    "required": "true"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

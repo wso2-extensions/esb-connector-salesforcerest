@@ -26,5 +26,17 @@
             <file>getBlobBodyForDocumentRecord.xml</file>
             <description>Retrieving blob body for a Document record</description>
         </component>
+        <component name="getBlobDataForSpecificObject">
+            <file>getBlobDataForSpecificObject.xml</file>
+            <description>
+                Retrieves the specified blob field from an individual record and returns it as binary data
+            </description>
+        </component>
+        <component name="getSObjectRichTextImage">
+            <file>getSObjectRichTextImage.xml</file>
+            <description>
+                Retrieves the specified image data from a specific rich text area field in a given record
+            </description>
+        </component>
     </subComponents>
 </component>

@@ -61,7 +61,7 @@ Before you start configuring the connector, import the Salesforce certificate to
     ```
     4. Restart the server and deploy the Salesforce configuration. In this case, you can define the registry path where you can store the variables, then use the init operation with defining registry path to configure the Salesforce REST connector.
     
-In this connector we have two flow to get the accessToken. First one is the  [Web Server OAuth Authentication Flow](#init) and the other one is  [Username-Password OAuth Authentication Flow](#).
+In this connector, we have two flows to get the accessToken. The first one is the  [Web Server OAuth Authentication Flow](#init) and the other one is  [Username-Password OAuth Authentication Flow](#).
 
 ## Salesforce REST 2.0.0 Connector Connection Configuration
 

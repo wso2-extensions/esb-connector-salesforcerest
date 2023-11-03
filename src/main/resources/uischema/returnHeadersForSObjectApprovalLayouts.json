@@ -1,7 +1,7 @@
 {
   "connectorName": "salesforcerest",
-  "operationName": "headersForSObjectApprovalLayouts",
-  "title": "Headers for sObject Approval Layouts",
+  "operationName": "returnHeadersForSObjectApprovalLayouts",
+  "title": "Return Headers for sObject Approval Layouts",
   "help": "<h1>Headers for sObject Approval Layouts</h1> <b>Returns only the headers that are returned by the sObjectApprovalLayouts operation</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
   "elements": [
     {

@@ -1,8 +1,8 @@
 {
   "connectorName": "salesforcerest",
-  "operationName": "headersForSObjectApprovalLayoutsForSpecifiedApprovalProcess",
-  "title": "Headers For sObject Approval Layouts for Specified Approval Process",
-  "help": "<h1>Headers For sObject Approval Layouts for Specified Approval Process</h1> <b>Returns only the headers that are returned by the sObjectApprovalLayoutsForSpecifiedApprovalProcess operation.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "operationName": "returnHeadersForSObjectLayoutsForObjectWithMultipleRecordTypes",
+  "title": "Return Headers for sObject Layouts for Object with Multiple Record Types",
+  "help": "<h1>Headers for sObject Layouts for Object with Multiple Record Types</h1> <b>Returns only the headers that are returned by the sObjectLayoutsForObjectWithMultipleRecordTypes operation.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
   "elements": [
     {
       "type": "attributeGroup",
@@ -42,11 +42,11 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "displayName": "Approval Process Name",
+                    "displayName": "Record Type Id",
                     "defaultValue": "",
-                    "name": "approvalProcessName",
+                    "name": "recordTypeId",
                     "inputType": "stringOrExpression",
-                    "helpTip": "The Name of the approval process",
+                    "helpTip": "The id of the record type",
                     "required": "true"
                   }
                 }

@@ -16,11 +16,12 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template name="headersForDefaultValueOfAction" xmlns="http://ws.apache.org/ns/synapse">
+<template name="returnHeadersForDefaultValueOfActionById" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sObjectName" description="The type of sObject."/>
-    <parameter name="actionName" description="The specific action name to retrieve the action."/>
+    <parameter name="actionName" description="The specific action name to retrieve the action "/>
+    <parameter name="contextId" description="The specific context id to retrieve the default values of an action"/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/quickActions/', $func:actionName, '/defaultValues')"/>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/quickActions/', $func:actionName, '/defaultValues/', $func:contextId)"/>
         <property name="httpMethod" value="head"/>
         <salesforcerest.callWithRetry/>
     </sequence>

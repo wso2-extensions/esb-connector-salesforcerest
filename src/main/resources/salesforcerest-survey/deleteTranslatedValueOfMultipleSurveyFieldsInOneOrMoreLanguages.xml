@@ -16,12 +16,20 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template name="headersForSpecificQuickAction" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sObjectName" description="The type of sObject"/>
-    <parameter name="actionName" description="The specific action name to retrieve the action"/>
+<template name="deleteTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="fieldAndValue"/>
     <sequence>
-        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/quickActions/', $func:actionName)"/>
-        <property name="httpMethod" value="head"/>
+        <property name="uri.var.fieldAndValue" expression="$func:fieldAndValue"/>
+        <payloadFactory media-type="json">
+            <format>
+                $1
+            </format>
+            <args>
+                <arg expression="get-property('uri.var.fieldAndValue')"/>
+            </args>
+        </payloadFactory>
+        <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/localizedvalue/records/delete')"/>
+        <property name="httpMethod" value="post"/>
         <salesforcerest.callWithRetry/>
     </sequence>
 </template>

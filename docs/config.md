@@ -65,8 +65,7 @@ In this connector we have two flow to get the accessToken. First one is the  [We
 
 ## Salesforce REST 2.0.0 Connector Connection Configuration
 
-"Connection configuration"
-    In the 'Properties' section of each operation, users can configure connection-related information. Once the configuration is created, it can be reused in other operations.
+In the 'Properties' section of each operation, users can configure connection-related information. Once the configuration is created, it can be reused in other operations.
 
 <table>
         <tr>

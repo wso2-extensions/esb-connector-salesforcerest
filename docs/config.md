@@ -61,101 +61,181 @@ Before you start configuring the connector, import the Salesforce certificate to
     ```
     4. Restart the server and deploy the Salesforce configuration. In this case, you can define the registry path where you can store the variables, then use the init operation with defining registry path to configure the Salesforce REST connector.
     
-In this connector we have two flow to get the accessToken. First one is the  [Web Server OAuth Authentication Flow](#init) and the other one is  [Username-Password OAuth Authentication Flow](#).
+In this connector, we have two flows to get the accessToken. The first one is the  [Web Server OAuth Authentication Flow](#init) and the other one is  [Username-Password OAuth Authentication Flow](#).
 
-## Initializing the connector
+## Salesforce REST 2.0.0 Connector Connection Configuration
 
-Add the following <salesforcerest.init> method in your configuration:
+In the 'Properties' section of each operation, users can configure connection-related information. Once the configuration is created, it can be reused in other operations.
+
+<table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>apiVersion</td>
+            <td>The version of the Salesforce API.</td>
+            <td>Yes</td>
+            <td>v59.0</td>
+        </tr>
+        <tr>
+            <td>accessToken</td>
+            <td>The access token to authenticate your API calls.</td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX (Replace with your access token)</td>
+        </tr>
+        <tr>
+            <td>apiUrl</td>
+            <td>The instance URL for your organization.</td>
+            <td>Yes</td>
+            <td>https://ap2.salesforce.com</td>
+        </tr>
+        <tr>
+            <td>hostName</td>
+            <td>SalesforceOAuth endpoint when issuing authentication requests in your application.</td>
+            <td>Yes</td>
+            <td>https://login.salesforce.com</td>
+        </tr>
+        <tr>
+            <td>refreshToken</td>
+            <td>The refresh token that you received to refresh the API access token.</td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX (Replace with your refresh token)</td>
+        </tr>
+        <tr>
+            <td>tokenEndpointHostname</td>
+            <td>The endpoint of the refresh token that you invoke to refresh the API access token. </td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX (Replace this with your refresh token endpoint)</td>
+        </tr>
+        <tr>
+            <td>clientId</td>
+            <td>The consumer key of the connected application that you created.</td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX (Replace with your client ID)</td>
+        </tr>
+        <tr>
+            <td>clientSecret</td>
+            <td>The consumer secret of the connected application that you created.</td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX (Replace with your client secret)</td>
+        </tr>
+        <tr>
+            <td>blocking</td>
+            <td>Indicates whether the connector needs to perform blocking invocations to Salesforce.</td>
+            <td>Yes</td>
+            <td>false</td>
+        </tr>
+      </table>
  
-#### init
+#### Sample Configuration
 ```xml
-<salesforcerest.init>
-    <accessToken>{$ctx:accessToken}</accessToken>
-    <apiUrl>{$ctx:apiUrl}</apiUrl>
-    <clientId>{$ctx:clientId}</clientId>
-    <clientSecret>{$ctx:clientSecret}</clientSecret>
-    <refreshToken>{$ctx:refreshToken}</refreshToken>
-    <hostName>{$ctx:hostName}</hostName>
-    <apiVersion>{$ctx:apiVersion}</apiVersion>
-    <registryPath>{$ctx:registryPath}</registryPath>
-    <intervalTime>{$ctx:intervalTime}</intervalTime>
-    <blocking>{$ctx:blocking}</blocking>
-  </salesforcerest.init>
+    <salesforcerest.init>
+        <accessToken>{$ctx:accessToken}</accessToken>
+        <apiUrl>{$ctx:apiUrl}</apiUrl>
+        <hostName>{$ctx:hostName}</hostName>
+        <apiVersion>{$ctx:apiVersion}</apiVersion>
+        <blocking>{$ctx:blocking}</blocking>
+    </salesforcerest.init>
 ```
-**Properties** 
-* apiVersion:  The version of the Salesforce API. 
-* accessToken:  The access token to authenticate your API calls.
-* apiUrl:  The instance URL for your organization.
-* hostName:  SalesforceOAuth endpoint when issuing authentication requests in your application.
-* refreshToken:  The refresh token that you received to refresh the API access token.
-* clientId:  The consumer key of the connected application that you created.
-* clientSecret:  The consumer secret of the connected application that you created.
-* intervalTime:  The time interval in milliseconds, after which you need to check the validity of the access token.
-* registryPath:  The registry path of the connector. You must specify the registry path as follows: registryPath = “connectors/salesforcerest”.
-* blocking: Indicates whether the connector needs to perform blocking invocations to Salesforce. (Supported in WSO2 ESB 4.9.0 and later.)
-
-**Sample Request**
-
-Following is a sample REST request that can be handled by the init operation.
+#### Sample Request
 
 ```json
-{
-  "clientId": "3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7",
-  "refreshToken": "5Aep861TSESvWeug_ztpnAk6BGQxRdovMLhHso81iyYKO6hTm6kHoL4.YfwIi9cHLwga.pPTsTuJlmKjo05x.o.",
-  "clientSecret": "1187341468789253319",
-  "hostName": "https://login.salesforce.com",
-  "apiVersion": "v32.0",
-  "registryPath":"connectors/salesforcerest",
-  "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
-  "intervalTime" : "100000",
-  "apiUrl":"https://ap2.salesforce.com",
-  "blocking" : "false"
-}
+    {
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
+        "apiUrl":"https://(your_instance).salesforce.com",
+        "blocking" : "false"
+    }
+```
+
+Or if you want the connector to handle token expiry
+
+#### Sample Configuration
+
+```xml
+    <salesforcerest.init>
+        <apiUrl>{$ctx:apiUrl}</apiUrl>
+        <hostName>{$ctx:hostName}</hostName>
+        <apiVersion>{$ctx:apiVersion}</apiVersion>
+        <refreshToken>{$ctx:refreshToken}</refreshToken>
+        <clientId>{$ctx:clientId}</clientId>
+        <clientSecret>{$ctx:clientSecret}</clientSecret>
+        <blocking>{$ctx:blocking}</blocking>
+    </salesforcerest.init>
+```
+#### Sample request
+
+```json
+    {
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "refreshToken":"XXXXXXXXXXXX (Replace with your refresh token)",
+        "apiUrl":"https://(your_instance).salesforce.com",
+        "clientId": "XXXXXXXXXXXX (Replace with your client ID)",
+        "clientSecret": "XXXXXXXXXXXX (Replace with your client secret)",
+        "blocking" : "false"
+    }
 ```
 
 **Related  documentation**
 
 [https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm)
 
+### Connection Configuration Parameters for username/password flow
 
-#### init for username password flow
+<table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>username</td>
+            <td>The username for Salesforce.</td>
+            <td>Yes</td>
+            <td>youruser@gmail.com</td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td>The password for Salesforce (need to append the password with security key).</td>
+            <td>Yes</td>
+            <td>xxxxxxxxxxxxxxxxxxxxxx</td>
+        </tr>
+</table>
+
+ #### Sample configuration
+
 ```xml
-<salesforcerest.init>
-    <apiUrl>{$ctx:apiUrl}</apiUrl>
-    <clientId>{$ctx:clientId}</clientId>
-    <clientSecret>{$ctx:clientSecret}</clientSecret>
-    <hostName>{$ctx:hostName}</hostName>
-    <apiVersion>{$ctx:apiVersion}</apiVersion>
-    <username>{$ctx:username}</username>
-    <password>{$ctx:password}</password>
-    <blocking>{$ctx:blocking}</blocking>
-</salesforcerest.init>
+    <salesforcerest.init>
+        <apiUrl>{$ctx:apiUrl}</apiUrl>
+        <clientId>{$ctx:clientId}</clientId>
+        <clientSecret>{$ctx:clientSecret}</clientSecret>
+        <hostName>{$ctx:hostName}</hostName>
+        <apiVersion>{$ctx:apiVersion}</apiVersion>
+        <username>{$ctx:username}</username>
+        <password>{$ctx:password}</password>
+        <blocking>{$ctx:blocking}</blocking>
+    </salesforcerest.init>
 ```
-**Properties** 
-* apiVersion:  The version of the Salesforce API. 
-* apiUrl:  The instance URL for your organization.
-* hostName:  SalesforceOAuth endpoint when issuing authentication requests in your application.
-* clientId:  The consumer key of the connected application that you created.
-* clientSecret:  The consumer secret of the connected application that you created.
-* username: The username for the salesforce.
-* password: The password for the salesforce (Need to append the password with security key).
-* blocking: Indicates whether the connector needs to perform blocking invocations to Salesforce. (Supported in WSO2 ESB 4.9.0 and later.)
 
-**Sample Request**
-
-Following is a sample REST request that can be handled by the init operation for username and password flow.
-
+#### Sample request
+    
 ```json
-{
-  "clientId": "3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7",
-  "clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxx",
-  "hostName": "https://login.salesforce.com",
-  "apiVersion": "v32.0",
-  "username": "tharis63@outlook.com",
-  "password": "xxxxxxxxxxxxxxxxxxxxxx",
-  "apiUrl":"https://ap2.salesforce.com",
-  "blocking" : "false"
-}
+    {
+        "clientId": "xxxxxxxxxxxxxxxxxxxxxxxx",
+        "clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxx",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "username": "youruser@gmail.com",
+        "password": "xxxxxxxxxxxxxxxxxxxxxx",
+        "apiUrl":"https://(your_instance).salesforce.com",
+        "blocking" : "false"
+    }
 ```
 
 **Related  documentation**

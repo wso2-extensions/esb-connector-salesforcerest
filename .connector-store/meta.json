@@ -2,7 +2,7 @@
     "name": "SalesforceRest",
     "owner": "WSO2",
     "category": "Customer Relationship Management",
-    "documentationUrl": "https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-connectors/sf-overview/#salesforce-rest-connector",
+    "documentationUrl": "https://mi.docs.wso2.com/en/latest/reference/connectors/salesforce-connectors/sf-rest-connector-config/",
     "description": "The Salesforce connector allows you to work with records in Salesforce, a web-based service that allows organizations to manage contact relationship management (CRM) data. You can use the Salesforce connector to create, query, retrieve, update, and delete records in your organization's Salesforce data. The connector uses the Slaesforce REST API to interact with Salesforce. ",
     "status": "Active",
     "labels": [

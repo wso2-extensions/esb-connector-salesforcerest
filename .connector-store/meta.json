@@ -8,7 +8,7 @@
     "mavenArtifactId": "org.wso2.carbon.connector.salesforcerest",
     "description": "The Salesforce connector allows you to work with records in Salesforce, a web-based service that allows organizations to manage contact relationship management (CRM) data. You can use the Salesforce connector to create, query, retrieve, update, and delete records in your organization's Salesforce data. The connector uses the Slaesforce REST API to interact with Salesforce. ",
     "status": "Active",
-    "connectorRank": 13,
+    "rank": 13,
     "type": "Connector",
     "labels": [
         "salesforce"

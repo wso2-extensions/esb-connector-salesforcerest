@@ -807,7 +807,7 @@
             ],
             "connections": [
                 {
-                    "name": "init",
+                    "name": "salesforcerest",
                     "description": "Connection for using the Salesforce REST API."
                 }
             ],
@@ -1604,7 +1604,7 @@
             ],
             "connections": [
                 {
-                    "name": "init",
+                    "name": "salesforcerest",
                     "description": "Connection for using the Salesforce REST API."
                 }
             ],

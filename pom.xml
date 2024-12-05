@@ -19,8 +19,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.wso2.carbon.connector</groupId>
-    <artifactId>org.wso2.carbon.connector.salesforcerest</artifactId>
+    <groupId>org.wso2.integration.connector</groupId>
+    <artifactId>mi-connector-salesforcerest</artifactId>
     <packaging>jar</packaging>
     <version>2.0.0</version>
     <name>WSO2 Carbon - Mediation Library Connector For Salesforcerest</name>
@@ -244,6 +244,13 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.8</source>
@@ -258,7 +265,7 @@
                         <id>email-library</id>
                         <phase>compile</phase>
                         <goals>
-                            <goal>attached</goal>
+                            <goal>single</goal>
                         </goals>
                         <configuration>
                             <finalName>${connector.name}-connector-${version}</finalName>

@@ -42,7 +42,7 @@ jobs:
           git config --global user.email ${{ secrets.WSO2_INTEGRATION_BOT_EMAIL }}
       - name: Build artifacts
         run: |
-          mvn clean install -Dmaven.test.skip=true -DskipITs=true"
+          mvn clean install -Dmaven.test.skip=true -DskipITs=true
       - name: Deploy artifacts with Maven
         env:
           GITHUB_TOKEN: ${{ secrets.WSO2_INTEGRATION_BOT_TOKEN }}

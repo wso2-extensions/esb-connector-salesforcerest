@@ -19,30 +19,36 @@
 <component name="salesforcerest-appmenu" type="synapse/template">
     <subComponents>
         <component name="listItemsInMenu">
+            <displayName>List Items In Menu</displayName>
             <file>listItemsInMenu.xml</file>
             <description>Returns a list of items in either the Salesforce app drop-down menu or the
                 Salesforce1 navigation menu.
             </description>
         </component>
         <component name="tabs">
+            <displayName>Tabs</displayName>
             <file>tabs.xml</file>
             <description>Returns a list of all tabs.</description>
         </component>
         <component name="themes">
+            <displayName>Themes</displayName>
             <file>themes.xml</file>
             <description>Gets the list of icons and colors used by themes in the Salesforce
                 application.
             </description>
         </component>
         <component name="listAppMenuTypes">
+            <displayName>List App Menu Types</displayName>
             <file>listAppMenuTypes.xml</file>
             <description>Retrieves a list of App Menu types in the Salesforce app dropdown menu.</description>
         </component>
         <component name="listAppMenuItems">
+            <displayName>List App Menu Items</displayName>
             <file>listAppMenuItems.xml</file>
             <description>Retrieves a list of the App Menu items in the Salesforce Lightning dropdown menu.</description>
         </component>
         <component name="listAppMenuMobileItems">
+            <displayName>List App Menu Mobile Items</displayName>
             <file>listAppMenuMobileItems.xml</file>
             <description>
                 Retrieves a list of the App Menu items in the Salesforce mobile app for Android
@@ -50,16 +56,19 @@
             </description>
         </component>
         <component name="returnHeadersForAppMenuItems">
+            <displayName>Return Headers For App Menu Items</displayName>
             <file>returnHeadersForAppMenuItems.xml</file>
             <description>Retrieves only the headers that are returned by the listAppMenuItems operation.</description>
         </component>
         <component name="returnHeadersForAppMenuMobileItems">
+            <displayName>Return Headers For App Menu Mobile Items</displayName>
             <file>returnHeadersForAppMenuMobileItems.xml</file>
             <description>
                 Retrieves only the headers that are returned by the listAppMenuMobileItems operation.
             </description>
         </component>
         <component name="returnHeadersForTabs">
+            <displayName>Return Headers For Tabs</displayName>
             <file>returnHeadersForTabs.xml</file>
             <description>Retrieves only the headers that are returned by the tabs operation.</description>
         </component>

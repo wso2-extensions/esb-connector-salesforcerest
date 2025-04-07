@@ -19,17 +19,17 @@
 <component name="salesforcerest-consent" type="synapse/template">
     <subComponents>
         <component name="consentDetailsOnSingleAction">
+            <displayName>Consent Details On Single Action</displayName>
             <file>consentDetailsOnSingleAction.xml</file>
             <description>
-                Retrieves consent details based on a single action, like email or track,
-                across specific consent management objects when the records have a lookup relationship.
+                Retrieves consent details for a single action across related consent objects.
             </description>
         </component>
         <component name="consentDetailsOnMultipleAction">
+            <displayName>Consent Details On Multiple Action</displayName>
             <file>consentDetailsOnMultipleAction.xml</file>
             <description>
-                Retrieves consent details based on multiple actions, like email and track,
-                across specific consent management objects when the records have a lookup relationship.
+                Retrieves consent details for multiple actions across related consent objects.
             </description>
         </component>
     </subComponents>

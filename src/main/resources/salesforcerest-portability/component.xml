@@ -19,14 +19,14 @@
 <component name="salesforcerest-portability" type="synapse/template">
     <subComponents>
         <component name="compileDataForPortabilityRequest">
+            <displayName>Compile Data For Portability Request</displayName>
             <file>compileDataForPortabilityRequest.xml</file>
             <description>
-                Aggregates your data subject's personally identifiable information (PII) into one file and sends
-                a response with a URL to download the file, a policy file ID, and information on the objects and fields
-                you selected when creating the policy.
+                Aggregates PII into a file and returns a download URL, policy file ID, and selected object details.
             </description>
         </component>
         <component name="statusOfPortabilityRequest">
+            <displayName>Status Of Portability Request</displayName>
             <file>statusOfPortabilityRequest.xml</file>
             <description>
                 Retrieves the status of the request done by compileDataForPortabilityRequest operation.
@@ -34,3 +34,4 @@
         </component>
     </subComponents>
 </component>
+

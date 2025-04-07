@@ -19,12 +19,14 @@
 <component name="salesforcerest-embeddedService" type="synapse/template">
     <subComponents>
         <component name="embeddedServiceConfig">
+            <displayName>Embedded Service Config</displayName>
             <file>embeddedServiceConfig.xml</file>
             <description>Retrieves the values for your Embedded Service deployment configuration,
                 including the branding colors, font, and site URL
             </description>
         </component>
         <component name="returnHeadersForEmbeddedServiceConfig">
+            <displayName>Return Headers For Embedded Service Config</displayName>
             <file>returnHeadersForEmbeddedServiceConfig.xml</file>
             <description>
                 Retrieves only the headers that are returned by the embeddedServiceConfig operation.

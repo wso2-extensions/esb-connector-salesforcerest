@@ -18,30 +18,34 @@
 <component name="salesforcerest-listview" type="synapse/template">
     <subComponents>
         <component name="listViews">
+            <displayName>List Views</displayName>
             <file>listViews.xml</file>
-            <description>Returns the list of list views for the specified sObject, including the ID
-                and other basic information about each list view
+            <description>Returns the list of list views for the specified sObject, including the ID and other basic
+                information about each list view
             </description>
         </component>
         <component name="listViewById">
+            <displayName>List View By ID</displayName>
             <file>listViewById.xml</file>
-            <description>get basic information for a specific list view by ID</description>
+            <description>Get basic information for a specific list view by ID</description>
         </component>
         <component name="recentListViews">
+            <displayName>Recent List Views</displayName>
             <file>recentListViews.xml</file>
-            <description>Returns the list of recently used list views for the given sObject type
-            </description>
+            <description>Returns the list of recently used list views for the given sObject type</description>
         </component>
         <component name="describeListViewById">
+            <displayName>Describe List View By ID</displayName>
             <file>describeListViewById.xml</file>
-            <description>Returns detailed information about a list view, including the ID, the
-                columns, and the SOQL query.
+            <description>Returns detailed information about a list view, including the ID, the columns, and the SOQL
+                query.
             </description>
         </component>
         <component name="listViewResults">
+            <displayName>List View Results</displayName>
             <file>listViewResults.xml</file>
-            <description>Executes the SOQL query for the list view and returns the resulting data
-                and presentation information.
+            <description>Executes the SOQL query for the list view and returns the resulting data and presentation
+                information.
             </description>
         </component>
     </subComponents>

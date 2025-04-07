@@ -19,40 +19,46 @@
 <component name="salesforcerest-processrules" type="synapse/template">
     <subComponents>
         <component name="listProcessRules">
+            <displayName>List Process Rules</displayName>
             <file>listProcessRules.xml</file>
             <description>Get the List of Process Rules.</description>
         </component>
         <component name="getSpecificProcessRule">
+            <displayName>Get Specific Process Rule</displayName>
             <file>getSpecificProcessRule.xml</file>
-            <description>get the metadata for a specific sObject Process rule</description>
+            <description>Get the metadata for a specific sObject Process rule</description>
         </component>
         <component name="getSpecificProcessRuleList">
+            <displayName>Get Specific Process Rule List</displayName>
             <file>getSpecificProcessRuleList.xml</file>
             <description>Gets all active workflow rules for an sObject.</description>
         </component>
         <component name="returnHeadersForProcessRules">
+            <displayName>Return Headers For Process Rules</displayName>
             <file>returnHeadersForProcessRules.xml</file>
             <description>
                 Returns only the headers that are returned by the listProcessRules operation.
             </description>
         </component>
         <component name="returnHeadersForSpecificProcessRule">
+            <displayName>Return Headers For Specific Process Rule</displayName>
             <file>returnHeadersForSpecificProcessRule.xml</file>
             <description>
                 Returns only the headers that are returned by the getSpecificProcessRule operation.
             </description>
         </component>
         <component name="returnHeadersForSpecificProcessRuleList">
+            <displayName>Return Headers For Specific Process Rule List</displayName>
             <file>returnHeadersForSpecificProcessRuleList.xml</file>
             <description>
                 Returns only the headers that are returned by the getSpecificProcessRuleList operation.
             </description>
         </component>
         <component name="triggerProcessRules">
+            <displayName>Trigger Process Rules</displayName>
             <file>triggerProcessRules.xml</file>
             <description>
-                Triggers all active workflow rules. All rules associated with the specified ID are evaluated,
-                regardless of the evaluation criteria. All IDs must be for records on the same object.
+                Triggers all active workflow rules for records of the same object, ignoring evaluation criteria.
             </description>
         </component>
     </subComponents>

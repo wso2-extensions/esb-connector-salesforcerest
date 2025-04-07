@@ -19,18 +19,22 @@
 <component name="salesforcerest-composite" type="synapse/template">
     <subComponents>
         <component name="listCompositeResources">
+            <displayName>List Composite Resources</displayName>
             <file>listCompositeResources.xml</file>
             <description>Retrieves a list of URIs for other composite resources.</description>
         </component>
         <component name="sendMultipleRequestsUsingComposite">
+            <displayName>Send Multiple Requests Using Composite</displayName>
             <file>sendMultipleRequestsUsingComposite.xml</file>
             <description>Executes a series of REST API requests in a single call.</description>
         </component>
         <component name="compositeGraph">
+            <displayName>Composite Graph</displayName>
             <file>compositeGraph.xml</file>
             <description>Submit composite graph operations.</description>
         </component>
         <component name="compositeBatch">
+            <displayName>Composite Batch</displayName>
             <file>compositeBatch.xml</file>
             <description>Executes up to 25 subrequests in a single request.</description>
         </component>

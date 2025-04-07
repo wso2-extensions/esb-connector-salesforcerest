@@ -19,16 +19,19 @@
 <component name="salesforcerest-config" type="synapse/template">
     <subComponents>
         <component name="init">
+            <displayName>Init</displayName>
             <file>init.xml</file>
             <description>Initial configuration file for salesforce rest connector</description>
             <hidden>true</hidden>
         </component>
         <component name="callWithRetry">
+            <displayName>Call With Retry</displayName>
             <file>callWithRetry.xml</file>
             <description>Templating the retry call</description>
             <hidden>true</hidden>
         </component>
         <component name="callOptions">
+            <displayName>Call Options</displayName>
             <file>callOptions.xml</file>
             <description>Templating the http call types GET, POST, etc.</description>
             <hidden>true</hidden>

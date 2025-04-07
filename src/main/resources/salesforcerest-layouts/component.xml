@@ -19,56 +19,66 @@
 <component name="salesforcerest-layouts" type="synapse/template">
     <subComponents>
         <component name="sObjectLayouts">
+            <displayName>SObject Layouts</displayName>
             <file>sObjectLayouts.xml</file>
-            <description>Returns a list of layouts and descriptions, including for actions for a
-                specific object.
+            <description>Returns a list of layouts and descriptions, including for actions for a specific object.
             </description>
         </component>
         <component name="compactLayouts">
+            <displayName>Compact Layouts</displayName>
             <file>compactLayouts.xml</file>
             <description>Returns a list of compact layouts for multiple objects.</description>
         </component>
         <component name="sObjectCompactLayouts">
+            <displayName>SObject Compact Layouts</displayName>
             <file>sObjectCompactLayouts.xml</file>
             <description>Returns a list of compact layouts for a specific object.</description>
         </component>
         <component name="sObjectNamedLayouts">
+            <displayName>SObject Named Layouts</displayName>
             <file>sObjectNamedLayouts.xml</file>
-            <description>Retrieves information about alternate named layouts for a given object.
-            </description>
+            <description>Retrieves information about alternate named layouts for a given object.</description>
         </component>
         <component name="globalSObjectLayouts">
+            <displayName>Global SObject Layouts</displayName>
             <file>globalSObjectLayouts.xml</file>
             <description>To return descriptions of global publisher layouts.</description>
         </component>
         <component name="sObjectApprovalLayouts">
+            <displayName>SObject Approval Layouts</displayName>
             <file>sObjectApprovalLayouts.xml</file>
             <description>Returns a list of approval layouts for a specified object</description>
         </component>
         <component name="sObjectApprovalLayoutsForSpecifiedApprovalProcess">
+            <displayName>SObject Approval Layouts For Specified Approval Process</displayName>
             <file>sObjectApprovalLayoutsForSpecifiedApprovalProcess.xml</file>
             <description>Returns an approval layout for a named approval process on a specified object.</description>
         </component>
         <component name="returnHeadersForSObjectApprovalLayouts">
+            <displayName>Return Headers For SObject Approval Layouts</displayName>
             <file>returnHeadersForSObjectApprovalLayouts.xml</file>
-            <description>Returns only the headers that are returned by the sObjectApprovalLayouts
-                operation</description>
+            <description>Returns only the headers that are returned by the sObjectApprovalLayouts operation
+            </description>
         </component>
         <component name="returnHeadersForSObjectApprovalLayoutsForSpecifiedApprovalProcess">
+            <displayName>Return Headers For SObject Approval Layouts For Specified Approval Process</displayName>
             <file>returnHeadersForSObjectApprovalLayoutsForSpecifiedApprovalProcess.xml</file>
             <description>Returns only the headers that are returned by the
                 sObjectApprovalLayoutsForSpecifiedApprovalProcess operation
             </description>
         </component>
         <component name="returnHeadersForSObjectCompactLayouts">
+            <displayName>Return Headers For SObject Compact Layouts</displayName>
             <file>returnHeadersForSObjectCompactLayouts.xml</file>
             <description>Returns only the headers that are returned by the sObjectCompactLayouts operation</description>
         </component>
         <component name="returnHeadersForSObjectLayouts">
+            <displayName>Return Headers For SObject Layouts</displayName>
             <file>returnHeadersForSObjectLayouts.xml</file>
             <description>Returns only the headers that are returned by the sObjectLayouts operation</description>
         </component>
         <component name="sObjectLayoutsForObjectWithMultipleRecordTypes">
+            <displayName>SObject Layouts For Object With Multiple Record Types</displayName>
             <file>sObjectLayoutsForObjectWithMultipleRecordTypes.xml</file>
             <description>
                 Retrieves lists of page layouts and their descriptions for objects that have
@@ -76,6 +86,7 @@
             </description>
         </component>
         <component name="returnHeadersForSObjectLayoutsForObjectWithMultipleRecordTypes">
+            <displayName>Return Headers For SObject Layouts For Object With Multiple Record Types</displayName>
             <file>returnHeadersForSObjectLayoutsForObjectWithMultipleRecordTypes.xml</file>
             <description>
                 Returns only the headers that are returned by the sObjectLayoutsForObjectWithMultipleRecordTypes
@@ -83,6 +94,7 @@
             </description>
         </component>
         <component name="returnHeadersForGlobalSObjectLayouts">
+            <displayName>Return Headers For Global SObject Layouts</displayName>
             <file>returnHeadersForGlobalSObjectLayouts.xml</file>
             <description>Returns only the headers that are returned by the globalSObjectLayouts operation</description>
         </component>

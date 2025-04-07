@@ -19,20 +19,24 @@
 <component name="salesforcerest-attachment" type="synapse/template">
     <subComponents>
         <component name="getBlobBodyForAttachmentRecord">
+            <displayName>Get Blob Body For Attachment Record</displayName>
             <file>getBlobBodyForAttachmentRecord.xml</file>
             <description>Retrieving blob body for an Attachment record</description>
         </component>
         <component name="getBlobBodyForDocumentRecord">
+            <displayName>Get Blob Body For Document Record</displayName>
             <file>getBlobBodyForDocumentRecord.xml</file>
             <description>Retrieving blob body for a Document record</description>
         </component>
         <component name="getBlobDataForSpecificObject">
+            <displayName>Get Blob Data For Specific Object</displayName>
             <file>getBlobDataForSpecificObject.xml</file>
             <description>
                 Retrieves the specified blob field from an individual record and returns it as binary data
             </description>
         </component>
         <component name="getSObjectRichTextImage">
+            <displayName>Get SObject Rich Text Image</displayName>
             <file>getSObjectRichTextImage.xml</file>
             <description>
                 Retrieves the specified image data from a specific rich text area field in a given record

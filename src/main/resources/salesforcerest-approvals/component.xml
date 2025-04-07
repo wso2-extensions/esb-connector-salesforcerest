@@ -19,14 +19,17 @@
 <component name="salesforcerest-approvals" type="synapse/template">
     <subComponents>
         <component name="listApprovals">
+            <displayName>List Approvals</displayName>
             <file>listApprovals.xml</file>
             <description>Get the List of Approvals.</description>
         </component>
         <component name="returnHeadersForApprovals">
+            <displayName>Return Headers For Approvals</displayName>
             <file>returnHeadersForApprovals.xml</file>
             <description>Returns only the headers that are returned by the listApprovals operation.</description>
         </component>
         <component name="submitApproveOrRejectApprovals">
+            <displayName>Submit, Approve Or Reject Approvals</displayName>
             <file>submitApproveOrRejectApprovals.xml</file>
             <description>
                 Submits a particular record if that entity supports an approval process and one has already been

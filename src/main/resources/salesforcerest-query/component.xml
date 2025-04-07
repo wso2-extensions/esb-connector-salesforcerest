@@ -19,35 +19,34 @@
 <component name="salesforcerest-query" type="synapse/template">
     <subComponents>
         <component name="query">
+            <displayName>Query</displayName>
             <file>query.xml</file>
             <description>Executes the specified SOQL query to retrieve</description>
         </component>
         <component name="queryPerformanceFeedback">
+            <displayName>Query Performance Feedback</displayName>
             <file>queryPerformanceFeedback.xml</file>
-            <description>Retrieving query performance feedback without executing the query
-            </description>
+            <description>Retrieving query performance feedback without executing the query</description>
         </component>
         <component name="listviewQueryPerformanceFeedback">
+            <displayName>List View Query Performance Feedback</displayName>
             <file>listviewQueryPerformanceFeedback.xml</file>
-            <description>Retrieving query performance feedback on a report or list view
-            </description>
+            <description>Retrieving query performance feedback on a report or list view</description>
         </component>
         <component name="queryMore">
+            <displayName>Query More</displayName>
             <file>queryMore.xml</file>
-            <description>Retrieving additional query results if the initial results are too large
-            </description>
+            <description>Retrieving additional query results if the initial results are too large</description>
         </component>
         <component name="queryAll">
+            <displayName>Query All</displayName>
             <file>queryAll.xml</file>
-            <description>Executes the specified SOQL query to retrieve details with deleted
-                records
-            </description>
+            <description>Executes the specified SOQL query to retrieve details with deleted records</description>
         </component>
         <component name="queryAllMore">
+            <displayName>Query All More</displayName>
             <file>queryAllMore.xml</file>
-            <description>For retrieving additional query results if the initial results are too
-                large
-            </description>
+            <description>For retrieving additional query results if the initial results are too large</description>
         </component>
     </subComponents>
 </component>

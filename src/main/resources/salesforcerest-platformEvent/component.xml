@@ -19,23 +19,25 @@
 <component name="salesforcerest-platformEvent" type="synapse/template">
     <subComponents>
         <component name="platformEventSchemaByEventName">
+            <displayName>Platform Event Schema By Event Name</displayName>
             <file>platformEventSchemaByEventName.xml</file>
             <description>Retrieves the definition of a platform event for an event name</description>
         </component>
         <component name="platformEventSchemaByEventNameAndSpecifiedPayloadFormat">
+            <displayName>Platform Event Schema By Event Name And Specified Payload Format</displayName>
             <file>platformEventSchemaByEventNameAndSpecifiedPayloadFormat.xml</file>
-            <description>Retrieves the definition of a platform event for an event name in specified
-                payload format
+            <description>Retrieves the definition of a platform event for an event name in specified payload format
             </description>
         </component>
         <component name="platformEventSchemaBySchemaId">
+            <displayName>Platform Event Schema By Schema ID</displayName>
             <file>platformEventSchemaBySchemaId.xml</file>
             <description>Retrieves the definition of a platform event for a schema ID</description>
         </component>
         <component name="platformEventSchemaBySchemaIdAndSpecifiedPayloadFormat">
+            <displayName>Platform Event Schema By Schema ID And Specified Payload Format</displayName>
             <file>platformEventSchemaBySchemaIdAndSpecifiedPayloadFormat.xml</file>
-            <description>
-                Retrieves the definition of a platform event for a schema ID in specified payload format
+            <description>Retrieves the definition of a platform event for a schema ID in specified payload format
             </description>
         </component>
     </subComponents>

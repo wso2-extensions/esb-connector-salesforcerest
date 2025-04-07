@@ -19,24 +19,26 @@
 <component name="salesforcerest-scheduling" type="synapse/template">
     <subComponents>
         <component name="listSchedulerRESTResourcesAndURIs">
+            <displayName>List Scheduler REST Resources And URIs</displayName>
             <file>listSchedulerRESTResourcesAndURIs.xml</file>
             <description>
                 Retrieves a list of available Salesforce Scheduler REST resources and corresponding URIs.
             </description>
         </component>
         <component name="listAppointmentSlots">
+            <displayName>List Appointment Slots</displayName>
             <file>listAppointmentSlots.xml</file>
             <description>
-                Retrieves a list of available appointment time slots for a resource based on given work type group or
-                work type and service territories.
+                Retrieves available appointment slots by work type and service territories.
             </description>
         </component>
         <component name="listAppointmentCandidates">
+            <displayName>List Appointment Candidates</displayName>
             <file>listAppointmentCandidates.xml</file>
             <description>
-                Retrieves a list of service resources (appointment candidates) based on work type group or
-                work type and service territories.
+                Retrieves service resources based on work type and service territories.
             </description>
         </component>
     </subComponents>
 </component>
+

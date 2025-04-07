@@ -19,18 +19,21 @@
 <component name="salesforcerest-productSchedules" type="synapse/template">
     <subComponents>
         <component name="createProductSchedules">
+            <displayName>Create Product Schedules</displayName>
             <file>createProductSchedules.xml</file>
             <description>
                 Establishes or reestablishes a product schedule with multiple installments for an opportunity product.
             </description>
         </component>
         <component name="deleteProductSchedules">
+            <displayName>Delete Product Schedules</displayName>
             <file>deleteProductSchedules.xml</file>
             <description>
                 Deletes all installments in a revenue or quantity schedule for opportunity products.
             </description>
         </component>
         <component name="getProductSchedules">
+            <displayName>Get Product Schedules</displayName>
             <file>getProductSchedules.xml</file>
             <description>Retrieves revenue and quantity schedules for opportunity products.</description>
         </component>

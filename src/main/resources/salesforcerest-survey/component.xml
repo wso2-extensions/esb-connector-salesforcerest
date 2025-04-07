@@ -19,46 +19,46 @@
 <component name="salesforcerest-survey" type="synapse/template">
     <subComponents>
         <component name="addOrChangeTranslationOfSurveyField">
+            <displayName>Add Or Change Translation Of Survey Field</displayName>
             <file>addOrChangeTranslationOfSurveyField.xml</file>
             <description>
-                Add or change the translated value of the survey field if a survey field can be translated or
-                is already translated into a particular language.
+                Adds or updates a survey field’s translated value for a specific language.
             </description>
         </component>
         <component name="addOrUpdateTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages">
+            <displayName>Add Or Update Translated Value Of Multiple Survey Fields In One Or More Languages</displayName>
             <file>addOrUpdateTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages.xml</file>
-            <description>
-                If one or more survey fields can be translated or are already translated, adds or updates
-                the translated values of the survey fields in the languages into which survey fields can be translated.
+            <description>Adds or updates translated values for multiple survey fields in supported languages.
             </description>
         </component>
         <component name="deleteTheTranslatedValueOfSurveyField">
+            <displayName>Delete The Translated Value Of Survey Field</displayName>
             <file>deleteTheTranslatedValueOfSurveyField.xml</file>
             <description>
-                Deletes the translated value of the survey field after a survey field is translated
-                into a particular language.
+                Deletes a survey field’s translated value for a specific language.
             </description>
         </component>
         <component name="deleteTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages">
+            <displayName>Delete Translated Value Of Multiple Survey Fields In One Or More Languages</displayName>
             <file>deleteTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages.xml</file>
             <description>
-                Delete the translated values of multiple survey fields after survey fields are translated
-                into one or more languages.
+                Deletes translated values of multiple survey fields across one or more languages.
             </description>
         </component>
         <component name="getTranslatedValueOfSurveyField">
+            <displayName>Get Translated Value Of Survey Field</displayName>
             <file>getTranslatedValueOfSurveyField.xml</file>
             <description>
-                Retrieves the translated value of the survey field after a survey field is translated into a
-                particular language.
+                Retrieves a survey field’s translated value for a specific language.
             </description>
         </component>
         <component name="getTranslatedValuesOfMultipleSurveyFieldsInOneOrMoreLanguages">
+            <displayName>Get Translated Values Of Multiple Survey Fields In One Or More Languages</displayName>
             <file>getTranslatedValuesOfMultipleSurveyFieldsInOneOrMoreLanguages.xml</file>
             <description>
-                Retrieves the translated values of multiple survey fields in the translated languages after
-                survey fields are translated into one or more languages.
+                Retrieves translated values of multiple survey fields across supported languages.
             </description>
         </component>
     </subComponents>
 </component>
+

@@ -19,6 +19,7 @@
 <component name="salesforcerest-analytics" type="synapse/template">
     <subComponents>
         <component name="getReport">
+            <displayName>Get Report</displayName>
             <file>getReport.xml</file>
             <description>Returns the report for a specific report id.
             </description>

@@ -19,35 +19,39 @@
 <component name="salesforcerest-knowledgeSupport" type="synapse/template">
     <subComponents>
         <component name="listKnowledgeRESTApis">
+            <displayName>List Knowledge REST APIs</displayName>
             <file>listKnowledgeRESTApis.xml</file>
             <description>
-                Retrieves knowledge support REST APIs that allow both authorized and guest users to
-                retrieve the user’s visible data categories and their associated articles.
+                Retrieves visible data categories and related articles for authorized and guest users.
             </description>
         </component>
         <component name="listDataCategoryGroups">
+            <displayName>List Data Category Groups</displayName>
             <file>listDataCategoryGroups.xml</file>
             <description>Retrieves data category groups that are visible to the current user.</description>
         </component>
         <component name="getDataCategoryDetails">
+            <displayName>Get Data Category Details</displayName>
             <file>getDataCategoryDetails.xml</file>
             <description>Retrieves data category details and the child categories by a given category.</description>
         </component>
         <component name="listArticles">
+            <displayName>List Articles</displayName>
             <file>listArticles.xml</file>
             <description>
                 Retrieves a page of online articles for the given language and category through either search or query.
             </description>
         </component>
         <component name="getArticleDetails">
+            <displayName>Get Article Details</displayName>
             <file>getArticleDetails.xml</file>
             <description>Retrieves all online article fields, accessible to the user.</description>
         </component>
         <component name="getKnowledgeLanguageSettings">
+            <displayName>Get Knowledge Language Settings</displayName>
             <file>getKnowledgeLanguageSettings.xml</file>
             <description>
-                Retrieves the existing Knowledge language settings, including the default knowledge language
-                and a list of supported Knowledge language information.
+                Retrieves default and supported Knowledge language settings.
             </description>
         </component>
     </subComponents>

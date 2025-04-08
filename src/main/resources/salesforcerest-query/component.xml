@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-query" type="synapse/template">
+<component name="salesforcerest-query" type="synapse/template" displayName="Query">
     <subComponents>
         <component name="query">
             <displayName>Query</displayName>

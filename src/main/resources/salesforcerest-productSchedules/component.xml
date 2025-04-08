@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-productSchedules" type="synapse/template">
+<component name="salesforcerest-productSchedules" type="synapse/template" displayName="Product Schedules">
     <subComponents>
         <component name="createProductSchedules">
             <displayName>Create Product Schedules</displayName>

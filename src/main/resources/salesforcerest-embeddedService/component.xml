@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-embeddedService" type="synapse/template">
+<component name="salesforcerest-embeddedService" type="synapse/template" displayName="Embedded Service">
     <subComponents>
         <component name="embeddedServiceConfig">
             <displayName>Embedded Service Config</displayName>

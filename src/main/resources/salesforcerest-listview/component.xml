@@ -15,7 +15,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-listview" type="synapse/template">
+<component name="salesforcerest-listview" type="synapse/template" displayName="List View">
     <subComponents>
         <component name="listViews">
             <displayName>List Views</displayName>

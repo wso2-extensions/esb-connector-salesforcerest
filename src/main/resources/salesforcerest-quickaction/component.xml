@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-quickaction" type="synapse/template">
+<component name="salesforcerest-quickaction" type="synapse/template" displayName="Quick Action">
     <subComponents>
         <component name="sObjectAction">
             <displayName>SObject Action</displayName>

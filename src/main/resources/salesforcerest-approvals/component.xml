@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-approvals" type="synapse/template">
+<component name="salesforcerest-approvals" type="synapse/template" displayName="Approvals">
     <subComponents>
         <component name="listApprovals">
             <displayName>List Approvals</displayName>

@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-action" type="synapse/template">
+<component name="salesforcerest-action" type="synapse/template" displayName="Action">
     <subComponents>
         <component name="getListOfAction">
             <displayName>Get List Of Action</displayName>

@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-composite" type="synapse/template">
+<component name="salesforcerest-composite" type="synapse/template" displayName="Composite">
     <subComponents>
         <component name="listCompositeResources">
             <displayName>List Composite Resources</displayName>

@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-knowledgeSupport" type="synapse/template">
+<component name="salesforcerest-knowledgeSupport" type="synapse/template" displayName="Knowledge Support">
     <subComponents>
         <component name="listKnowledgeRESTApis">
             <displayName>List Knowledge REST APIs</displayName>

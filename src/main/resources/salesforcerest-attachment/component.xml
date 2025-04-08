@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-attachment" type="synapse/template">
+<component name="salesforcerest-attachment" type="synapse/template" displayName="Attachment">
     <subComponents>
         <component name="getBlobBodyForAttachmentRecord">
             <displayName>Get Blob Body For Attachment Record</displayName>

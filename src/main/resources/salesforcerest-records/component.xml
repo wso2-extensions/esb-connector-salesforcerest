@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-records" type="synapse/template">
+<component name="salesforcerest-records" type="synapse/template" displayName="Records">
     <subComponents>
         <component name="create">
             <displayName>Create</displayName>

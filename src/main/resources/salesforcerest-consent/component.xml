@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-consent" type="synapse/template">
+<component name="salesforcerest-consent" type="synapse/template" displayName="Consent">
     <subComponents>
         <component name="consentDetailsOnSingleAction">
             <displayName>Consent Details On Single Action</displayName>

@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-layouts" type="synapse/template">
+<component name="salesforcerest-layouts" type="synapse/template" displayName="Layouts">
     <subComponents>
         <component name="sObjectLayouts">
             <displayName>SObject Layouts</displayName>

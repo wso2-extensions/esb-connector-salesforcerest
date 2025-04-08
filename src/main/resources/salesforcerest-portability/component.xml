@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-portability" type="synapse/template">
+<component name="salesforcerest-portability" type="synapse/template" displayName="Portability">
     <subComponents>
         <component name="compileDataForPortabilityRequest">
             <displayName>Compile Data For Portability Request</displayName>

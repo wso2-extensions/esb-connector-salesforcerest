@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-analytics" type="synapse/template">
+<component name="salesforcerest-analytics" type="synapse/template" displayName="Analytics">
     <subComponents>
         <component name="getReport">
             <displayName>Get Report</displayName>

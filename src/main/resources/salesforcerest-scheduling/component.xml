@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-scheduling" type="synapse/template">
+<component name="salesforcerest-scheduling" type="synapse/template" displayName="Scheduling">
     <subComponents>
         <component name="listSchedulerRESTResourcesAndURIs">
             <displayName>List Scheduler REST Resources And URIs</displayName>

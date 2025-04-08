@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-platformEvent" type="synapse/template">
+<component name="salesforcerest-platformEvent" type="synapse/template" displayName="Platform Event">
     <subComponents>
         <component name="platformEventSchemaByEventName">
             <displayName>Platform Event Schema By Event Name</displayName>

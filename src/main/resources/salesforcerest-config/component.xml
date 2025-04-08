@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-config" type="synapse/template">
+<component name="salesforcerest-config" type="synapse/template" displayName="Config">
     <subComponents>
         <component name="init">
             <displayName>Init</displayName>

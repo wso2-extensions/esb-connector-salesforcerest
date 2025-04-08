@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-users" type="synapse/template">
+<component name="salesforcerest-users" type="synapse/template" displayName="Users">
     <subComponents>
         <component name="getUserInformation">
             <displayName>Get User Information</displayName>

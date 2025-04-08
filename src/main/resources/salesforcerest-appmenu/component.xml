@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-appmenu" type="synapse/template">
+<component name="salesforcerest-appmenu" type="synapse/template" displayName="App Menu">
     <subComponents>
         <component name="listItemsInMenu">
             <displayName>List Items In Menu</displayName>

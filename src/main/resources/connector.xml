@@ -45,6 +45,6 @@
         <dependency component="salesforcerest-scheduling"/>
         <description>wso2 connector for Salesforce REST API</description>
     </component>
-    <displayName>SalesforceRest</displayName>
+    <displayName>Salesforce REST</displayName>
     <icon>icon/icon-small.gif</icon>
 </connector>

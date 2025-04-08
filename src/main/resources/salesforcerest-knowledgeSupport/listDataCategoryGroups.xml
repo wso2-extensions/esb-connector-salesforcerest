@@ -19,6 +19,8 @@
 <template name="listDataCategoryGroups" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sObjectName" description="The type of sObject. Support 'KnowledgeArticleVersion' only."/>
     <parameter name="topCategoriesOnly" description="A boolean value where the true returns only the top level categories and false returns the entire tree. Defaults to true."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <filter source="boolean($func:topCategoriesOnly)" regex="true">
             <then>

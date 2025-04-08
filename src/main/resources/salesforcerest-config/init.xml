@@ -34,6 +34,8 @@
                description="The password for the salesforce which means the password with security key."/>
     <parameter name="blocking" description="Set to true to perform the blocking invocations to Salesforce."/>
     <parameter name="tokenEndpointHostname" description="Instance url for OAuth 2.0 token endpoint when issuing authentication requests in your application."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <!--todo: remove uri.var-->
         <property name="uri.var.accessToken" expression="$func:accessToken"/>

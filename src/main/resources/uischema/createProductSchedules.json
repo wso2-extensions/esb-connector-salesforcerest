@@ -1,5 +1,4 @@
 {
-
   "connectorName": "salesforcerest",
   "operationName": "createProductSchedules",
   "title": "Create Product Schedules",
@@ -49,6 +48,36 @@
                     "inputType": "stringOrExpression",
                     "helpTip": "The value of the field of a particular sObject",
                     "required": "true"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Output",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "responseVariable",
+                    "displayName": "Output Variable Name",
+                    "inputType": "string",
+                    "deriveResponseVariable": "true",
+                    "required": "true",
+                    "helpTip": "Name of the variable to which the output of the operation should be assigned"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwriteBody",
+                    "displayName": "Overwrite Message Body",
+                    "inputType": "checkbox",
+                    "defaultValue": "false",
+                    "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+                    "required": "false"
                   }
                 }
               ]

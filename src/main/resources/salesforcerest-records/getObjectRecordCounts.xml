@@ -18,6 +18,8 @@
 -->
 <template name="getObjectRecordCounts" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sObjects" description="A comma-delimited list of object names. If a listed object is not found in the org, it is ignored and not returned in the response."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <filter source="boolean($func:sObjects)" regex="true">
             <then>

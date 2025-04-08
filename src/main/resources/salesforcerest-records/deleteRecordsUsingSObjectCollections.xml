@@ -19,6 +19,8 @@
 <template name="deleteRecordsUsingSObjectCollections" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="ids" description="A list of up to 200 IDs of objects to be deleted. The IDs can belong to different object types, including custom objects."/>
     <parameter name="allOrNone" description="Indicates whether to roll back the entire request when the deletion of any object fails (true) or to continue with the independent deletion of other objects in the request. The default is false."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <filter source="boolean($func:allOrNone)" regex="true">
             <then>

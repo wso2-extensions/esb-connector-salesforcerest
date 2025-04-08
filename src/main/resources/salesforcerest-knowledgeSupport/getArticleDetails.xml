@@ -21,6 +21,8 @@
     <parameter name="channel" description="The value of the channel. Defaults to user’s context"/>
     <parameter name="updateViewStat" description="A boolean value. If true, API updates the view count in the given channel as well as the total view count. Defaults to true."/>
     <parameter name="isUrlName" description="A boolean value. If true, indicates that the last portion of the endpoint is a URL name instead of an article ID. Defaults to false."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="queryParams" value=""/>
         <filter source="boolean($func:channel)" regex="true">

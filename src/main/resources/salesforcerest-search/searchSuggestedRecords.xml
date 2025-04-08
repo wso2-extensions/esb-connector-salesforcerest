@@ -29,6 +29,8 @@
     <parameter name="userId" description="One or more unique identifiers of one or more users who authored the question to return. Specify multiple users using a comma-separated list. Only applicable when the parameter type equals question. Don’t use with the groupId."/>
     <parameter name="useSearchScope" description="If false, the objects specified in the request are used to suggest records. If true, in addition to the objects specified in the request, the user's search scope is used to suggest records. The search scope is the list of objects a user uses most frequently."/>
     <parameter name="where" description="A filter that follows the same syntax as the SOQL WHERE clause. URLs encode the expression."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="queryParams" value=""/>
         <filter source="boolean($func:fields)" regex="true">

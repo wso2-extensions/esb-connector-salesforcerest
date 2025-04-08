@@ -20,6 +20,8 @@
     <parameter name="group" description="The data category group."/>
     <parameter name="category" description="The data category."/>
     <parameter name="sObjectName" description="The type of sObject. Support 'KnowledgeArticleVersion' only."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/support/dataCategoryGroups/', $func:group, '/dataCategories/', $func:category, '?sObjectName=', $func:sObjectName)"/>
         <property name="httpMethod" value="get"/>

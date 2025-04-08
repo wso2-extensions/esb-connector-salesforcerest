@@ -29,6 +29,8 @@
     <parameter name="limit" description="The maximum number of articles to return. If there are more suggested articles than the limit specified, the response body’s hasMoreResults property is true."/>
     <parameter name="topics" description="The topic of the returned articles."/>
     <parameter name="validationStatus" description="The validation status of returned articles."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="queryParams" value=""/>
         <filter source="boolean($func:articleTypes)" regex="true">

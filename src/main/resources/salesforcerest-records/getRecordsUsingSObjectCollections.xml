@@ -20,6 +20,8 @@
     <parameter name="sObjectName" description="The name of the object"/>
     <parameter name="ids" description="A list of one or more IDs of the objects to return. All IDs must belong to the same object type."/>
     <parameter name="fields" description="A list of fields to include in the response. The field names you specify must be valid, and you must have read-level permissions to each field."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/composite/sobjects/', $func:sObjectName, '?ids=', $func:ids, '&amp;fields=', $func:fields)"/>
         <property name="httpMethod" value="get"/>

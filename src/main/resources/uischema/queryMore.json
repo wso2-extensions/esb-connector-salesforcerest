@@ -16,7 +16,7 @@
               "displayName": "Connection",
               "inputType": "connection",
               "allowedConnectionTypes": [
-                "init"
+                "salesforcerest"
               ],
               "defaultValue": "",
               "required": "true",

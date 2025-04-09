@@ -1,6 +1,6 @@
 {
   "connectorName": "salesforcerest",
-  "connectionName": "init",
+  "connectionName": "salesforcerest",
   "title": "Init Salesforcerest Connection",
   "help": "<h1>Salesforcerest Connector</h1> <b>The Salesforce REST connector initializes connection through init operation</b>",
   "elements": [

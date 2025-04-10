@@ -20,6 +20,8 @@
     <parameter name="sObjectName" description="The name of the object"/>
     <parameter name="id" description="The identifier of the record"/>
     <parameter name="relationshipFieldName" description="The name of the field that contains the relationship"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/', $func:id, '/',$func:relationshipFieldName)"/>
         <property name="httpMethod" value="delete"/>

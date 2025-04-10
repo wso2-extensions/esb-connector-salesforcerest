@@ -21,6 +21,8 @@
     <parameter name="sobjects" description="The name for one or more sObjects to scope the results to a particular object or set of objects."/>
     <parameter name="nameOfLastUpdatedIdParamPerSObject" description="The parameter name of the last updated id for a particular object in the format of sobject.lastUpdatedId. Ex: Account.lastUpdatedId"/>
     <parameter name="valueOfLastUpdatedIdParamPerSObject" description="The value of the last updated id for a particular object parameter."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="queryParams" value=""/>
         <filter source="boolean($func:lastUpdatedId)" regex="true">

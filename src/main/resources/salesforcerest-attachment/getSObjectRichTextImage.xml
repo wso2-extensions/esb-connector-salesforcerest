@@ -21,6 +21,8 @@
     <parameter name="id" description="The ID of the object"/>
     <parameter name="fieldName" description="The name of the rich text area field"/>
     <parameter name="contentReferenceId" description="The reference ID that uniquely identifies an image within a rich text area field"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/sobjects/', $func:sObjectName, '/', $func:id, '/richTextImageFields/', $func:fieldName, '/', $func:contentReferenceId)"/>
         <property name="httpMethod" value="get"/>

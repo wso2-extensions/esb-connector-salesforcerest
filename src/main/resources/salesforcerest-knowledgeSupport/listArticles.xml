@@ -25,6 +25,8 @@
     <parameter name="order" description="Either ASC or DESC, defaults to DESC. Valid only when sort is valid."/>
     <parameter name="pageSize" description="Defaults to 20. Valid range 1 to 100."/>
     <parameter name="pageNumber" description="The page number. Defaults to 1."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="queryParams" value=""/>
         <filter source="boolean($func:queryString)" regex="true">

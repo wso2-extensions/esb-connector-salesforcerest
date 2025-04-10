@@ -16,19 +16,22 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="salesforcerest-config" type="synapse/template">
+<component name="salesforcerest-config" type="synapse/template" displayName="Config">
     <subComponents>
         <component name="init">
+            <displayName>Init</displayName>
             <file>init.xml</file>
             <description>Initial configuration file for salesforce rest connector</description>
             <hidden>true</hidden>
         </component>
         <component name="callWithRetry">
+            <displayName>Call With Retry</displayName>
             <file>callWithRetry.xml</file>
             <description>Templating the retry call</description>
             <hidden>true</hidden>
         </component>
         <component name="callOptions">
+            <displayName>Call Options</displayName>
             <file>callOptions.xml</file>
             <description>Templating the http call types GET, POST, etc.</description>
             <hidden>true</hidden>

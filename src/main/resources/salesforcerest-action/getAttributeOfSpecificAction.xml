@@ -18,6 +18,8 @@
 <template name="getAttributeOfSpecificAction" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="actionType" description="The actionType is either standard or custom"/>
     <parameter name="attribute" description="The attribute of a single standard object"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/actions/',$func:actionType,'/',$func:attribute)"/>
         <property name="httpMethod" value="get"/>

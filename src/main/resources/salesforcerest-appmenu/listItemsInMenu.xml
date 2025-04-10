@@ -17,6 +17,8 @@
 -->
 <template name="listItemsInMenu" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="menuType" description="The type is either AppSwitcher or Salesforce1"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/appMenu/',$func:menuType)"/>
         <property name="httpMethod" value="get"/>

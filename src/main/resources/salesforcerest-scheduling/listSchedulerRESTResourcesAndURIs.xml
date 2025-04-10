@@ -17,6 +17,8 @@
    under the License.
 -->
 <template name="listSchedulerRESTResourcesAndURIs" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl, '/services/data/', $ctx:uri.var.apiVersion, '/scheduling')"/>
         <property name="httpMethod" value="get"/>

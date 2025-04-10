@@ -19,6 +19,8 @@
     <parameter name="externalObject" description="The External object of the organization."/>
     <parameter name="salesforceId" description="The row Id of the object."/>
     <parameter name="externalFields" description="The comma separated field values."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.callEndpointUri" expression="fn:concat($ctx:uri.var.apiUrl,'/services/data/',$ctx:uri.var.apiVersion,'/sobjects/',$func:externalObject,'/',$func:salesforceId,'?fields=',$func:externalFields)"/>
         <property name="httpMethod" value="get"/>

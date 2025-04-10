@@ -17,6 +17,8 @@
    under the License.
 -->
 <template name="compositeBatch" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <parameter name="fieldAndValue"/>
     <sequence>
         <property name="uri.var.fieldAndValue" expression="$func:fieldAndValue"/>

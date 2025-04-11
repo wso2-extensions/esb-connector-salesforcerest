@@ -16,7 +16,7 @@
               "displayName": "Connection",
               "inputType": "connection",
               "allowedConnectionTypes": [
-                "salesforcerest"
+                "OAuth 2.0"
               ],
               "defaultValue": "",
               "required": "true",

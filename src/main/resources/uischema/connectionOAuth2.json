@@ -1,6 +1,6 @@
 {
   "connectorName": "salesforcerest",
-  "connectionName": "salesforcerest",
+  "connectionName": "OAuth 2.0",
   "title": "Init Salesforcerest Connection",
   "help": "<h1>Salesforcerest Connector</h1> <b>The Salesforce REST connector initializes connection through init operation</b>",
   "elements": [

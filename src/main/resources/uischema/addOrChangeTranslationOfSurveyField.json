@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "addOrChangeTranslationOfSurveyField",
   "title": "Add Or Change the Translation of Survey Field",
   "help": "<h1>Add Or Change the Translation of Survey Field</h1> <b>Add or change the translated value of the survey field if a survey field can be translated or is already translated into a particular language.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

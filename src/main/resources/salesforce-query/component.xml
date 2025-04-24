@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+
+   WSO2 Inc. licenses this file to you under the Apache License,
+   Version 2.0 (the "License"); you may not use this file except
+   in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied. See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
+<component name="salesforce-query" type="synapse/template" displayName="Query">
+    <subComponents>
+        <component name="query">
+            <displayName>Query</displayName>
+            <file>query.xml</file>
+            <description>Executes the specified SOQL query to retrieve</description>
+        </component>
+        <component name="queryPerformanceFeedback">
+            <displayName>Query Performance Feedback</displayName>
+            <file>queryPerformanceFeedback.xml</file>
+            <description>Retrieving query performance feedback without executing the query</description>
+        </component>
+        <component name="listviewQueryPerformanceFeedback">
+            <displayName>List View Query Performance Feedback</displayName>
+            <file>listviewQueryPerformanceFeedback.xml</file>
+            <description>Retrieving query performance feedback on a report or list view</description>
+        </component>
+        <component name="queryMore">
+            <displayName>Query More</displayName>
+            <file>queryMore.xml</file>
+            <description>Retrieving additional query results if the initial results are too large</description>
+        </component>
+        <component name="queryAll">
+            <displayName>Query All</displayName>
+            <file>queryAll.xml</file>
+            <description>Executes the specified SOQL query to retrieve details with deleted records</description>
+        </component>
+        <component name="queryAllMore">
+            <displayName>Query All More</displayName>
+            <file>queryAllMore.xml</file>
+            <description>For retrieving additional query results if the initial results are too large</description>
+        </component>
+    </subComponents>
+</component>

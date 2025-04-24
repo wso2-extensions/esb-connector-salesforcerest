@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "listViewById",
   "title": "List View By ID",
   "help": "<h1>List View By ID</h1> <b>Retrieves the basic information about one list view for the specified sObject.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

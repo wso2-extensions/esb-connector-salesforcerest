@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "deleteUsingExternalId",
   "title": "Delete Using External ID",
   "help": "<h1>Delete Using External ID</h1> <b>Deleting a record based on the value of the specified external ID field.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

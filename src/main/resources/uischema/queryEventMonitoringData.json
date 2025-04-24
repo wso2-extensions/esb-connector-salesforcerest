@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "queryEventMonitoringData",
   "title": "Query Event Monitoring Data",
   "help": "<h1>Query Event Monitoring Data</h1> <b>Retrieves field values from a record.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

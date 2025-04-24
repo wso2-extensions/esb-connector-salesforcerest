@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "sendMultipleRequestsUsingComposite",
   "title": "Send Multiple Requests Using Composite",
   "help": "<h1>Send Multiple Requests Using Composite</h1> <b>Executes a series of REST API requests in a single call.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

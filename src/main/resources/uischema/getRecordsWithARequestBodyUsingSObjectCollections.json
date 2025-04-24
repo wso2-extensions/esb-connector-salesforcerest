@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "getRecordsWithARequestBodyUsingSObjectCollections",
   "title": "Get Records With a Request Body Using sObject Collections",
   "help": "<h1>Get Records With a Request Body Using sObject Collections</h1> <b>Gets one or more records of the same object type using sObject collections with a request body.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

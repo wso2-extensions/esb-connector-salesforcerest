@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "platformEventSchemaByEventName",
   "title": "Platform Event Schema by Event Name",
   "help": "<h1>Platform Event Schema by Event Name</h1> <b>Retrieves the definition of a platform event for an event name</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

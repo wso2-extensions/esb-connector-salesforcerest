@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "getSObjectRichTextImage",
   "title": "Get sObject Rich Text Image",
   "help": "<h1>Get sObject Rich Text Image</h1> <b>Retrieves the specified blob field from an individual record and returns it as binary data.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "globalSObjectLayouts",
   "title": "Global sObject Layouts",
   "help": "<h1>Global sObject Layouts</h1> <b>Retrieve descriptions of global publisher layouts.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "searchResultLayout",
   "title": "Search Result Layout",
   "help": "<h1>Search Result Layout</h1> <b>Retrieves the search result layouts for one or more sObjects.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

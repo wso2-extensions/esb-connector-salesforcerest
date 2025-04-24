@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+
+   WSO2 Inc. licenses this file to you under the Apache License,
+   Version 2.0 (the "License"); you may not use this file except
+   in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied. See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
+<component name="salesforce-action" type="synapse/template" displayName="Action">
+    <subComponents>
+        <component name="getListOfAction">
+            <displayName>Get List Of Action</displayName>
+            <file>getListOfAction.xml</file>
+            <description>Retrieving a list of general action types for the current organization
+            </description>
+        </component>
+        <component name="getSpecificListOfAction">
+            <displayName>Get Specific List Of Action</displayName>
+            <file>getSpecificListOfAction.xml</file>
+            <description>Retrieving a list of standard actions for the current organization
+            </description>
+        </component>
+        <component name="getAttributeOfSpecificAction">
+            <displayName>Get Attribute Of Specific Action</displayName>
+            <file>getAttributeOfSpecificAction.xml</file>
+            <description>Retrieving the details of a given attributes of a single standard action.
+            </description>
+        </component>
+        <component name="returnHTTPHeadersForListOfAction">
+            <displayName>Return HTTP Headers For List Of Action </displayName>
+            <file>returnHTTPHeadersForListOfAction.xml</file>
+            <description>Retrieves only the headers that are returned by the getListOfAction operation</description>
+        </component>
+        <component name="returnHTTPHeadersForSpecificListOfAction">
+            <displayName>Return HTTP Headers For Specific List Of Action</displayName>
+            <file>returnHTTPHeadersForSpecificListOfAction.xml</file>
+            <description>
+                Retrieves only the headers that are returned by the getSpecificListOfAction operation
+            </description>
+        </component>
+    </subComponents>
+</component>

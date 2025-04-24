@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "createUsingSObjectCollections",
   "title": "Create Using sObject Collections",
   "help": "<h1>Create Using sObject Collections</h1> <b>Creates records using sObject collections. Can add up to 200 records.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

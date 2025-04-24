@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "getSpecificProcessRuleList",
   "title": "Get Specific Process Rule List",
   "help": "<h1>Get Specific Process Rule List</h1> <b>Gets all active workflow rules for an sObject.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

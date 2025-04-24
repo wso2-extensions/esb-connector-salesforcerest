@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "getDefaultValueOfActionById",
   "title": "Get Default Value Of Action By Id",
   "help": "<h1>Get Default Value Of Action By Id</h1> <b>Returns the default values for an action specific to the context_id object.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

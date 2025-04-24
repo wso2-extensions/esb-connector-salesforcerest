@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "statusOfPortabilityRequest",
   "title": "Status of Portability Request",
   "help": "<h1>Status of Portability Request</h1> <b>Retrieves the status of the request done by compileDataForPortabilityRequest operation.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

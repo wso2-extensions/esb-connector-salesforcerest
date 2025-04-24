@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "searchScopeAndOrder",
   "title": "Search Scope And Order",
   "help": "<h1>Search Scope And Order</h1> <b>Retrieves the search scope and order for the current user.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

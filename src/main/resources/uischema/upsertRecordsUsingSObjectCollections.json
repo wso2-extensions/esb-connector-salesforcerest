@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "upsertRecordsUsingSObjectCollections",
   "title": "Upsert Records Using sObject Collections",
   "help": "<h1>Upsert Records Using sObject Collections</h1> <b>Either creates or updates (upsert) up to 200 records based on an external ID field using sObject collections.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

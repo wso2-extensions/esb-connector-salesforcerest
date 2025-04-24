@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "describeSObject",
   "title": "Describe sObject",
   "help": "<h1>sObject Action</h1> <b>Retrieves metadata (such as name, label, and fields, including the field properties) for a specific object type, completely describing the individual metadata at all levels for the specified object.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

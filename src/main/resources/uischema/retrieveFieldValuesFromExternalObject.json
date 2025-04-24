@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "retrieveFieldValuesFromExternalObject",
   "title": "Retrieve Field Values from External Object of Salesforce Record",
   "help": "<h1>Retrieve Field Values from External Object of Salesforce Record</h1> <b>To retrieve specific field values for a specific sObject.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

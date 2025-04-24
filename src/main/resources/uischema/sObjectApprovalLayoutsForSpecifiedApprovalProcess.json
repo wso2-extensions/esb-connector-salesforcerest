@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "sObjectApprovalLayoutsForSpecifiedApprovalProcess",
   "title": "sObject Approval Layouts for Specified Approval Process",
   "help": "<h1>sObject Approval Layouts for Specified Approval Process</h1> <b>Returns an approval layout for a named approval process on a specified object</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

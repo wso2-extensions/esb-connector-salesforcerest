@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "listResourcesByApiVersion",
   "title": "List Resources By API Version",
   "help": "<h1>List Resources By API Version</h1> <b>Retrieves the resources that are available in a particular API version.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

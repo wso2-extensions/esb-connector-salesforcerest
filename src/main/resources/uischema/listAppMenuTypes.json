@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "listAppMenuTypes",
   "title": "List App Menu Types",
   "help": "<h1>List App Menu Types</h1> <b>Retrieves a list of App Menu types in the Salesforce app dropdown menu.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

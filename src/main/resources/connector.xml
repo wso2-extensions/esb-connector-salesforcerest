@@ -17,32 +17,32 @@
    under the License.
 -->
 <connector>
-    <component name="salesforcerest" package="org.wso2.carbon.connector">
-        <dependency component="salesforcerest-config"/>
-        <dependency component="salesforcerest-objects"/>
-        <dependency component="salesforcerest-records"/>
-        <dependency component="salesforcerest-users"/>
-        <dependency component="salesforcerest-approvals"/>
-        <dependency component="salesforcerest-listview"/>
-        <dependency component="salesforcerest-query"/>
-        <dependency component="salesforcerest-quickaction"/>
-        <dependency component="salesforcerest-search"/>
-        <dependency component="salesforcerest-layouts"/>
-        <dependency component="salesforcerest-appmenu"/>
-        <dependency component="salesforcerest-action"/>
-        <dependency component="salesforcerest-processrules"/>
-        <dependency component="salesforcerest-attachment"/>
-        <dependency component="salesforcerest-eventMonitoring"/>
-        <dependency component="salesforcerest-analytics"/>
-        <dependency component="salesforcerest-composite"/>
-        <dependency component="salesforcerest-productSchedules"/>
-        <dependency component="salesforcerest-consent"/>
-        <dependency component="salesforcerest-embeddedService"/>
-        <dependency component="salesforcerest-knowledgeSupport"/>
-        <dependency component="salesforcerest-platformEvent"/>
-        <dependency component="salesforcerest-portability"/>
-        <dependency component="salesforcerest-survey"/>
-        <dependency component="salesforcerest-scheduling"/>
+    <component name="salesforce" package="org.wso2.carbon.connector">
+        <dependency component="salesforce-config"/>
+        <dependency component="salesforce-objects"/>
+        <dependency component="salesforce-records"/>
+        <dependency component="salesforce-users"/>
+        <dependency component="salesforce-approvals"/>
+        <dependency component="salesforce-listview"/>
+        <dependency component="salesforce-query"/>
+        <dependency component="salesforce-quickaction"/>
+        <dependency component="salesforce-search"/>
+        <dependency component="salesforce-layouts"/>
+        <dependency component="salesforce-appmenu"/>
+        <dependency component="salesforce-action"/>
+        <dependency component="salesforce-processrules"/>
+        <dependency component="salesforce-attachment"/>
+        <dependency component="salesforce-eventMonitoring"/>
+        <dependency component="salesforce-analytics"/>
+        <dependency component="salesforce-composite"/>
+        <dependency component="salesforce-productSchedules"/>
+        <dependency component="salesforce-consent"/>
+        <dependency component="salesforce-embeddedService"/>
+        <dependency component="salesforce-knowledgeSupport"/>
+        <dependency component="salesforce-platformEvent"/>
+        <dependency component="salesforce-portability"/>
+        <dependency component="salesforce-survey"/>
+        <dependency component="salesforce-scheduling"/>
         <description>wso2 connector for Salesforce REST API</description>
     </component>
     <displayName>Salesforce REST</displayName>

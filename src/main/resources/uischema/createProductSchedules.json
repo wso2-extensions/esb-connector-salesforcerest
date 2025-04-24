@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "createProductSchedules",
   "title": "Create Product Schedules",
   "help": "<h1>Create Product Schedules</h1> <b>Establishes or reestablishes a product schedule with multiple installments for an opportunity product.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

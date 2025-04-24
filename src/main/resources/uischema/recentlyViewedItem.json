@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "recentlyViewedItem",
   "title": "Recently Viewed Item",
   "help": "<h1>Recently Viewed Item</h1> <b>To retrieve the recently viewed items</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

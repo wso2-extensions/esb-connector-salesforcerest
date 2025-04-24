@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "addOrUpdateTranslatedValueOfMultipleSurveyFieldsInOneOrMoreLanguages",
   "title": "Add Or Update Translated Value Of Multiple Survey Fields in One Or More Languages",
   "help": "<h1>Add Or Update Translated Value Of Multiple Survey Fields in One Or More Languages</h1> <b>If one or more survey fields can be translated or are already translated, adds or updates the translated values of the survey fields in the languages into which survey fields can be translated.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

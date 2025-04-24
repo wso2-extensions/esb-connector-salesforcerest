@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "getRecordsUsingRelationships",
   "title": "Get Records Using Relationships",
   "help": "<h1>Get Records Using Relationships</h1> <b>Gets a record based on the specified object, record ID, and relationship field</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

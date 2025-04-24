@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "submitApproveOrRejectApprovals",
   "title": "Submit, Approve, Or Reject Approvals",
   "help": "<h1>Create</h1><b>Submits a particular record if that entity supports an approval process and one has already been defined. Records can be approved and rejected if the current user is an assigned approver.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "listViewResults",
   "title": "List View Results",
   "help": "<h1>List View Results</h1> <b>Executes the SOQL query for the list view and return the resulting data and presentation information.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "getObjectRecordCounts",
   "title": "Get Object Record Counts",
   "help": "<h1>Get Object Record Counts</h1> <b>Lists information about object record counts in your organization.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

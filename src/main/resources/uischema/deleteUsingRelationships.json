@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "deleteUsingRelationships",
   "title": "Delete Using Relationships",
   "help": "<h1>Delete Using Relationships</h1> <b>Deletes a parent record based on the specified object, record ID, and relationship field name</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

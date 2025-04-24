@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "deleteProductSchedules",
   "title": "Delete Product Schedules",
   "help": "<h1>Delete Product Schedules</h1> <b>Deletes all installments in a revenue or quantity schedule for opportunity products.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

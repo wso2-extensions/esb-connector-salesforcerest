@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+<template name="init" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="accessToken"
+               description="Value of the Access Token to access the api via request"/>
+    <parameter name="apiVersion" description="Access token of the organizational account."/>
+    <parameter name="hostName" description="Value of the hostname to authenticate salesforce."/>
+    <parameter name="refreshToken" description="value of the refresh token."/>
+    <parameter name="clientSecret"
+               description="Value of your secret key given when you registered your application with salesforce."/>
+    <parameter name="clientId"
+               description="Value of your API Key given when you registered your application with salesforce."/>
+    <parameter name="apiUrl" description="The instance URL for your organization"/>
+    <parameter name="timeout" description="Timeout duration of the API request."/>
+    <parameter name="name" description="Name of the connection"/>
+    <parameter name="username" description="The username for the salesforce."/>
+    <parameter name="password"
+               description="The password for the salesforce which means the password with security key."/>
+    <parameter name="blocking" description="Set to true to perform the blocking invocations to Salesforce."/>
+    <parameter name="tokenEndpointHostname" description="Instance url for OAuth 2.0 token endpoint when issuing authentication requests in your application."/>
+    <sequence>
+        <!--todo: remove uri.var-->
+        <property name="uri.var.accessToken" expression="$func:accessToken"/>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+        <property name="uri.var.hostName" expression="$func:hostName"/>
+        <property name="uri.var.refreshToken" expression="$func:refreshToken"/>
+        <property name="uri.var.clientSecret" expression="$func:clientSecret"/>
+        <property name="uri.var.clientId" expression="$func:clientId"/>
+        <property name="uri.var.apiUrl" expression="$func:apiUrl"/>
+        <property name="uri.var.accessTokenRegistryPath" expression="fn:concat('connectors/salesforce/accessToken',$func:name)"/>
+        <property name="uri.var.intervalTime" expression="$func:intervalTime"/>
+        <property name="uri.var.username" expression="$func:username"/>
+        <property name="uri.var.password" expression="$func:password"/>
+        <property name="uri.var.tokenEndpointHostname" expression="$func:tokenEndpointHostname"/>
+        <property name="timeout" expression="$func:timeout"/>
+        <property name="salesforceRestBlocking" expression="$func:blocking"/>
+        <filter source="boolean($ctx:uri.var.tokenEndpointHostname)" regex="false">
+            <then>
+                <property name="uri.var.tokenEndpointHostname" value="https://login.salesforce.com"/>
+            </then>
+        </filter>
+        <property name="uri.var.tokenEndpointUrl"
+                  expression="fn:concat(get-property('uri.var.tokenEndpointHostname'),'/services/oauth2/token')"/>
+        <script language="js">
+            <![CDATA[
+                var timeout = mc.getProperty("timeout");
+                if (timeout == null || timeout == "") {
+                    timeout = 3000;
+                }
+                mc.setProperty("timeout", timeout.toString());
+            ]]>
+        </script>
+        <filter source="boolean($ctx:uri.var.username) and boolean($ctx:uri.var.password) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"
+                regex="true">
+            <then>
+                <filter source="$ctx:httpMethod" regex="(post|patch)">
+                    <enrich>
+                        <source clone="true" type="body"/>
+                        <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                    </enrich>
+                </filter>
+                <property name="Accept-Encoding" scope="transport" action="remove"/>
+                <property name="NO_ENTITY_BODY" value="true" type="BOOLEAN" scope="axis2"/>
+                <payloadFactory media-type="json">
+                    <format></format>
+                    <args></args>
+                </payloadFactory>
+                <property name="FORCE_POST_PUT_NOBODY" value="true" scope="axis2" type="BOOLEAN"/>
+                <filter source="$ctx:salesforceRestBlocking" regex="true">
+                    <then>
+                        <call blocking="true">
+                            <endpoint>
+                                <http method="post"
+                                      uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=password&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;username={uri.var.username}&amp;password={uri.var.password}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </then>
+                    <else>
+                        <call>
+                            <endpoint>
+                                <http method="post"
+                                      uri-template="{uri.var.hostName}/services/oauth2/token?grant_type=password&amp;client_id={uri.var.clientId}&amp;client_secret={uri.var.clientSecret}&amp;username={uri.var.username}&amp;password={uri.var.password}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </else>
+                </filter>
+                <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>
+                <filter source="$ctx:httpMethod" regex="(post|patch)">
+                    <enrich>
+                        <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                        <target type="body"/>
+                    </enrich>
+                </filter>
+            </then>
+        </filter>
+    </sequence>
+</template>

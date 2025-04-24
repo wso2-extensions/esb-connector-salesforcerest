@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "getEventMonitoringContentFromRecord",
   "title": "Get Event Monitoring Content from a Record.",
   "help": "<h1>Get Event Monitoring Content from a Record.</h1> <b>Retrieves event monitoring content in binary format.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

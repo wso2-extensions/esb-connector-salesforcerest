@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "getTranslatedValuesOfMultipleSurveyFieldsInOneOrMoreLanguages",
   "title": "Get Translated Values of Multiple Survey Fields in One Or More Languages",
   "help": "<h1>Get Translated Values of Multiple Survey Fields in One Or More Languages</h1> <b>Retrieves the translated values of multiple survey fields in the translated languages after survey fields are translated into one or more languages.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",

@@ -1,8 +1,8 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "connectionName": "OAuth 2.0",
-  "title": "Init Salesforcerest Connection",
-  "help": "<h1>Salesforcerest Connector</h1> <b>The Salesforce REST connector initializes connection through init operation</b>",
+  "title": "Salesforce OAuth 2.0 Connection Type",
+  "helpTip": "Establishes an OAuth 2.0 connection with Salesforce using the selected grant flow. Required to authenticate and authorize Salesforce operations.",
   "elements": [
     {
       "type": "attribute",
@@ -10,155 +10,181 @@
         "name": "connectionName",
         "displayName": "Connection Name",
         "inputType": "string",
-        "defaultValue": "SALESFORCEREST_CONNECTION_1",
+        "defaultValue": "SALESFORCE_OAUTH_2",
         "required": "true",
-        "helpTip": "The name for the salesforcerest connection",
-        "validation": "nameWithoutSpecialCharactors"
+        "helpTip": "Logical name for this Salesforce OAuth 2.0 connection"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "grantType",
+        "displayName": "Grant Type",
+        "inputType": "comboOrExpression",
+        "comboValues": [
+          "Authorization Code",
+          "Client Credentials",
+          "Refresh Token",
+          "Password"
+        ],
+        "defaultValue": "Client Credentials",
+        "required": "true",
+        "helpTip": "Which OAuth2 flow to use"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "scope",
+        "displayName": "Scope",
+        "inputType": "stringOrExpression",
+        "defaultValue": "",
+        "required": "false",
+        "helpTip": "Space-separated OAuth scopes (optional)"
       }
     },
     {
       "type": "attributeGroup",
       "value": {
-        "groupName": "General",
+        "groupName": "Client Credentials / Auth Code",
         "elements": [
           {
-            "type": "attributeGroup",
+            "type": "attribute",
             "value": {
-              "groupName": "Basic",
-              "elements": [
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "accessToken",
-                    "displayName": "Access Token",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Value of the Access Token to access the api via request"
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "apiVersion",
-                    "displayName": "API Version",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "Access token of the organizational account."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "hostName",
-                    "displayName": "Host Name",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "Value of the hostname to authenticate salesforce."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "refreshToken",
-                    "displayName": "Refresh Token",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "value of the refresh token."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "tokenEndpointHostname",
-                    "displayName": "Refresh Token Endpoint",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Endpoint of the refresh token."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "clientSecret",
-                    "displayName": "Client Secret",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Value of your secret key given when you registered your application with salesforce."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "clientId",
-                    "displayName": "Client ID",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Value of your API Key given when you registered your application with salesforce."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "apiUrl",
-                    "displayName": "API URL",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "The instance URL for your organization"
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "timeout",
-                    "displayName": "Timeout",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "3000",
-                    "required": "false",
-                    "helpTip": "Timeout duration of the API request."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "username",
-                    "displayName": "Username",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "The username for the salesforce."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "password",
-                    "displayName": "Password",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "The password for the salesforce which means the password with security key."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "blocking",
-                    "displayName": "Blocking",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Set to true to perform the blocking invocations to Salesforce."
-                  }
-                }
+              "name": "clientId",
+              "displayName": "Client ID",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "OAuth2 Client (Consumer) ID",
+              "enableCondition": [
+                { "grantType": "Authorization Code" },
+                { "grantType": "Client Credentials" }
               ]
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "clientSecret",
+              "displayName": "Client Secret",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "OAuth2 Client Secret",
+              "enableCondition": [
+                { "grantType": "Authorization Code" },
+                { "grantType": "Client Credentials" }
+              ]
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tokenUrl",
+              "displayName": "Token URL",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "OAuth2 token endpoint URL (e.g. https://login.salesforce.com/services/oauth2/token)",
+              "enableCondition": [
+                { "grantType": "Authorization Code" },
+                { "grantType": "Client Credentials" }
+              ]
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "instanceUrl",
+              "displayName": "Instance URL",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Salesforce instance URL for API calls (e.g. https://your-org.my.salesforce.com)",
+              "enableCondition": [
+                { "grantType": "Authorization Code" },
+                { "grantType": "Client Credentials" }
+              ]
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiVersion",
+              "displayName": "API Version",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Salesforce REST API version (e.g. v56.0)",
+              "enableCondition": [
+                { "grantType": "Authorization Code" },
+                { "grantType": "Client Credentials" }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Username–Password Flow",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "username",
+              "displayName": "Username",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Salesforce username for the password flow",
+              "enableCondition": [ { "grantType": "Password" } ]
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "password",
+              "displayName": "Password",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Salesforce password (append security token to password)",
+              "enableCondition": [ { "grantType": "Password" } ]
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "securityToken",
+              "displayName": "Security Token",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Salesforce security token for the password flow",
+              "enableCondition": [ { "grantType": "Password" } ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Refresh Token Flow",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "refreshToken",
+              "displayName": "Refresh Token",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "OAuth2 refresh token for the refresh_token flow",
+              "enableCondition": [ { "grantType": "Refresh Token" } ]
             }
           }
         ]
@@ -172,12 +198,34 @@
           {
             "type": "attribute",
             "value": {
+              "name": "timeout",
+              "displayName": "Timeout",
+              "inputType": "stringOrExpression",
+              "defaultValue": "3000",
+              "required": "false",
+              "helpTip": "Connection timeout in milliseconds"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
               "name": "readTimeout",
               "displayName": "Read Timeout",
-              "inputType": "stringOrExpresion",
+              "inputType": "stringOrExpression",
               "defaultValue": "",
               "required": "false",
-              "helpTip": "The socket read timeout value"
+              "helpTip": "Socket read timeout in milliseconds"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "blocking",
+              "displayName": "Blocking",
+              "inputType": "boolean",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "Set to true to perform blocking invocations to Salesforce"
             }
           }
         ]

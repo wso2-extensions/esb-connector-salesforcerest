@@ -3,6 +3,7 @@
   "connectionName": "OAuth 2.0",
   "title": "Salesforce OAuth 2.0 Connection Type",
   "helpTip": "Establishes an OAuth 2.0 connection with Salesforce using the selected grant flow. Required to authenticate and authorize Salesforce operations.",
+  "testConnectionEnabled": true,
   "elements": [
     {
       "type": "attribute",

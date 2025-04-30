@@ -3,6 +3,7 @@
   "connectionName": "Basic Auth",
   "title": "Salesforce Basic Auth Connection Type",
   "helpTip": "Establishes a Basic Authentication connection with Salesforce using username, password, and security token.",
+  "testConnectionEnabled": true,
   "elements": [
     {
       "type": "attribute",

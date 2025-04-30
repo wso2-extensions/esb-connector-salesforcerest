@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2025, WSO2 LLC. (http://www.wso2.org)
+ ~
+ ~  Licensed under the Apache License, Version 2.0.
+ ~  You may not use this file except in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ ~  either express or implied.  See the License for the specific language
+ ~  governing permissions and limitations under the License.
+-->
+
+<template xmlns="http://ws.apache.org/ns/synapse" name="testconnection">
+    <sequence>
+        <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
+            <property name="resourcePath" value="/services/data/v60.0/"/>
+        </class>
+
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="ContentType" value="application/json" scope="axis2"/>
+
+        <filter source="get-property('_OH_INTERNAL_BASIC_AUTH_HEADER_')" regex=".+">
+            <then>
+                <header name="Authorization" expression="fn:concat('Basic ', get-property('_OH_INTERNAL_BASIC_AUTH_HEADER_'))" scope="transport"/>
+            </then>
+            <else>
+                <header name="Authorization" expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))" scope="transport"/>
+            </else>
+        </filter>
+
+        <header name="Accept" value="application/json" scope="transport" action="set"/>
+
+        <call>
+            <endpoint>
+                <http method="GET" uri-template="{uri.var.auth}{+uri.var.urlPath}"/>
+            </endpoint>
+        </call>
+
+        <filter source="get-property('axis2', 'HTTP_SC')" regex="200">
+            <then>
+                <property name="isValidConnection" value="true" scope="default" type="STRING"/>
+            </then>
+            <else>
+                <property name="isValidConnection" value="false" scope="default" type="STRING"/>
+            </else>
+        </filter>
+    </sequence>
+</template>

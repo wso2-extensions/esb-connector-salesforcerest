@@ -45,6 +45,7 @@ public class SalesforceOAuthAccessTokenHandler extends AbstractConnector {
         String password = (String) getParameter(messageContext, "password");
         String securityToken = (String) getParameter(messageContext, "securityToken");
         String refreshToken = (String) getParameter(messageContext, "refreshToken");
+        String instanceURL = (String) getParameter(messageContext, "instanceUrl");
 
         if (StringUtils.isBlank(clientId) || StringUtils.isBlank(clientSecret) || StringUtils.isBlank(tokenUrl) || StringUtils.isBlank(grantType)) {
             handleException("Mandatory OAuth parameters missing.", messageContext);
@@ -99,6 +100,7 @@ public class SalesforceOAuthAccessTokenHandler extends AbstractConnector {
         }
 
         messageContext.setProperty("_OH_INTERNAL_ACCESS_TOKEN_", token.getAccessToken());
+        messageContext.setProperty("_OH_INTERNAL_INSTANCE_URL_", instanceURL);
     }
 
     private synchronized Token fetchAndStoreNewToken(String tokenKey, MessageContext messageContext,

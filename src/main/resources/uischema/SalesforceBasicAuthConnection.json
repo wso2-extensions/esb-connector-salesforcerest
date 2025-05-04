@@ -1,0 +1,72 @@
+{
+  "connectorName": "Salesforce",
+  "connectionName": "BasicAuth",
+  "title": "Salesforce OAuth 2.0 Connection Type",
+  "helpTip": "Establishes an OAuth 2.0 connection with Salesforce using the selected grant flow.",
+  "testConnectionEnabled": true,
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "SALESFORCE_OAUTH_2",
+        "required": true,
+        "helpTip": "Logical name for this Salesforce OAuth 2.0 connection"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "username",
+        "displayName": "Username",
+        "inputType": "stringOrExpression",
+        "required": true,
+        "helpTip": "The username for the Salesforce account"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "password",
+        "displayName": "Password + Security Token",
+        "inputType": "stringOrExpression",
+        "required": true,
+        "helpTip": "Password combined with the Salesforce security token"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "loginUrl",
+        "displayName": "Login URL",
+        "inputType": "stringOrExpression",
+        "required": true,
+        "helpTip": "The login URL to access Salesforce"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "forceLogin",
+        "displayName": "Force Login",
+        "inputType": "boolean",
+        "defaultValue": false,
+        "required": false,
+        "helpTip": "Whether to force a new login even if already logged in"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "blocking",
+        "displayName": "Blocking",
+        "inputType": "boolean",
+        "defaultValue": false,
+        "required": false,
+        "helpTip": "Enable blocking invocation to Salesforce"
+      }
+    }
+  ]
+}

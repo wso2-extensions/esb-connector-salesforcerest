@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforce",
+  "connectorName": "Salesforce",
   "operationName": "queryAll",
   "title": "Query All",
   "help": "<h1>Query All</h1> <b>Retrieves data from an object even if it is deleted.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
@@ -16,9 +16,9 @@
               "displayName": "Connection",
               "inputType": "connection",
               "allowedConnectionTypes": [
-                "OAuth 2.0"
+                "Salesforce"
               ],
-              "defaultValue": "",
+              "defaultType": "connection.Salesforce",
               "required": "true",
               "helpTip": "Connection to be used"
             }
@@ -31,7 +31,7 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "queryString",
+                    "name": "q",
                     "displayName": "Query String",
                     "inputType": "stringOrExpression",
                     "defaultValue": "",

@@ -1,0 +1,257 @@
+{
+  "connectorName": "Salesforce",
+  "connectionName": "Oauth2",
+  "title": "Salesforce OAuth 2.0 Connection Type",
+  "helpTip": "Establishes an OAuth 2.0 connection with Salesforce using the selected grant flow.",
+  "testConnectionEnabled": true,
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "SALESFORCE_OAUTH_2",
+        "required": true,
+        "helpTip": "Logical name for this Salesforce OAuth 2.0 connection"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "grantType",
+        "displayName": "Grant Type",
+        "inputType": "comboOrExpression",
+        "comboValues": [
+          "Authorization Code",
+          "Client Credentials",
+          "Refresh Token",
+          "Password"
+        ],
+        "defaultValue": "Client Credentials",
+        "required": true,
+        "helpTip": "Which OAuth 2.0 flow to use"
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "scope",
+        "displayName": "Scope",
+        "inputType": "stringOrExpression",
+        "defaultValue": "",
+        "required": false,
+        "helpTip": "Space‑separated OAuth scopes (optional)"
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "OAuth Client & Endpoint",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "clientId",
+              "displayName": "Client ID",
+              "inputType": "stringOrExpression",
+              "required": true,
+              "helpTip": "Connected‑App Consumer Key"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "clientSecret",
+              "displayName": "Client Secret",
+              "inputType": "stringOrExpression",
+              "required": true,
+              "helpTip": "Connected‑App Consumer Secret"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tokenUrl",
+              "displayName": "Token URL",
+              "inputType": "stringOrExpression",
+              "required": true,
+              "helpTip": "Token endpoint (e.g. https://yourDomain.my.salesforce.com/services/oauth2/token)"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Authorization‑Code Flow",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "redirectUri",
+              "displayName": "Redirect URI",
+              "inputType": "stringOrExpression",
+              "required": false,
+              "helpTip": "Callback URL configured in the Connected App"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "code",
+              "displayName": "Authorization Code",
+              "inputType": "stringOrExpression",
+              "required": false,
+              "helpTip": "Single‑use code returned by Salesforce after user login"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Username‑Password Flow",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "username",
+              "displayName": "Username",
+              "inputType": "stringOrExpression",
+              "required": false,
+              "helpTip": "Org username"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "password",
+              "displayName": "Password",
+              "inputType": "stringOrExpression",
+              "required": false,
+              "helpTip": "Password (append security‑token)"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "securityToken",
+              "displayName": "Security Token",
+              "inputType": "stringOrExpression",
+              "required": false,
+              "helpTip": "User security token (required if IP not trusted)"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Refresh‑Token Flow",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "refreshToken",
+              "displayName": "Refresh Token",
+              "inputType": "stringOrExpression",
+              "required": false,
+              "helpTip": "Valid refresh token"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Instance & API (Optional)",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "instanceUrl",
+              "displayName": "Instance URL",
+              "inputType": "stringOrExpression",
+              "required": false,
+              "helpTip": "Override the instance URL for subsequent API calls",
+              "enableCondition": [
+                "OR",
+                {
+                  "grantType": "Authorization Code"
+                },
+                {
+                  "grantType": "Client Credentials"
+                }
+              ]
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiVersion",
+              "displayName": "API Version",
+              "inputType": "stringOrExpression",
+              "defaultValue": "v60.0",
+              "required": false,
+              "helpTip": "Salesforce REST API version (e.g. v60.0)",
+              "enableCondition": [
+                "OR",
+                {
+                  "grantType": "Authorization Code"
+                },
+                {
+                  "grantType": "Client Credentials"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Advanced",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "timeout",
+              "displayName": "Timeout",
+              "inputType": "stringOrExpression",
+              "defaultValue": "3000",
+              "required": false,
+              "helpTip": "Connection timeout (ms)"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "readTimeout",
+              "displayName": "Read Timeout",
+              "inputType": "stringOrExpression",
+              "required": false,
+              "helpTip": "Socket read timeout (ms)"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "blocking",
+              "displayName": "Blocking",
+              "inputType": "boolean",
+              "defaultValue": false,
+              "required": false,
+              "helpTip": "True = blocking calls"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

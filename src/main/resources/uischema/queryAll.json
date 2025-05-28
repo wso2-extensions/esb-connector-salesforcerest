@@ -16,9 +16,9 @@
               "displayName": "Connection",
               "inputType": "connection",
               "allowedConnectionTypes": [
-                "Salesforce"
+                "Oauth2"
               ],
-              "defaultType": "connection.Salesforce",
+              "defaultType": "connection.Oauth2",
               "required": "true",
               "helpTip": "Connection to be used"
             }

@@ -1,8 +1,8 @@
 {
-  "connectorName": "Salesforce",
-  "operationName": "queryMore",
-  "title": "Query More",
-  "help": "<h1>Query More</h1> <b>Retrieves additional data if the response is too large.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
+  "connectorName": "salesforce",
+  "operationName": "compositeBatch",
+  "title": "Composite Batch",
+  "help": "<h1>Composite Batch</h1> <b>Executes up to 25 sub-requests in a single request.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
   "elements": [
     {
       "type": "attributeGroup",
@@ -31,12 +31,12 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "nextRecordsUrl",
-                    "displayName": "Next Records Url",
-                    "inputType": "stringOrExpression",
+                    "displayName": "Field and Value",
                     "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "The query identifier if the query result is too large in the initial response."
+                    "name": "fieldAndValue",
+                    "inputType": "stringOrExpression",
+                    "helpTip": "",
+                    "required": "true"
                   }
                 }
               ]

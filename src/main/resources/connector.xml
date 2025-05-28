@@ -21,7 +21,8 @@
     <component name="Salesforce" package="org.wso2.carbon.connector">
         <dependency component="config"/>
         <dependency component="query"/>
-        <description>WSO2 Salesforce Marketing Cloud Connector Library</description>
+        <dependency component="composite"/>
+        <description>WSO2 Salesforce Connector Library</description>
     </component>
     <displayName>Salesforce</displayName>
     <icon>icon/icon-small.gif</icon>

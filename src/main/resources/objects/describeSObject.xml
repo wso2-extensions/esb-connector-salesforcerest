@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2025, WSO2 LLC. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 LLC. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<template name="describeSObject" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="sObjectName" description="The type of sObject"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
+    <sequence>
+        <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
+            <property name="resourcePath"
+                      expression="fn:concat('/services/data/','{$version}','/sobjects/',$func:sObjectName,'/describe')"/>
+        </class>
+
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <header name="Authorization"
+                scope="transport"
+                expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))"/>
+        <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <call>
+            <endpoint>
+                <http method="GET"
+                      uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>

@@ -23,6 +23,7 @@
         <dependency component="query"/>
         <dependency component="composite"/>
         <dependency component="objects"/>
+        <dependency component="records"/>
         <description>WSO2 Salesforce Connector Library</description>
     </component>
     <displayName>Salesforce</displayName>

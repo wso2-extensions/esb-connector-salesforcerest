@@ -16,17 +16,12 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-
-<connector>
-    <component name="Salesforce" package="org.wso2.carbon.connector">
-        <dependency component="config"/>
-        <dependency component="query"/>
-        <dependency component="composite"/>
-        <dependency component="objects"/>
-        <dependency component="records"/>
-        <dependency component="search"/>
-        <description>WSO2 Salesforce Connector Library</description>
-    </component>
-    <displayName>Salesforce</displayName>
-    <icon>icon/icon-small.gif</icon>
-</connector>
+<component name="search" type="synapse/template" displayName="Search">
+    <subComponents>
+        <component name="search">
+            <displayName>Search</displayName>
+            <file>search.xml</file>
+            <description>Executes the specified SOSL search</description>
+        </component>
+    </subComponents>
+</component>

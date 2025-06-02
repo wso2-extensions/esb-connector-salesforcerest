@@ -16,15 +16,15 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="retrieveSObject" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sObjectName" description="The type of sObject"/>
-    <parameter name="rowId" description="Specific object ID to access the record."/>
+<template name="search" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="q" description="The SOQL query to execute the search"/>
     <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
-    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
-            <property name="resourcePath"
-                      expression="fn:concat('/services/data/{$version}/sobjects/',$func:sObjectName,'/',$func:rowId)"/>
+            <property name="resourcePath" value="/services/data/{$version}/search"/>
+            <property name="queryParameters" value="q"/>
         </class>
 
         <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>

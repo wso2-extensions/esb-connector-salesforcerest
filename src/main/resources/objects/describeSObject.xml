@@ -24,7 +24,7 @@
     <sequence>
         <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
             <property name="resourcePath"
-                      expression="fn:concat('/services/data/','{$version}','/sobjects/',$func:sObjectName,'/describe')"/>
+                      expression="fn:concat('/services/data/{$version}/sobjects/',$func:sObjectName,'/describe')"/>
         </class>
 
         <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>

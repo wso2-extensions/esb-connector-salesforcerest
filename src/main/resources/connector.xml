@@ -16,7 +16,6 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-
 <connector>
     <component name="Salesforce" package="org.wso2.carbon.connector">
         <dependency component="config"/>
@@ -25,6 +24,7 @@
         <dependency component="objects"/>
         <dependency component="records"/>
         <dependency component="search"/>
+        <dependency component="users"/>
         <description>WSO2 Salesforce Connector Library</description>
     </component>
     <displayName>Salesforce</displayName>

@@ -25,6 +25,7 @@
         <dependency component="records"/>
         <dependency component="search"/>
         <dependency component="users"/>
+        <dependency component="bulkv2"/>
         <description>WSO2 Salesforce Connector Library</description>
     </component>
     <displayName>Salesforce</displayName>

@@ -1,0 +1,153 @@
+{
+  "connectorName": "salesforce",
+  "operationName": "createJob",
+  "title": "Create Job",
+  "help": "Creates a new job in Salesforce Bulk API",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Salesforce Configuration",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "Oauth2"
+              ],
+              "defaultType": "connection.Oauth2",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "operation",
+                    "displayName": "Operation",
+                    "inputType": "comboOrExpression",
+                    "comboValues": [
+                      "INSERT",
+                      "UPDATE",
+                      "UPSERT",
+                      "DELETE",
+                      "HARD_DELETE"
+                    ],
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The path of the file to be uploaded"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "object",
+                    "displayName": "Object",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The path of the file to be uploaded"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "columnDelimiter",
+                    "displayName": "Column Delimiter",
+                    "inputType": "comboOrExpression",
+                    "comboValues": [
+                      "COMMA",
+                      "SEMICOLON",
+                      "TAB",
+                      "PIPE",
+                      "CARET",
+                      "BACKQUOTE"
+                    ],
+                    "defaultValue": "COMMA",
+                    "required": "true",
+                    "helpTip": "The path of the file to be uploaded"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "lineEnding",
+                    "displayName": "Line Ending",
+                    "inputType": "comboOrExpression",
+                    "comboValues": [
+                      "CRLF",
+                      "LF"
+                    ],
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The path of the file to be uploaded"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "assignmentRuleId",
+                    "displayName": "Assignment Rule ID",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The path of the file to be uploaded"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "externalIdFieldName",
+                    "displayName": "External ID Field Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The path of the file to be uploaded"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Output",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "responseVariable",
+                    "displayName": "Output Variable Name",
+                    "inputType": "string",
+                    "deriveResponseVariable": "true",
+                    "required": "true",
+                    "helpTip": "Name of the variable to which the output of the operation should be assigned"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwriteBody",
+                    "displayName": "Overwrite Message Body",
+                    "inputType": "checkbox",
+                    "defaultValue": "false",
+                    "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+                    "required": "false"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

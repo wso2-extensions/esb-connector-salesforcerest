@@ -1,21 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "title": "Output Schema for compositeRequest Operation",
-  "description": "Output schema for the compositeRequest operation in the connector.",
+  "title": "Output Schema for createJob Operation",
+  "description": "Output schema for the createJob operation in the connector.",
   "properties": {
     "payload": {
       "type": "object",
-      "description": "The main response payload from the compositeRequest operation."
+      "description": "The main response payload from the createJob operation."
     },
     "headers": {
       "type": "object",
-      "description": "Transport headers returned by the compositeRequest operation.",
+      "description": "Transport headers returned by the createJob operation.",
       "additionalProperties": true
     },
     "attributes": {
       "type": "object",
-      "description": "Metadata about the compositeRequest operation.",
+      "description": "Metadata about the createJob operation.",
       "properties": {
         "statusCode": {
           "type": "integer",

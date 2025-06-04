@@ -1,21 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "title": "Output Schema for compositeRequest Operation",
-  "description": "Output schema for the compositeRequest operation in the connector.",
+  "title": "Output Schema for soapUndelete Operation",
+  "description": "Output schema for the soapUndelete operation in the connector.",
   "properties": {
     "payload": {
       "type": "object",
-      "description": "The main response payload from the compositeRequest operation."
+      "description": "The main response payload from the soapUndelete operation."
     },
     "headers": {
       "type": "object",
-      "description": "Transport headers returned by the compositeRequest operation.",
+      "description": "Transport headers returned by the soapUndelete operation.",
       "additionalProperties": true
     },
     "attributes": {
       "type": "object",
-      "description": "Metadata about the compositeRequest operation.",
+      "description": "Metadata about the soapUndelete operation.",
       "properties": {
         "statusCode": {
           "type": "integer",

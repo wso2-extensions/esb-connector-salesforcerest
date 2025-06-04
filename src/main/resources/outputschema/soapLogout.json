@@ -1,21 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "title": "Output Schema for compositeRequest Operation",
-  "description": "Output schema for the compositeRequest operation in the connector.",
+  "title": "Output Schema for soapLogout Operation",
+  "description": "Output schema for the soapLogout operation in the connector.",
   "properties": {
     "payload": {
       "type": "object",
-      "description": "The main response payload from the compositeRequest operation."
+      "description": "The main response payload from the soapLogout operation."
     },
     "headers": {
       "type": "object",
-      "description": "Transport headers returned by the compositeRequest operation.",
+      "description": "Transport headers returned by the soapLogout operation.",
       "additionalProperties": true
     },
     "attributes": {
       "type": "object",
-      "description": "Metadata about the compositeRequest operation.",
+      "description": "Metadata about the soapLogout operation.",
       "properties": {
         "statusCode": {
           "type": "integer",

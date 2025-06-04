@@ -1,21 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "title": "Output Schema for createMultipleRecords Operation",
-  "description": "Output schema for the createMultipleRecords operation in the connector.",
+  "title": "Output Schema for createBulk Operation",
+  "description": "Output schema for the createBulk operation in the connector.",
   "properties": {
     "payload": {
       "type": "object",
-      "description": "The main response payload from the createMultipleRecords operation."
+      "description": "The main response payload from the createBulk operation."
     },
     "headers": {
       "type": "object",
-      "description": "Transport headers returned by the createMultipleRecords operation.",
+      "description": "Transport headers returned by the createBulk operation.",
       "additionalProperties": true
     },
     "attributes": {
       "type": "object",
-      "description": "Metadata about the createMultipleRecords operation.",
+      "description": "Metadata about the createBulk operation.",
       "properties": {
         "statusCode": {
           "type": "integer",

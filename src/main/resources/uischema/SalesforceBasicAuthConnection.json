@@ -1,5 +1,5 @@
 {
-  "connectorName": "Salesforce",
+  "connectorName": "salesforce",
   "connectionName": "BasicAuth",
   "title": "Salesforce OAuth 2.0 Connection Type",
   "helpTip": "Establishes an OAuth 2.0 connection with Salesforce using the selected grant flow.",

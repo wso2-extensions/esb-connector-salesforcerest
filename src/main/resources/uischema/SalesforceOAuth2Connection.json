@@ -1,5 +1,5 @@
 {
-  "connectorName": "Salesforce",
+  "connectorName": "salesforce",
   "connectionName": "Oauth2",
   "title": "Salesforce OAuth 2.0 Connection Type",
   "helpTip": "Establishes an OAuth 2.0 connection with Salesforce using the selected grant flow.",
@@ -56,7 +56,19 @@
               "displayName": "Client ID",
               "inputType": "stringOrExpression",
               "required": true,
-              "helpTip": "Connected‑App Consumer Key"
+              "helpTip": "Connected‑App Consumer Key",
+              "enableCondition": [
+                "OR",
+                {
+                  "grantType": "Authorization Code"
+                },
+                {
+                  "grantType": "Client Credentials"
+                },
+                {
+                  "grantType": "Refresh Token"
+                }
+              ]
             }
           },
           {
@@ -66,7 +78,19 @@
               "displayName": "Client Secret",
               "inputType": "stringOrExpression",
               "required": true,
-              "helpTip": "Connected‑App Consumer Secret"
+              "helpTip": "Connected‑App Consumer Secret",
+              "enableCondition": [
+                "OR",
+                {
+                  "grantType": "Authorization Code"
+                },
+                {
+                  "grantType": "Client Credentials"
+                },
+                {
+                  "grantType": "Refresh Token"
+                }
+              ]
             }
           },
           {
@@ -76,7 +100,19 @@
               "displayName": "Token URL",
               "inputType": "stringOrExpression",
               "required": true,
-              "helpTip": "Token endpoint (e.g. https://yourDomain.my.salesforce.com/services/oauth2/token)"
+              "helpTip": "Token endpoint (e.g. https://yourDomain.my.salesforce.com/services/oauth2/token)",
+              "enableCondition": [
+                "OR",
+                {
+                  "grantType": "Authorization Code"
+                },
+                {
+                  "grantType": "Client Credentials"
+                },
+                {
+                  "grantType": "Refresh Token"
+                }
+              ]
             }
           }
         ]
@@ -94,7 +130,12 @@
               "displayName": "Redirect URI",
               "inputType": "stringOrExpression",
               "required": false,
-              "helpTip": "Callback URL configured in the Connected App"
+              "helpTip": "Callback URL configured in the Connected App",
+              "enableCondition": [
+                {
+                  "grantType": "Authorization Code"
+                }
+              ]
             }
           },
           {
@@ -104,7 +145,12 @@
               "displayName": "Authorization Code",
               "inputType": "stringOrExpression",
               "required": false,
-              "helpTip": "Single‑use code returned by Salesforce after user login"
+              "helpTip": "Single‑use code returned by Salesforce after user login",
+              "enableCondition": [
+                {
+                  "grantType": "Authorization Code"
+                }
+              ]
             }
           }
         ]
@@ -122,7 +168,12 @@
               "displayName": "Username",
               "inputType": "stringOrExpression",
               "required": false,
-              "helpTip": "Org username"
+              "helpTip": "Org username",
+              "enableCondition": [
+                {
+                  "grantType": "Password"
+                }
+              ]
             }
           },
           {
@@ -132,7 +183,12 @@
               "displayName": "Password",
               "inputType": "stringOrExpression",
               "required": false,
-              "helpTip": "Password (append security‑token)"
+              "helpTip": "Password (append security‑token)",
+              "enableCondition": [
+                {
+                  "grantType": "Password"
+                }
+              ]
             }
           },
           {
@@ -142,7 +198,12 @@
               "displayName": "Security Token",
               "inputType": "stringOrExpression",
               "required": false,
-              "helpTip": "User security token (required if IP not trusted)"
+              "helpTip": "User security token (required if IP not trusted)",
+              "enableCondition": [
+                {
+                  "grantType": "Password"
+                }
+              ]
             }
           }
         ]
@@ -160,7 +221,12 @@
               "displayName": "Refresh Token",
               "inputType": "stringOrExpression",
               "required": false,
-              "helpTip": "Valid refresh token"
+              "helpTip": "Valid refresh token",
+              "enableCondition": [
+                {
+                  "grantType": "Refresh Token"
+                }
+              ]
             }
           }
         ]
@@ -177,7 +243,7 @@
               "name": "instanceUrl",
               "displayName": "Instance URL",
               "inputType": "stringOrExpression",
-              "required": false,
+              "required": true,
               "helpTip": "Override the instance URL for subsequent API calls",
               "enableCondition": [
                 "OR",

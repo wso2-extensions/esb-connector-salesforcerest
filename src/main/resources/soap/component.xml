@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2025, WSO2 LLC. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 LLC. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<component name="salesforce" type="synapse/template" displayName="SOAP">
+    <subComponents>
+        <component name="soapLogout">
+            <file>soapLogout.xml</file>
+            <displayName>Logout</displayName>
+            <description>Logout synapse library</description>
+        </component>
+        <component name="soapQuery">
+            <file>soapQuery.xml</file>
+            <displayName>Query</displayName>
+            <description>Query (SQL) synapse library</description>
+            <isDynamic>true</isDynamic>
+            <connectorSchemaGeneratorInput>org.wso2.tooling.connector.dynamic.schema.salesforcesoap.GenerateInputSchemaForQueryOperation</connectorSchemaGeneratorInput>
+        </component>
+        <component name="soapQueryAll">
+            <file>soapQueryAll.xml</file>
+            <displayName>Query All</displayName>
+            <description>Query all (SQL) synapse library</description>
+            <isDynamic>true</isDynamic>
+            <connectorSchemaGeneratorInput>org.wso2.tooling.connector.dynamic.schema.salesforcesoap.GenerateInputSchemaForQueryAllOperation</connectorSchemaGeneratorInput>
+        </component>
+        <component name="soapQueryMore">
+            <file>soapQueryMore.xml</file>
+            <displayName>Query More</displayName>
+            <description>Query more synapse library</description>
+        </component>
+        <component name="soapCreate">
+            <file>soapCreate.xml</file>
+            <displayName>Create</displayName>
+            <description>Insert sObject(s) synapse library</description>>
+            <isDynamic>true</isDynamic>
+            <connectorSchemaGeneratorOutput>org.wso2.tooling.connector.dynamic.schema.salesforcesoap.GenerateOutputSchemaForCreateOperation</connectorSchemaGeneratorOutput>
+        </component>
+        <component name="soapUpdate">
+            <file>soapUpdate.xml</file>
+            <displayName>Update</displayName>
+            <description>Update or update sObject(s) synapse library</description>
+            <isDynamic>true</isDynamic>
+            <connectorSchemaGeneratorOutput>org.wso2.tooling.connector.dynamic.schema.salesforcesoap.GenerateOutputSchemaForUpdateOperation</connectorSchemaGeneratorOutput>
+        </component>
+        <component name="soapUpsert">
+            <file>soapUpsert.xml</file>
+            <displayName>Upsert</displayName>
+            <description>Insert or update sObject(s) synapse library</description>
+            <isDynamic>true</isDynamic>
+            <connectorSchemaGeneratorOutput>org.wso2.tooling.connector.dynamic.schema.salesforcesoap.GenerateOutputSchemaForUpsertOperation</connectorSchemaGeneratorOutput>
+        </component>
+        <component name="soapDelete">
+            <file>soapDelete.xml</file>
+            <displayName>Delete</displayName>
+            <description>Delete sObject(s) synapse library</description>
+        </component>
+        <component name="soapSearch">
+            <file>soapSearch.xml</file>
+            <displayName>Search</displayName>
+            <description>Search using SOSL synapse library</description>
+            <isDynamic>true</isDynamic>
+            <connectorSchemaGeneratorInput>org.wso2.tooling.connector.dynamic.schema.salesforcesoap.GenerateInputSchemaForSearchOperation</connectorSchemaGeneratorInput>
+        </component>
+        <component name="soapEmptyRecycleBin">
+            <file>soapEmptyRecycleBin.xml</file>
+            <displayName>Empty Recycle Bin</displayName>
+            <description>Empty RecycleBin synapse library</description>
+        </component>
+        <component name="soapUndelete">
+            <file>soapUndelete.xml</file>
+            <displayName>Undelete</displayName>
+            <description>Restore sObject(s) synapse library</description>
+        </component>
+        <component name="soapDescribeSObject">
+            <file>soapDescribeSObject.xml</file>
+            <displayName>Describe SObject</displayName>
+            <description>Describe SObject synapse library</description>
+        </component>
+        <component name="soapDescribeSObjects">
+            <file>soapDescribeSObjects.xml</file>
+            <displayName>Describe SObjects</displayName>
+            <description>Describe SObjects synapse library</description>
+        </component>
+        <component name="soapDescribeGlobal">
+            <file>soapDescribeGlobal.xml</file>
+            <displayName>Describe Global</displayName>
+            <description>Describe global synapse library</description>
+        </component>
+        <component name="soapSetPassword">
+            <file>soapSetPassword.xml</file>
+            <displayName>Set Password</displayName>
+            <description>Set password synapse library</description>
+        </component>
+        <component name="soapSendEmailMessage">
+            <file>soapSendEmailMessage.xml</file>
+            <displayName>Send Email Message</displayName>
+            <description>Send email message synapse library</description>
+        </component>
+        <component name="soapSendEmail">
+            <file>soapSendEmail.xml</file>
+            <displayName>Send Email</displayName>
+            <description>Send email synapse library</description>
+        </component>
+        <component name="soapRetrieve">
+            <file>soapRetrieve.xml</file>
+            <displayName>Retrieve</displayName>
+            <description>Retrieve synapse library</description>
+            <isDynamic>true</isDynamic>
+            <connectorSchemaGeneratorInput>org.wso2.tooling.connector.dynamic.schema.salesforcesoap.GenerateInputSchemaForRetrieveOperation</connectorSchemaGeneratorInput>
+        </component>
+        <component name="soapResetPassword">
+            <file>soapResetPassword.xml</file>
+            <displayName>Reset Password</displayName>
+            <description>Reset Password synapse library</description>
+        </component>
+        <component name="soapGetUserInfo">
+            <file>soapGetUserInfo.xml</file>
+            <displayName>Get User Info</displayName>
+            <description>Get User Information synapse library</description>
+        </component>
+        <component name="soapGetDeleted">
+            <file>soapGetDeleted.xml</file>
+            <displayName>Get Deleted</displayName>
+            <description>Get Deleted Records synapse library</description>
+        </component>
+        <component name="soapGetUpdated">
+            <file>soapGetUpdated.xml</file>
+            <displayName>Get Updated</displayName>
+            <description>Get Updated Records synapse library</description>
+        </component>
+        <component name="soapGetServerTimestamp">
+            <file>soapGetServerTimestamp.xml</file>
+            <displayName>Get Server Timestamp</displayName>
+            <description>Get Server Timestamp synapse library</description>
+        </component>
+        <component name="soapFindDuplicates">
+            <file>soapFindDuplicates.xml</file>
+            <displayName>Find Duplicates</displayName>
+            <description>Find duplicates for a set of sObjects synapse library</description>
+        </component>
+        <component name="soapFindDuplicatesByIds">
+            <file>soapFindDuplicatesByIds.xml</file>
+            <displayName>Find Duplicates By Ids</displayName>
+            <description>Find duplicates for a set of sObjects using record ids synapse library</description>
+        </component>
+        <component name="soapMerge">
+            <file>soapMerge.xml</file>
+            <displayName>Merge</displayName>
+            <description>Merge and update a set of sObjects based on object id synapse library</description>
+        </component>
+        <component name="soapConvertLead">
+            <file>soapConvertLead.xml</file>
+            <displayName>Convert Lead</displayName>
+            <description>Convert a set of leads synapse library</description>
+        </component>
+    </subComponents>
+</component>

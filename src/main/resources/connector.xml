@@ -26,6 +26,7 @@
         <dependency component="search"/>
         <dependency component="users"/>
         <dependency component="bulkv2"/>
+        <dependency component="soap"/>
         <description>WSO2 Salesforce Connector Library</description>
     </component>
     <displayName>Salesforce</displayName>

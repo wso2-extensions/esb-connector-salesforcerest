@@ -1,53 +1,51 @@
 /*
- * Copyright (c) 2025, WSO2 LLC. (http://www.wso2.com).
+ *  Copyright (c) 2025, WSO2 LLC. (https://www.wso2.com).
  *
- * WSO2 LLC. licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License.
- * You may obtain a copy of the License at
+ *  WSO2 LLC. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
+
 package org.wso2.carbon.salesforce.connector;
 
 import org.apache.axiom.om.OMElement;
 import org.apache.axis2.AxisFault;
-import org.apache.axis2.Constants; // Added
+import org.apache.axis2.Constants;
 import org.apache.axis2.builder.Builder;
 import org.apache.axis2.builder.BuilderUtil;
 import org.apache.axis2.transport.TransportUtils;
-import org.apache.commons.lang.StringEscapeUtils; // Added
-import org.apache.commons.lang.StringUtils; // Added
-import org.apache.commons.logging.Log; // Added
-import org.apache.commons.logging.LogFactory; // Added
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.synapse.MessageContext;
-import org.apache.synapse.commons.json.JsonUtil; // Added
+import org.apache.synapse.commons.json.JsonUtil;
 import org.wso2.carbon.connector.core.AbstractConnector;
 import org.wso2.carbon.connector.core.util.ConnectorUtils;
 
-import au.com.bytecode.opencsv.CSVReader; // Added
-import com.google.gson.Gson; // Added
-import com.google.gson.GsonBuilder; // Added
-import com.google.gson.JsonObject; // Added
-import com.google.gson.JsonPrimitive; // Added
+import au.com.bytecode.opencsv.CSVReader;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader; // Added
-import java.util.ArrayList; // Added for csvToJson (was List, making concrete for initialization)
-import java.util.List; // Added
-import java.util.stream.Collectors; // Added
-import java.util.stream.Stream; // Added
-
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProcessResults extends AbstractConnector {
 

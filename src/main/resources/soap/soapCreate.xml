@@ -16,12 +16,12 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="create" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapCreate" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="allOrNone" description="Whether to rollback changes if an object fails(Default value is 0)."/>
     <parameter name="allowFieldTruncate" description="Whether to truncates strings that exceed the field length(Default value is 0)."/>
     <parameter name="sobjects" description="The sobject type"/>
     <sequence>
-        <class name="org.wso2.carbon.connector.salesforce.SetupCRUDParams"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupCRUDParams"/>
         <property
                 expression="get-property('operation','salesforce.serviceUrl')"
                 name="uri.var.salesforce.url"/>
@@ -52,7 +52,7 @@
                 <arg expression="get-property('operation','salesforce.sessionId')"/>
             </args>
         </payloadFactory>
-        <class name="org.wso2.carbon.connector.salesforce.SetupCreateSobjects"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupCreateSobjects"/>
         <enrich>
             <source clone="true" type="body"/>
             <target property="MSG_PAYLOAD" type="property"/>

@@ -16,7 +16,7 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<component name="salesforce" type="synapse/template" displayName="SOAP">
+<component name="soap" type="synapse/template" displayName="SOAP">
     <subComponents>
         <component name="soapLogout">
             <file>soapLogout.xml</file>

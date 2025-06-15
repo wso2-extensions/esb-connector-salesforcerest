@@ -16,10 +16,13 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="retrieve" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapRetrieve" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="fieldList" description="A comma-separated list of the fields you want to retrieve from the records."/>
     <parameter name="objectType" description="The object type of the records."/>
     <parameter name="objectIDS" description="XML representation of the records to retrieve, as shown in the following example."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property expression="get-property('operation','salesforce.serviceUrl')"
                   name="uri.var.salesforce.url"/>
@@ -46,7 +49,7 @@
                 <arg expression="$func:objectType"/>
             </args>
         </payloadFactory>
-        <class name="org.wso2.carbon.connector.salesforce.SetupRetriveSobjects"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupRetriveSobjects"/>
         <enrich>
             <source clone="true" type="body"/>
             <target property="MSG_PAYLOAD" type="property"/>

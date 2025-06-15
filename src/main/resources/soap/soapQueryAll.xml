@@ -16,9 +16,12 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="queryAll" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapQueryAll" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="batchSize" description="The number of records to return."/>
     <parameter name="queryString" description="The queryString to get the results from API."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property expression="get-property('operation','salesforce.serviceUrl')"
                   name="uri.var.salesforce.url"/>
@@ -110,6 +113,6 @@
                   xmlns:ns="urn:partner.soap.sforce.com"/>
         <property expression="//ns:result/ns:size/text()" name="salesforce.query.recordSize"
                   scope="default" type="STRING" xmlns:ns="urn:partner.soap.sforce.com"/>
-        <class name="org.wso2.carbon.connector.salesforce.QueryMoreIterator"/>
+        <class name="org.wso2.carbon.salesforce.connector.QueryMoreIterator"/>
     </sequence>
 </template>

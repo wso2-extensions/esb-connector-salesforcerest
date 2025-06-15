@@ -1,10 +1,26 @@
+/*
+ *  Copyright (c) 2025, WSO2 LLC. (https://www.wso2.com).
+ *
+ *  WSO2 LLC. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+
 package org.wso2.carbon.salesforce.connector;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -28,8 +44,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class SalesforceOAuthAccessTokenHandler extends AbstractConnector {
-
-    private static final Log log = LogFactory.getLog(SalesforceOAuthAccessTokenHandler.class);
     private static final JsonParser parser = new JsonParser();
 
     @Override
@@ -39,57 +53,20 @@ public class SalesforceOAuthAccessTokenHandler extends AbstractConnector {
         String clientId = (String) getParameter(messageContext, "clientId");
         String clientSecret = (String) getParameter(messageContext, "clientSecret");
         String tokenUrl = (String) getParameter(messageContext, "tokenUrl");
-        String grantType = (String) getParameter(messageContext, "grantType");
         String scope = (String) getParameter(messageContext, "scope");
-        String username = (String) getParameter(messageContext, "username");
-        String password = (String) getParameter(messageContext, "password");
-        String securityToken = (String) getParameter(messageContext, "securityToken");
-        String refreshToken = (String) getParameter(messageContext, "refreshToken");
         String instanceURL = (String) getParameter(messageContext, "instanceUrl");
 
-        if (StringUtils.isBlank(clientId) || StringUtils.isBlank(clientSecret) || StringUtils.isBlank(tokenUrl) || StringUtils.isBlank(grantType)) {
+        if (StringUtils.isBlank(clientId) || StringUtils.isBlank(clientSecret) || StringUtils.isBlank(tokenUrl)) {
             handleException("Mandatory OAuth parameters missing.", messageContext);
         }
 
         Map<String, String> payloadParameters = new HashMap<>();
         payloadParameters.put("client_id", clientId);
         payloadParameters.put("client_secret", clientSecret);
-
-        switch (grantType.toLowerCase()) {
-            case "client credentials":
-            case "client_credentials":
-                payloadParameters.put("grant_type", "client_credentials");
-                if (StringUtils.isNotBlank(scope)) {
-                    payloadParameters.put("scope", scope);
-                }
-                break;
-            case "password":
-                payloadParameters.put("grant_type", "password");
-                if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
-                    handleException("Username and password are required for password grant type.", messageContext);
-                }
-                String completePassword = password + (securityToken != null ? securityToken : "");
-                payloadParameters.put("username", username);
-                payloadParameters.put("password", completePassword);
-                if (StringUtils.isNotBlank(scope)) {
-                    payloadParameters.put("scope", scope);
-                }
-                break;
-            case "refresh token":
-            case "refresh_token":
-                payloadParameters.put("grant_type", "refresh_token");
-                if (StringUtils.isBlank(refreshToken)) {
-                    handleException("Refresh token is required for refresh token grant type.", messageContext);
-                }
-                payloadParameters.put("refresh_token", refreshToken);
-                if (StringUtils.isNotBlank(scope)) {
-                    payloadParameters.put("scope", scope);
-                }
-                break;
-            default:
-                handleException("Unsupported grant type: " + grantType, messageContext);
+        payloadParameters.put("grant_type", "client_credentials");
+        if (StringUtils.isNotBlank(scope)) {
+            payloadParameters.put("scope", scope);
         }
-
         String tokenKey = getTokenKey(connectionName, payloadParameters);
         Token token = TokenManager.getToken(tokenKey);
         if (token == null || !token.isActive()) {

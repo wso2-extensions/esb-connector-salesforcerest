@@ -18,27 +18,28 @@
 <template xmlns="http://ws.apache.org/ns/synapse" name="uploadJobData">
     <parameter name="jobId" description="Job ID"/>
     <parameter name="inputData" description="Input Data"/>
-    <parameter name="contentType" description="Content type of the job data (e.g., text/csv)"/>
     <sequence>
+        <property name="sf_bulk_inputData" expression="$func:inputData"/>
         <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
             <property name="resourcePath"
                       expression="fn:concat('/services/data/{$version}/jobs/ingest/',$func:jobId,'/batches')"/>
         </class>
-        <payloadFactory template-type="freemarker">
-            <format>${args.arg1}</format>
+        <payloadFactory media-type="text">
+            <format>
+                $1
+            </format>
             <args>
-                <arg evaluator="xml" expression="$func:inputData"/>
+                <arg evaluator="xml" expression="$ctx:sf_bulk_inputData"/>
             </args>
         </payloadFactory>
         <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
-        <property name="messageType" expression="get-property('contentType')" scope="axis2"/>
-        <header name="ContentType" expression="get-property('contentType')" scope="transport"/>
+        <property name="messageType" value="text/csv" scope="axis2"/>
+        <property name="ContentType" value="text/csv" scope="axis2"/>
         <header name="Authorization" scope="transport"
                 expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))"/>
-        <header name="Accept" scope="transport" value="application/json" action="set"/>
         <call>
             <endpoint>
-                <http method="PUT" uri-template="{uri.var.apiUrl}{+uri.var.resourcePath}"/>
+                <http method="PUT" uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
     </sequence>

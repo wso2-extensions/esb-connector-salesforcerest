@@ -49,7 +49,7 @@
         <header name="Accept" scope="transport" value="application/json" action="set"/>
         <call>
             <endpoint>
-                <http method="POST" uri-template="{uri.var.apiUrl}{+uri.var.resourcePath}"/>
+                <http method="POST" uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
     </sequence>

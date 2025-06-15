@@ -1,6 +1,6 @@
 {
   "connectorName": "salesforce",
-  "operationName": "sObjectRows",
+  "operationName": "retrieveSObject",
   "title": "sObject Rows",
   "help": "<h1>sObject Rows</h1> <b>Retrieves records based on the specified object ID.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
   "elements": [

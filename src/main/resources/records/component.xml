@@ -48,12 +48,12 @@
             <description>Update or update sObject(s) synapse library</description>
         </component>
         <component name="createBulk">
-            <displayName>Create Multiple Records</displayName>
+            <displayName>Create Bulk</displayName>
             <file>createBulk.xml</file>
             <description>Insert multiple sObject(s)</description>
         </component>
         <component name="createTree">
-            <displayName>Create Nested Records</displayName>
+            <displayName>Create Tree</displayName>
             <file>createTree.xml</file>
             <description>Insert nested sObject(s)</description>
         </component>

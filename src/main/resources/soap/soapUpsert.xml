@@ -16,13 +16,16 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="upsert" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapUpsert" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="allOrNone" description="Whether to rollback changes if an object fails(Default value is 0)."/>
     <parameter name="allowFieldTruncate" description="Whether to truncates strings that exceed the field length(Default value is 0)."/>
     <parameter name="sobjects" description="The type of sobject"/>
     <parameter name="externalId" description="The field containing the record ID"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
-        <class name="org.wso2.carbon.connector.salesforce.SetupCRUDParams"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupCRUDParams"/>
         <property
                 expression="get-property('operation','salesforce.serviceUrl')"
                 name="uri.var.salesforce.url"/>
@@ -53,7 +56,7 @@
                 <arg expression="get-property('operation','salesforce.sessionId')"/>
             </args>
         </payloadFactory>
-        <class name="org.wso2.carbon.connector.salesforce.SetupUpsertSobjects"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupUpsertSobjects"/>
         <enrich>
             <source clone="true" type="body"/>
             <target property="MSG_PAYLOAD" type="property"/>

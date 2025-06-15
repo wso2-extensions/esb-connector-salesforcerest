@@ -28,7 +28,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <connector.name>Salesforce</connector.name>
+        <connector.name>salesforce</connector.name>
         <synapse.version>4.0.0-wso2v20</synapse.version>
         <carbon.mediation.version>4.7.175</carbon.mediation.version>
         <com.google.code.gson.version>2.10.1</com.google.code.gson.version>

@@ -30,7 +30,7 @@
         <header name="Accept" scope="transport" value="application/json" action="set"/>
         <call>
             <endpoint>
-                <http method="GET" uri-template="{uri.var.apiUrl}{+uri.var.resourcePath}{uri.var.queryParameters}"/>
+                <http method="GET" uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
     </sequence>

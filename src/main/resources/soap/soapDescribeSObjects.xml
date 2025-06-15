@@ -16,8 +16,11 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="describeSObjects" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapDescribeSObjects" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sobjects" description="The type of sobject"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property
                 expression="get-property('operation','salesforce.serviceUrl')"
@@ -41,7 +44,7 @@
                 <arg expression="get-property('operation','salesforce.sessionId')"/>
             </args>
         </payloadFactory>
-        <class name="org.wso2.carbon.connector.salesforce.SetupDescribeSobjects"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupDescribeSobjects"/>
         <enrich>
             <source clone="true" type="body"/>
             <target property="MSG_PAYLOAD" type="property"/>

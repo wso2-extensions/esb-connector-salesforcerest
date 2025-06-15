@@ -1,3 +1,21 @@
+/*
+ *  Copyright (c) 2025, WSO2 LLC. (https://www.wso2.com).
+ *
+ *  WSO2 LLC. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+
 package org.wso2.carbon.salesforce.connector;
 
 import org.apache.http.HttpEntity;
@@ -26,48 +44,33 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
 
     @Override
     public void connect(MessageContext messageContext) throws ConnectException {
-        System.out.println(">>> Entering SalesforceSOAPLoginHandler.connect()");
         try {
             /* ------------------------------------------------------------------
                1. Read parameters from Synapse message context
                ------------------------------------------------------------------ */
             String connectionName = (String) ConnectorUtils.lookupTemplateParamater(messageContext, "connectionName");
-            String username       = (String) getParameter(messageContext, "username");
-            String password       = (String) getParameter(messageContext, "password");
-            String securityToken  = (String) getParameter(messageContext, "securityToken");
-            String loginUrl       = (String) getParameter(messageContext, "loginUrl");
+            String username = (String) getParameter(messageContext, "username");
+            String password = (String) getParameter(messageContext, "password");
+            String loginUrl = (String) getParameter(messageContext, "loginUrl");
             String forceLoginProp = (String) getParameter(messageContext, "forceLogin");
-            boolean forceLogin    = "true".equalsIgnoreCase(forceLoginProp);
-            String doneFlag       = (String) messageContext.getProperty("salesforce.login.done");
-
-            System.out.println("Params → connectionName=" + connectionName
-                    + ", username=" + username
-                    + ", loginUrl=" + loginUrl
-                    + ", forceLogin=" + forceLogin
-                    + ", alreadyDone=" + doneFlag);
+            boolean forceLogin = "true".equalsIgnoreCase(forceLoginProp);
+            String doneFlag = (String) messageContext.getProperty("salesforce.login.done");
 
             if (!forceLogin && "true".equals(doneFlag)) {
                 System.out.println("Skipping login: already done and forceLogin=false");
                 return;
             }
 
-            /* ------------------------------------------------------------------
-               2. Build SOAP envelope
-               ------------------------------------------------------------------ */
-            String fullPassword = password + (securityToken != null ? securityToken : "");
             String soapBody =
                     "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
                             "xmlns:urn=\"urn:partner.soap.sforce.com\">" +
                             "<soapenv:Body>" +
                             "<urn:login>" +
                             "<urn:username>" + username + "</urn:username>" +
-                            "<urn:password>" + fullPassword + "</urn:password>" +
+                            "<urn:password>" + password + "</urn:password>" +
                             "</urn:login>" +
                             "</soapenv:Body>" +
                             "</soapenv:Envelope>";
-
-            System.out.println("Built SOAP body (truncated): "
-                    + soapBody.substring(0, Math.min(soapBody.length(), 100)) + "...");
 
             /* ------------------------------------------------------------------
                3. Send HTTP POST to the Salesforce login endpoint
@@ -77,12 +80,10 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
             post.setHeader("SOAPAction", "urn:partner.soap.sforce.com/Soap/loginRequest");
             post.setEntity(new StringEntity(soapBody, StandardCharsets.UTF_8));
 
-            System.out.println("Executing POST to " + loginUrl);
             try (CloseableHttpClient client = HttpClients.createDefault();
                  CloseableHttpResponse response = client.execute(post)) {
 
                 int statusCode = response.getStatusLine().getStatusCode();
-                System.out.println("HTTP status: " + statusCode);
 
                 HttpEntity entity = response.getEntity();
                 if (entity == null) {
@@ -93,7 +94,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                    4. Read response as string (for logging + parsing)
                    ------------------------------------------------------------------ */
                 String responseXml = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-                System.out.println("SOAP response:\n" + responseXml);
 
                 /* ------------------------------------------------------------------
                    5. Parse XML & check for faults
@@ -126,9 +126,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                 System.out.println("Parsed values → sessionId=" + sessionId
                         + ", serverUrl=" + serverUrl);
 
-                /* ------------------------------------------------------------------
-                   6. Store values back on the Synapse MessageContext
-                   ------------------------------------------------------------------ */
                 messageContext.setProperty("salesforce.sessionId", sessionId);
                 messageContext.setProperty("salesforce.serviceUrl", serverUrl);
                 messageContext.setProperty("salesforce.login.done", "true");

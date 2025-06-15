@@ -36,7 +36,7 @@
                     "inputType": "stringOrExpression",
                     "defaultValue": "",
                     "required": "true",
-                    "helpTip": "The SOQL query to execute the search"
+                    "helpTip": "The SQL query to use to search for records"
                   }
                 }
               ]

@@ -16,9 +16,12 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="undelete" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapUndelete" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="allOrNone" description="Whether to rollback changes if an object fails(Default value is 0)."/>
     <parameter name="sobjects" description="The type of sobject."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property
                 expression="get-property('operation','salesforce.serviceUrl')"
@@ -42,7 +45,7 @@
                 <arg expression="get-property('operation','salesforce.sessionId')"/>
             </args>
         </payloadFactory>
-        <class name="org.wso2.carbon.connector.salesforce.SetupUndelete"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupUndelete"/>
         <enrich>
             <source clone="true" type="body"/>
             <target property="MSG_PAYLOAD" type="property"/>

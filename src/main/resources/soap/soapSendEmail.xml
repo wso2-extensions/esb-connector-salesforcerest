@@ -16,8 +16,11 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="sendEmail" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapSendEmail" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sendEmail" description="XML representation of the email, as shown in the following example."/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property
                 expression="get-property('operation','salesforce.serviceUrl')"
@@ -41,7 +44,7 @@
                 <arg expression="get-property('operation','salesforce.sessionId')"/>
             </args>
         </payloadFactory>
-        <class name="org.wso2.carbon.connector.salesforce.SetupSendEmail"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupSendEmail"/>
         <enrich>
             <source clone="true" type="body"/>
             <target property="MSG_PAYLOAD" type="property"/>

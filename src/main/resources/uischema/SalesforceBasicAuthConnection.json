@@ -13,7 +13,7 @@
         "inputType": "string",
         "defaultValue": "SALESFORCE_OAUTH_2",
         "required": true,
-        "helpTip": "Logical name for this Salesforce OAuth 2.0 connection"
+        "helpTip": "A logical name to identify this connection."
       }
     },
     {
@@ -23,7 +23,7 @@
         "displayName": "Username",
         "inputType": "stringOrExpression",
         "required": true,
-        "helpTip": "The username for the Salesforce account"
+        "helpTip": "Salesforce login username."
       }
     },
     {
@@ -33,7 +33,7 @@
         "displayName": "Password + Security Token",
         "inputType": "stringOrExpression",
         "required": true,
-        "helpTip": "Password combined with the Salesforce security token"
+        "helpTip": "Password followed by your security token."
       }
     },
     {
@@ -43,7 +43,7 @@
         "displayName": "Login URL",
         "inputType": "stringOrExpression",
         "required": true,
-        "helpTip": "The login URL to access Salesforce"
+        "helpTip": "Salesforce login endpoint URL."
       }
     },
     {
@@ -54,7 +54,7 @@
         "inputType": "boolean",
         "defaultValue": false,
         "required": false,
-        "helpTip": "Whether to force a new login even if already logged in"
+        "helpTip": "Always start a new session if enabled."
       }
     },
     {
@@ -65,7 +65,7 @@
         "inputType": "boolean",
         "defaultValue": false,
         "required": false,
-        "helpTip": "Enable blocking invocation to Salesforce"
+        "helpTip": "Enable blocking API calls to Salesforce."
       }
     }
   ]

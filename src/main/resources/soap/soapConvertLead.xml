@@ -16,8 +16,11 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="convertLead" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapConvertLead" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="leadconvertrequests" description="The convert lead requests"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property
                 expression="get-property('operation','salesforce.serviceUrl')"
@@ -41,7 +44,7 @@
                 <arg expression="get-property('operation','salesforce.sessionId')"/>
             </args>
         </payloadFactory>
-        <class name="org.wso2.carbon.connector.salesforce.SetupConvertLead"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupConvertLead"/>
         <property name="messageType" scope="axis2" value="text/xml"/>
         <header name="Action" value="urn:partner.soap.sforce.com/Soap/convertLeadRequest"/>
         <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>

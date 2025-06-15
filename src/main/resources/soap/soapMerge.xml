@@ -16,8 +16,11 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="merge" xmlns="http://ws.apache.org/ns/synapse">
+<template name="soapMerge" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="mergerequests" description="The merge requests"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property
                 expression="get-property('operation','salesforce.serviceUrl')"
@@ -41,7 +44,7 @@
                 <arg expression="get-property('operation','salesforce.sessionId')"/>
             </args>
         </payloadFactory>
-        <class name="org.wso2.carbon.connector.salesforce.SetupMerge"/>
+        <class name="org.wso2.carbon.salesforce.connector.SetupMerge"/>
         <property name="messageType" scope="axis2" value="text/xml"/>
         <header name="Action" value="urn:partner.soap.sforce.com/Soap/mergeRequest"/>
         <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>

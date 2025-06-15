@@ -13,24 +13,7 @@
         "inputType": "string",
         "defaultValue": "SALESFORCE_OAUTH_2",
         "required": true,
-        "helpTip": "Logical name for this Salesforce OAuth 2.0 connection"
-      }
-    },
-    {
-      "type": "attribute",
-      "value": {
-        "name": "grantType",
-        "displayName": "Grant Type",
-        "inputType": "comboOrExpression",
-        "comboValues": [
-          "Authorization Code",
-          "Client Credentials",
-          "Refresh Token",
-          "Password"
-        ],
-        "defaultValue": "Client Credentials",
-        "required": true,
-        "helpTip": "Which OAuth 2.0 flow to use"
+        "helpTip": "A logical name to identify this connection."
       }
     },
     {
@@ -41,7 +24,7 @@
         "inputType": "stringOrExpression",
         "defaultValue": "",
         "required": false,
-        "helpTip": "Space‑separated OAuth scopes (optional)"
+        "helpTip": "Space-separated OAuth scopes."
       }
     },
     {
@@ -56,19 +39,7 @@
               "displayName": "Client ID",
               "inputType": "stringOrExpression",
               "required": true,
-              "helpTip": "Connected‑App Consumer Key",
-              "enableCondition": [
-                "OR",
-                {
-                  "grantType": "Authorization Code"
-                },
-                {
-                  "grantType": "Client Credentials"
-                },
-                {
-                  "grantType": "Refresh Token"
-                }
-              ]
+              "helpTip": "Consumer Key from your connected app."
             }
           },
           {
@@ -78,19 +49,7 @@
               "displayName": "Client Secret",
               "inputType": "stringOrExpression",
               "required": true,
-              "helpTip": "Connected‑App Consumer Secret",
-              "enableCondition": [
-                "OR",
-                {
-                  "grantType": "Authorization Code"
-                },
-                {
-                  "grantType": "Client Credentials"
-                },
-                {
-                  "grantType": "Refresh Token"
-                }
-              ]
+              "helpTip": "Consumer Secret from your connected app."
             }
           },
           {
@@ -100,133 +59,7 @@
               "displayName": "Token URL",
               "inputType": "stringOrExpression",
               "required": true,
-              "helpTip": "Token endpoint (e.g. https://yourDomain.my.salesforce.com/services/oauth2/token)",
-              "enableCondition": [
-                "OR",
-                {
-                  "grantType": "Authorization Code"
-                },
-                {
-                  "grantType": "Client Credentials"
-                },
-                {
-                  "grantType": "Refresh Token"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "attributeGroup",
-      "value": {
-        "groupName": "Authorization‑Code Flow",
-        "elements": [
-          {
-            "type": "attribute",
-            "value": {
-              "name": "redirectUri",
-              "displayName": "Redirect URI",
-              "inputType": "stringOrExpression",
-              "required": false,
-              "helpTip": "Callback URL configured in the Connected App",
-              "enableCondition": [
-                {
-                  "grantType": "Authorization Code"
-                }
-              ]
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "code",
-              "displayName": "Authorization Code",
-              "inputType": "stringOrExpression",
-              "required": false,
-              "helpTip": "Single‑use code returned by Salesforce after user login",
-              "enableCondition": [
-                {
-                  "grantType": "Authorization Code"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "attributeGroup",
-      "value": {
-        "groupName": "Username‑Password Flow",
-        "elements": [
-          {
-            "type": "attribute",
-            "value": {
-              "name": "username",
-              "displayName": "Username",
-              "inputType": "stringOrExpression",
-              "required": false,
-              "helpTip": "Org username",
-              "enableCondition": [
-                {
-                  "grantType": "Password"
-                }
-              ]
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "password",
-              "displayName": "Password",
-              "inputType": "stringOrExpression",
-              "required": false,
-              "helpTip": "Password (append security‑token)",
-              "enableCondition": [
-                {
-                  "grantType": "Password"
-                }
-              ]
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "securityToken",
-              "displayName": "Security Token",
-              "inputType": "stringOrExpression",
-              "required": false,
-              "helpTip": "User security token (required if IP not trusted)",
-              "enableCondition": [
-                {
-                  "grantType": "Password"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "attributeGroup",
-      "value": {
-        "groupName": "Refresh‑Token Flow",
-        "elements": [
-          {
-            "type": "attribute",
-            "value": {
-              "name": "refreshToken",
-              "displayName": "Refresh Token",
-              "inputType": "stringOrExpression",
-              "required": false,
-              "helpTip": "Valid refresh token",
-              "enableCondition": [
-                {
-                  "grantType": "Refresh Token"
-                }
-              ]
+              "helpTip": "Token endpoint URL."
             }
           }
         ]
@@ -244,16 +77,7 @@
               "displayName": "Instance URL",
               "inputType": "stringOrExpression",
               "required": true,
-              "helpTip": "Override the instance URL for subsequent API calls",
-              "enableCondition": [
-                "OR",
-                {
-                  "grantType": "Authorization Code"
-                },
-                {
-                  "grantType": "Client Credentials"
-                }
-              ]
+              "helpTip": "Base URL for API requests."
             }
           },
           {
@@ -264,16 +88,7 @@
               "inputType": "stringOrExpression",
               "defaultValue": "v60.0",
               "required": false,
-              "helpTip": "Salesforce REST API version (e.g. v60.0)",
-              "enableCondition": [
-                "OR",
-                {
-                  "grantType": "Authorization Code"
-                },
-                {
-                  "grantType": "Client Credentials"
-                }
-              ]
+              "helpTip": "Salesforce API version."
             }
           }
         ]
@@ -292,7 +107,7 @@
               "inputType": "stringOrExpression",
               "defaultValue": "3000",
               "required": false,
-              "helpTip": "Connection timeout (ms)"
+              "helpTip": "Connection timeout in milliseconds."
             }
           },
           {
@@ -302,7 +117,7 @@
               "displayName": "Read Timeout",
               "inputType": "stringOrExpression",
               "required": false,
-              "helpTip": "Socket read timeout (ms)"
+              "helpTip": "Socket read timeout in milliseconds."
             }
           },
           {
@@ -313,7 +128,7 @@
               "inputType": "boolean",
               "defaultValue": false,
               "required": false,
-              "helpTip": "True = blocking calls"
+              "helpTip": "Enable blocking API calls."
             }
           }
         ]

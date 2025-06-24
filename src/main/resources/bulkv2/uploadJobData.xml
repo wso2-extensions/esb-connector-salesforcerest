@@ -37,10 +37,29 @@
         <property name="ContentType" value="text/csv" scope="axis2"/>
         <header name="Authorization" scope="transport"
                 expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))"/>
-        <call>
-            <endpoint>
-                <http method="PUT" uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
-            </endpoint>
-        </call>
+        <filter source="$ctx:salesforceRestBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="PUT" uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+                        <timeout>
+                            <duration>{$ctx:timeout}</duration>
+                            <responseAction>fault</responseAction>
+                        </timeout>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="PUT" uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+                        <timeout>
+                            <duration>{$ctx:timeout}</duration>
+                            <responseAction>fault</responseAction>
+                        </timeout>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
     </sequence>
 </template>

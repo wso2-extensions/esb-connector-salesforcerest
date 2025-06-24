@@ -39,7 +39,6 @@
 
     <!-- Advanced -->
     <parameter name="timeout" description="Connection timeout in ms (default 3000)."/>
-    <parameter name="readTimeout" description="Socket read timeout in ms."/>
     <parameter name="blocking" description="True = blocking invocations."/>
 
     <property name="salesforceRestBlocking" expression="$func:blocking"/>
@@ -52,10 +51,6 @@
         <filter xpath="get-property('connectionType') = 'basicauth'">
             <then>
                 <class name="org.wso2.carbon.salesforce.connector.SalesforceSOAPLoginHandler"/>
-                <enrich>
-                    <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
-                    <target type="body"/>
-                </enrich>
             </then>
             <else>
                 <class name="org.wso2.carbon.salesforce.connector.SalesforceOAuthAccessTokenHandler"/>

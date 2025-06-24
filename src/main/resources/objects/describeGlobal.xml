@@ -24,17 +24,33 @@
         <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
             <property name="resourcePath" value="/services/data/{$version}/sobjects"/>
         </class>
-
         <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
-        <header name="Authorization"
-                scope="transport"
+        <header name="Authorization" scope="transport"
                 expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))"/>
         <header name="Accept" value="application/json" scope="transport" action="set"/>
-        <call>
-            <endpoint>
-                <http method="GET"
-                      uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
-            </endpoint>
-        </call>
+        <filter source="$ctx:salesforceRestBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="GET" uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+                        <timeout>
+                            <duration>{$ctx:timeout}</duration>
+                            <responseAction>fault</responseAction>
+                        </timeout>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="GET" uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+                        <timeout>
+                            <duration>{$ctx:timeout}</duration>
+                            <responseAction>fault</responseAction>
+                        </timeout>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
     </sequence>
 </template>

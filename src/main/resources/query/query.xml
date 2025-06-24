@@ -17,25 +17,58 @@
  ~  under the License.
 -->
 <template name="query" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="q"                description="The SOQL query to execute"/>
+    <parameter name="q" description="The SOQL query to execute"/>
+    <parameter name="queryAll" description="Check if the deleted records should be included in the result"/>
     <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
-    <parameter name="overwriteBody"    description="Replace the Message Body in Message Context with the response of the operation."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
+
     <sequence>
-        <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
-            <property name="resourcePath"    value="/services/data/{$version}/query"/>
-            <property name="queryParameters" value="q"/>
-        </class>
+        <filter xpath="get-property('queryAll') = 'true'">
+            <then>
+                <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
+                    <property name="resourcePath" value="/services/data/{$version}/queryAll"/>
+                    <property name="queryParameters" value="q"/>
+                </class>
+            </then>
+            <else>
+                <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
+                    <property name="resourcePath" value="/services/data/{$version}/query"/>
+                    <property name="queryParameters" value="q"/>
+                </class>
+            </else>
+        </filter>
 
         <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
         <header name="Authorization"
                 scope="transport"
                 expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))"/>
         <header name="Accept" value="application/json" scope="transport" action="set"/>
-        <call>
-            <endpoint>
-                <http method="GET"
-                      uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
-            </endpoint>
-        </call>
+        <filter source="$ctx:salesforceRestBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="GET"
+                              uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+                        <timeout>
+                            <duration>{$ctx:timeout}</duration>
+                            <responseAction>fault</responseAction>
+                        </timeout>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="GET"
+                              uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+                        <timeout>
+                            <duration>{$ctx:timeout}</duration>
+                            <responseAction>fault</responseAction>
+                        </timeout>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
     </sequence>
 </template>

@@ -38,6 +38,17 @@
                     "required": "true",
                     "helpTip": "The SQL query to use to search for records"
                   }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "queryAll",
+                    "displayName": "Include Deleted",
+                    "inputType": "boolean",
+                    "defaultValue": false,
+                    "required": false,
+                    "helpTip": "Check if the deleted records should be included in the result"
+                  }
                 }
               ]
             }

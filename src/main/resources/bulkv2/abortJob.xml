@@ -19,7 +19,8 @@
     <parameter name="jobId" description="Job ID"/>
     <sequence>
         <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
-            <property name="resourcePath" expression="fn:concat('/services/data/{$version}/jobs/ingest/',$func:jobId)"/>
+            <property name="resourcePath"
+                      expression="fn:concat('/services/data/{$version}/jobs/ingest/',$func:jobId)"/>
         </class>
         <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
         <property name="messageType" value="application/json" scope="axis2"/>
@@ -33,11 +34,32 @@
         <header name="Authorization" scope="transport"
                 expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))"/>
         <header name="Accept" scope="transport" value="application/json" action="set"/>
-        <call>
-            <endpoint>
-                <http method="PATCH"
-                      uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
-            </endpoint>
-        </call>
+
+        <filter source="$ctx:salesforceRestBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="PATCH"
+                              uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+                        <timeout>
+                            <duration>{$ctx:timeout}</duration>
+                            <responseAction>fault</responseAction>
+                        </timeout>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="PATCH"
+                              uri-template="{uri.var.auth}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+                        <timeout>
+                            <duration>{$ctx:timeout}</duration>
+                            <responseAction>fault</responseAction>
+                        </timeout>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
     </sequence>
 </template>

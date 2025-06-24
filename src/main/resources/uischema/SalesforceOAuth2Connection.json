@@ -113,16 +113,6 @@
           {
             "type": "attribute",
             "value": {
-              "name": "readTimeout",
-              "displayName": "Read Timeout",
-              "inputType": "stringOrExpression",
-              "required": false,
-              "helpTip": "Socket read timeout in milliseconds."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
               "name": "blocking",
               "displayName": "Blocking",
               "inputType": "boolean",

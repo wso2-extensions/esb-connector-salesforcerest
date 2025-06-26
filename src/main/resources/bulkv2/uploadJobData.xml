@@ -18,6 +18,9 @@
 <template xmlns="http://ws.apache.org/ns/synapse" name="uploadJobData">
     <parameter name="jobId" description="Job ID"/>
     <parameter name="inputData" description="Input Data"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="sf_bulk_inputData" expression="$func:inputData"/>
         <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">

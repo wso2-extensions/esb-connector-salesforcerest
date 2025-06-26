@@ -21,6 +21,9 @@
     <parameter name="contentType" description="contentType"/>
     <parameter name="columnDelimiter" description="columnDelimiter"/>
     <parameter name="lineEnding" description="lineEnding"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
             <property name="resourcePath" value="/services/data/{$version}/jobs/query"/>

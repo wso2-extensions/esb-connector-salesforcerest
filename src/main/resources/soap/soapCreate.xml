@@ -20,6 +20,9 @@
     <parameter name="allOrNone" description="Whether to rollback changes if an object fails(Default value is 0)."/>
     <parameter name="allowFieldTruncate" description="Whether to truncates strings that exceed the field length(Default value is 0)."/>
     <parameter name="sobjects" description="The sobject type"/>
+    <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
+    <parameter name="overwriteBody"
+               description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <class name="org.wso2.carbon.salesforce.connector.SetupCRUDParams"/>
         <property

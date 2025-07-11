@@ -45,9 +45,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
     @Override
     public void connect(MessageContext messageContext) throws ConnectException {
         try {
-            /* ------------------------------------------------------------------
-               1. Read parameters from Synapse message context
-               ------------------------------------------------------------------ */
             String connectionName = (String) ConnectorUtils.lookupTemplateParamater(messageContext, "connectionName");
             String username = (String) getParameter(messageContext, "username");
             String password = (String) getParameter(messageContext, "password");
@@ -72,9 +69,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                             "</soapenv:Body>" +
                             "</soapenv:Envelope>";
 
-            /* ------------------------------------------------------------------
-               3. Send HTTP POST to the Salesforce login endpoint
-               ------------------------------------------------------------------ */
             HttpPost post = new HttpPost(loginUrl);
             post.setHeader("Content-Type", "text/xml; charset=UTF-8");
             post.setHeader("SOAPAction", "urn:partner.soap.sforce.com/Soap/loginRequest");
@@ -89,22 +83,13 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                 if (entity == null) {
                     throw new ConnectException("Empty SOAP login response");
                 }
-
-                /* ------------------------------------------------------------------
-                   4. Read response as string (for logging + parsing)
-                   ------------------------------------------------------------------ */
                 String responseXml = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-
-                /* ------------------------------------------------------------------
-                   5. Parse XML & check for faults
-                   ------------------------------------------------------------------ */
                 DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
                 Document doc = db.parse(
                         new ByteArrayInputStream(responseXml.getBytes(StandardCharsets.UTF_8)));
 
                 XPath xp = XPathFactory.newInstance().newXPath();
 
-                // Detect SOAP Fault
                 Node faultNode = (Node) xp.evaluate(
                         "/*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='Fault']"
                                 + "/*[local-name()='faultstring']",
@@ -115,7 +100,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                             + faultNode.getTextContent());
                 }
 
-                // Extract values regardless of namespace prefixes
                 String sessionId = xp.evaluate("string(//*[local-name()='sessionId'])", doc);
                 String serverUrl = xp.evaluate("string(//*[local-name()='serverUrl'])", doc);
 
@@ -135,7 +119,7 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
 
         } catch (ConnectException ce) {
             System.err.println("ConnectException: " + ce.getMessage());
-            throw ce; // propagate to the fault sequence
+            throw ce;
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());
             e.printStackTrace();

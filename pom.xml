@@ -16,13 +16,14 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <groupId>org.wso2.integration.connector</groupId>
     <artifactId>mi-connector-salesforce</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.0-SNAPSHOT</version>
 
-    <name>WSO2 Carbon - Salesforce Connector</name>
+    <name>Salesforce Connector</name>
     <url>http://wso2.org</url>
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
@@ -32,7 +33,7 @@
         <synapse.version>4.0.0-wso2v20</synapse.version>
         <carbon.mediation.version>4.7.175</carbon.mediation.version>
         <com.google.code.gson.version>2.10.1</com.google.code.gson.version>
-        </properties>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -64,7 +65,8 @@
     <scm>
         <connection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest.git</connection>
         <url>https://github.com/wso2-extensions/esb-connector-salesforcerest.git</url>
-        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest</developerConnection>
+        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest
+        </developerConnection>
         <tag>HEAD</tag>
     </scm>
     <build>
@@ -149,12 +151,7 @@
         <repository>
             <id>nexus-releases</id>
             <name>WSO2 Release Distribution Repository</name>
-            <url>https://maven.wso2.org/nexus/service/local/staging/deploy/maven2/</url>
+            <url>https://maven.wso2.org/nexus/content/repositories/releases/</url>
         </repository>
-        <snapshotRepository>
-            <id>wso2.snapshots</id>
-            <name>Apache Snapshot Repository</name>
-            <url>https://maven.wso2.org/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
     </distributionManagement>
 </project>

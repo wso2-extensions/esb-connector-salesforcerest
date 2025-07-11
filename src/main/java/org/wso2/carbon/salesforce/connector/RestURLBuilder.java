@@ -25,9 +25,6 @@ import org.wso2.carbon.connector.core.ConnectException;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RestURLBuilder extends AbstractConnector {
 
@@ -41,8 +38,6 @@ public class RestURLBuilder extends AbstractConnector {
     private String resourcePath = "";
     private String pathParameters = "";
     private String queryParameters = "";
-
-    // ───── getters / setters ────────────────────────────────────────────────────
     public String getResourcePath() {
         return resourcePath;
     }
@@ -67,27 +62,22 @@ public class RestURLBuilder extends AbstractConnector {
         this.queryParameters = queryParameters;
     }
 
-    // ───── main logic ──────────────────────────────────────────────────────────
     @Override
     public void connect(MessageContext messageContext) throws ConnectException {
         try {
-            // Allow template to override version
             String ctxVersion = (String) messageContext.getProperty("_OH_INTERNAL_API_VERSION_");
             if (StringUtils.isNotBlank(ctxVersion)) {
                 apiVersion = ctxVersion;
             }
 
-            // Base host (comes from OAuth token call)
             String instanceUrl = (String) messageContext.getProperty("_OH_INTERNAL_INSTANCE_URL_");
             messageContext.setProperty(AUTH_HOST, StringUtils.defaultIfBlank(instanceUrl, ""));
 
-            // Build /services/data/vXX.X/… path
             String resolvedResourcePath = resourcePath.replace("{$version}", apiVersion);
             String urlPath = resolvedResourcePath.startsWith("/services/data/")
                     ? resolvedResourcePath
                     : basePath + apiVersion + (resolvedResourcePath.startsWith("/") ? resolvedResourcePath : "/" + resolvedResourcePath);
 
-            // Insert path parameters (if any)
             if (StringUtils.isNotEmpty(this.pathParameters)) {
                 for (String pathParam : getPathParameters().split(",")) {
                     String paramValue = (String) getParameter(messageContext, pathParam);
@@ -100,13 +90,11 @@ public class RestURLBuilder extends AbstractConnector {
                 }
             }
 
-            // Build query string
             StringBuilder queryBuilder = new StringBuilder();
             if (StringUtils.isNotEmpty(this.queryParameters)) {
                 for (String queryParam : getQueryParameters().split(",")) {
                     String paramValue = (String) getParameter(messageContext, queryParam);
                     if (StringUtils.isNotEmpty(paramValue)) {
-                        // ↓↓↓ FIX: “+” ➜ “%20” so spaces remain RFC-3986 compliant
                         String encodedValue = URLEncoder.encode(paramValue, ENCODING).replace("+", "%20");
                         queryBuilder.append(queryParam).append('=').append(encodedValue).append('&');
                     }
@@ -118,7 +106,6 @@ public class RestURLBuilder extends AbstractConnector {
                 urlQuery = "?" + queryBuilder.substring(0, queryBuilder.length() - 1); // keep leading “?”
             }
 
-            // Store parts in the message context for the URI-template mediator
             messageContext.setProperty(URL_PATH, urlPath);
             messageContext.setProperty(URL_QUERY, urlQuery);
 

@@ -49,27 +49,23 @@ import java.util.List;
 
 public class ProcessResults extends AbstractConnector {
 
-    private static final Log log = LogFactory.getLog(ProcessResults.class); // Added Log initialization
+    private static final Log log = LogFactory.getLog(ProcessResults.class);
 
-    // Inlined SalesforceConstants
     private static final String OUTPUT_TYPE_PARAM = "outputType";
     private static final String INCLUDE_RESULT_TO_PARAM = "includeResultTo";
     private static final String FILE_PATH_PARAM = "filePath";
     private static final String APPLICATION_JSON_CONTENT_TYPE = "application/json";
     private static final String TEXT_CSV_CONTENT_TYPE = "text/csv";
 
-    // Inlined ResponseConstants (used by inlined SalesforceUtils methods)
     private static final String PROPERTY_ERROR_CODE = "ERROR_CODE";
     private static final String PROPERTY_ERROR_MESSAGE = "ERROR_MESSAGE";
-    private static final int HTTP_BAD_REQUEST = 400;
     private static final int HTTP_INTERNAL_SERVER_ERROR = 500;
 
-    // Inlined private constants from SalesforceUtils (used by inlined generateErrorOutput)
     private static final String NO_ENTITY_BODY_PROPERTY = "NO_ENTITY_BODY";
     private static final String HTTP_SC_PROPERTY = "HTTP_SC";
 
-    private final String JSON = "JSON"; // Existing constant
-    private final String FILE = "FILE"; // Existing constant
+    private final String JSON = "JSON";
+    private final String FILE = "FILE";
 
     @Override
     public void connect(MessageContext messageContext) {
@@ -93,7 +89,6 @@ public class ProcessResults extends AbstractConnector {
                 storeInPayload(messageContext, output, contentType);
             }
         } catch (IOException e) {
-            // Using inlined/local methods
             setErrorsInMessage(messageContext, 1, e.getMessage());
             generateErrorOutput(messageContext, e);
             log.error("Error occurred while processing the result", e);
@@ -103,7 +98,6 @@ public class ProcessResults extends AbstractConnector {
     private String toJson(String csv) throws IOException {
         String jsonOutput = "{}";
         if (!csv.isEmpty()) {
-            // Using inlined/local method
             jsonOutput = csvToJson(csv);
         }
         return jsonOutput;
@@ -117,8 +111,8 @@ public class ProcessResults extends AbstractConnector {
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
         }
-        outputStream.close(); // Added to close the stream
-        inputStream.close(); // Added to close the stream
+        outputStream.close();
+        inputStream.close();
     }
 
     private void storeInPayload(MessageContext messageContext, String content, String contentType) throws AxisFault {
@@ -128,20 +122,16 @@ public class ProcessResults extends AbstractConnector {
 
         InputStream jsonStream = new ByteArrayInputStream(content.getBytes());
         OMElement documentElement = builder.processDocument(jsonStream, contentType, axis2MsgCtx);
-        // documentElement.toString(); // Removed as it might not be necessary
         messageContext.setEnvelope(TransportUtils.createSOAPEnvelope(documentElement));
     }
 
     private String getContentType(String outputType) {
-        if (JSON.equals(outputType)) { // Use .equals for string comparison
-            // Using inlined constants
+        if (JSON.equals(outputType)) {
             return APPLICATION_JSON_CONTENT_TYPE;
         } else {
             return TEXT_CSV_CONTENT_TYPE;
         }
     }
-
-    // Inlined methods from SalesforceUtils:
 
     /**
      * Sets error code and error message in the MessageContext.
@@ -189,9 +179,9 @@ public class ProcessResults extends AbstractConnector {
         String unescapedCsv = StringEscapeUtils.unescapeJava(csvString);
         CSVReader reader = new CSVReader(new StringReader(unescapedCsv));
         List<String[]> allRows = reader.readAll();
-        reader.close(); // Close reader
+        reader.close();
         if (allRows.isEmpty()) {
-            return "[]"; // Return empty JSON array if CSV is empty
+            return "[]";
         }
         String[] headers = allRows.get(0);
         List<JsonObject> jsonObjects = new ArrayList<>();

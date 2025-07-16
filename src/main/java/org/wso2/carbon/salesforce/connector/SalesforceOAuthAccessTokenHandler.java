@@ -31,9 +31,12 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.synapse.MessageContext;
-import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.connector.core.ConnectException;
-import org.wso2.carbon.connector.core.util.ConnectorUtils;
+import org.wso2.integration.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.ConnectException;
+import org.wso2.integration.connector.core.authentication.Token;
+import org.wso2.integration.connector.core.authentication.TokenManager;
+import org.wso2.integration.connector.core.util.ConnectorUtils;
+
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

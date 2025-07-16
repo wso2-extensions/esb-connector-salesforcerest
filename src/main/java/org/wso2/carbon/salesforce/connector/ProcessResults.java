@@ -30,14 +30,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.synapse.MessageContext;
 import org.apache.synapse.commons.json.JsonUtil;
-import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.connector.core.util.ConnectorUtils;
 
 import au.com.bytecode.opencsv.CSVReader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import org.wso2.integration.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.util.ConnectorUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;

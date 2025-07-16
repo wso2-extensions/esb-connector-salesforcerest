@@ -29,8 +29,8 @@ import org.apache.axiom.soap.SOAPBody;
 import org.apache.axiom.soap.SOAPEnvelope;
 import org.apache.synapse.MessageContext;
 import org.apache.synapse.SynapseLog;
-import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.connector.core.util.ConnectorUtils;
+import org.wso2.integration.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.util.ConnectorUtils;
 
 public class SetupDescribeSobjects extends AbstractConnector {
 

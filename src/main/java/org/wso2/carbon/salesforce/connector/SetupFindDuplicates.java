@@ -20,7 +20,7 @@ package org.wso2.carbon.salesforce.connector;
 
 import org.apache.synapse.MessageContext;
 import org.apache.synapse.SynapseLog;
-import org.wso2.carbon.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.AbstractConnector;
 
 /**
  * This class adds data to message context for find duplicates operation

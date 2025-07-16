@@ -28,7 +28,7 @@ import org.apache.axiom.soap.SOAPBody;
 import org.apache.axiom.soap.SOAPEnvelope;
 import org.apache.synapse.MessageContext;
 import org.apache.synapse.SynapseLog;
-import org.wso2.carbon.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.AbstractConnector;
 
 /**
  * The QueryMoreIterator inject Payload that can be used with WSO2-ESB Iterator

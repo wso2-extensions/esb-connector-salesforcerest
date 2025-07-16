@@ -19,8 +19,8 @@
 package org.wso2.carbon.salesforce.connector;
 
 import org.apache.synapse.MessageContext;
-import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.connector.core.util.ConnectorUtils;
+import org.wso2.integration.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.util.ConnectorUtils;
 
 public class SetupCRUDParams extends AbstractConnector {
     public void connect(MessageContext messageContext) {

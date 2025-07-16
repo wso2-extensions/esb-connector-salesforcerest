@@ -20,8 +20,8 @@ package org.wso2.carbon.salesforce.connector;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.synapse.MessageContext;
-import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.connector.core.ConnectException;
+import org.wso2.integration.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.ConnectException;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

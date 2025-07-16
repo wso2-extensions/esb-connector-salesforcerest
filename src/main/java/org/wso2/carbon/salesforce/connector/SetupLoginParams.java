@@ -20,8 +20,8 @@ package org.wso2.carbon.salesforce.connector;
 
 import org.apache.synapse.MessageContext;
 import org.apache.synapse.core.axis2.Axis2MessageContext;
-import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.connector.core.util.ConnectorUtils;
+import org.wso2.integration.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.util.ConnectorUtils;
 
 public class SetupLoginParams extends AbstractConnector {
     public static final String SALESFORCE_LOGIN_DONE = "salesforce.login.done";

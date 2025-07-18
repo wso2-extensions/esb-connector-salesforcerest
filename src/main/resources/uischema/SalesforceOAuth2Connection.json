@@ -1,0 +1,128 @@
+{
+  "connectorName": "salesforce",
+  "connectionName": "Oauth2",
+  "title": "Salesforce OAuth 2.0 Connection Type",
+  "helpTip": "Establishes an OAuth 2.0 connection with Salesforce using the selected grant flow.",
+  "testConnectionEnabled": true,
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "SALESFORCE_OAUTH_2",
+        "required": true,
+        "helpTip": "A logical name to identify this connection."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "scope",
+        "displayName": "Scope",
+        "inputType": "stringOrExpression",
+        "defaultValue": "",
+        "required": false,
+        "helpTip": "Space-separated OAuth scopes."
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "OAuth Client & Endpoint",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "clientId",
+              "displayName": "Client ID",
+              "inputType": "stringOrExpression",
+              "required": true,
+              "helpTip": "Consumer Key from your connected app."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "clientSecret",
+              "displayName": "Client Secret",
+              "inputType": "stringOrExpression",
+              "required": true,
+              "helpTip": "Consumer Secret from your connected app."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tokenUrl",
+              "displayName": "Token URL",
+              "inputType": "stringOrExpression",
+              "required": true,
+              "helpTip": "Token endpoint URL."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Instance & API (Optional)",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "instanceUrl",
+              "displayName": "Instance URL",
+              "inputType": "stringOrExpression",
+              "required": true,
+              "helpTip": "Base URL for API requests."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiVersion",
+              "displayName": "API Version",
+              "inputType": "stringOrExpression",
+              "defaultValue": "v60.0",
+              "required": false,
+              "helpTip": "Salesforce API version."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Advanced",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "timeout",
+              "displayName": "Timeout",
+              "inputType": "stringOrExpression",
+              "defaultValue": "3000",
+              "required": false,
+              "helpTip": "Connection timeout in milliseconds."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "blocking",
+              "displayName": "Blocking",
+              "inputType": "boolean",
+              "defaultValue": false,
+              "required": false,
+              "helpTip": "Enable blocking API calls."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

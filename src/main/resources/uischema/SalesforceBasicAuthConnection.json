@@ -1,0 +1,72 @@
+{
+  "connectorName": "salesforce",
+  "connectionName": "BasicAuth",
+  "title": "Salesforce OAuth 2.0 Connection Type",
+  "helpTip": "Establishes an OAuth 2.0 connection with Salesforce using the selected grant flow.",
+  "testConnectionEnabled": true,
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "SALESFORCE_OAUTH_2",
+        "required": true,
+        "helpTip": "A logical name to identify this connection."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "username",
+        "displayName": "Username",
+        "inputType": "stringOrExpression",
+        "required": true,
+        "helpTip": "Salesforce login username."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "password",
+        "displayName": "Password + Security Token",
+        "inputType": "stringOrExpression",
+        "required": true,
+        "helpTip": "Password followed by your security token."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "loginUrl",
+        "displayName": "Login URL",
+        "inputType": "stringOrExpression",
+        "required": true,
+        "helpTip": "Salesforce login endpoint URL."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "forceLogin",
+        "displayName": "Force Login",
+        "inputType": "boolean",
+        "defaultValue": false,
+        "required": false,
+        "helpTip": "Always start a new session if enabled."
+      }
+    },
+    {
+      "type": "attribute",
+      "value": {
+        "name": "blocking",
+        "displayName": "Blocking",
+        "inputType": "boolean",
+        "defaultValue": false,
+        "required": false,
+        "helpTip": "Enable blocking API calls to Salesforce."
+      }
+    }
+  ]
+}

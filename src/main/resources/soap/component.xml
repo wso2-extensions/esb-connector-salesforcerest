@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2025, WSO2 LLC. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 LLC. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<component name="soap" type="synapse/template" displayName="SOAP">
+    <subComponents>
+        <component name="soapLogout">
+            <file>soapLogout.xml</file>
+            <displayName>Logout</displayName>
+            <description>Ends the current Salesforce SOAP session.</description>
+        </component>
+        <component name="soapQuery">
+            <file>soapQuery.xml</file>
+            <displayName>Query</displayName>
+            <description>Executes a SOQL query to fetch records.</description>
+        </component>
+        <component name="soapQueryAll">
+            <file>soapQueryAll.xml</file>
+            <displayName>Query All</displayName>
+            <description>Runs a SOQL query including archived and deleted records.</description>
+        </component>
+        <component name="soapQueryMore">
+            <file>soapQueryMore.xml</file>
+            <displayName>Query More</displayName>
+            <description>Retrieves the next batch of SOQL query results.</description>
+        </component>
+        <component name="soapCreate">
+            <file>soapCreate.xml</file>
+            <displayName>Create</displayName>
+            <description>Inserts new SObject records via SOAP.</description>
+        </component>
+        <component name="soapUpdate">
+            <file>soapUpdate.xml</file>
+            <displayName>Update</displayName>
+            <description>Updates existing SObject records via SOAP.</description>
+        </component>
+        <component name="soapUpsert">
+            <file>soapUpsert.xml</file>
+            <displayName>Upsert</displayName>
+            <description>Inserts or updates SObject records based on an external ID.</description>
+        </component>
+        <component name="soapDelete">
+            <file>soapDelete.xml</file>
+            <displayName>Delete</displayName>
+            <description>Removes SObject records via SOAP.</description>
+        </component>
+        <component name="soapSearch">
+            <file>soapSearch.xml</file>
+            <displayName>Search</displayName>
+            <description>Performs a SOSL search across multiple objects.</description>
+        </component>
+        <component name="soapEmptyRecycleBin">
+            <file>soapEmptyRecycleBin.xml</file>
+            <displayName>Empty Recycle Bin</displayName>
+            <description>Permanently deletes all items in the Recycle Bin.</description>
+        </component>
+        <component name="soapUndelete">
+            <file>soapUndelete.xml</file>
+            <displayName>Undelete</displayName>
+            <description>Restores records from the Recycle Bin.</description>
+        </component>
+        <component name="soapDescribeSObject">
+            <file>soapDescribeSObject.xml</file>
+            <displayName>Describe SObject</displayName>
+            <description>Retrieves metadata for a single SObject type.</description>
+        </component>
+        <component name="soapDescribeSObjects">
+            <file>soapDescribeSObjects.xml</file>
+            <displayName>Describe SObjects</displayName>
+            <description>Retrieves metadata for multiple SObject types.</description>
+        </component>
+        <component name="soapDescribeGlobal">
+            <file>soapDescribeGlobal.xml</file>
+            <displayName>Describe Global</displayName>
+            <description>Lists all available SObject types in the org.</description>
+        </component>
+        <component name="soapSetPassword">
+            <file>soapSetPassword.xml</file>
+            <displayName>Set Password</displayName>
+            <description>Sets a new password for a specified user.</description>
+        </component>
+        <component name="soapSendEmailMessage">
+            <file>soapSendEmailMessage.xml</file>
+            <displayName>Send Email Message</displayName>
+            <description>Sends an email with attachments via SOAP.</description>
+        </component>
+        <component name="soapSendEmail">
+            <file>soapSendEmail.xml</file>
+            <displayName>Send Email</displayName>
+            <description>Sends a basic email notification via SOAP.</description>
+        </component>
+        <component name="soapRetrieve">
+            <file>soapRetrieve.xml</file>
+            <displayName>Retrieve</displayName>
+            <description>Fetches specified fields of SObject records by ID.</description>
+        </component>
+        <component name="soapResetPassword">
+            <file>soapResetPassword.xml</file>
+            <displayName>Reset Password</displayName>
+            <description>Generates and returns a new temporary password for a user.</description>
+        </component>
+        <component name="soapGetUserInfo">
+            <file>soapGetUserInfo.xml</file>
+            <displayName>Get User Info</displayName>
+            <description>Fetches details about the current user.</description>
+        </component>
+        <component name="soapGetDeleted">
+            <file>soapGetDeleted.xml</file>
+            <displayName>Get Deleted</displayName>
+            <description>Lists records deleted within a given time frame.</description>
+        </component>
+        <component name="soapGetUpdated">
+            <file>soapGetUpdated.xml</file>
+            <displayName>Get Updated</displayName>
+            <description>Lists records updated within a given time frame.</description>
+        </component>
+        <component name="soapGetServerTimestamp">
+            <file>soapGetServerTimestamp.xml</file>
+            <displayName>Get Server Timestamp</displayName>
+            <description>Retrieves the current Salesforce server timestamp.</description>
+        </component>
+        <component name="soapFindDuplicates">
+            <file>soapFindDuplicates.xml</file>
+            <displayName>Find Duplicates</displayName>
+            <description>Searches for duplicate records based on duplicate rules.</description>
+        </component>
+        <component name="soapFindDuplicatesByIds">
+            <file>soapFindDuplicatesByIds.xml</file>
+            <displayName>Find Duplicates By Ids</displayName>
+            <description>Finds duplicates by comparing given record IDs.</description>
+        </component>
+        <component name="soapMerge">
+            <file>soapMerge.xml</file>
+            <displayName>Merge</displayName>
+            <description>Merges multiple duplicate records into one.</description>
+        </component>
+        <component name="soapConvertLead">
+            <file>soapConvertLead.xml</file>
+            <displayName>Convert Lead</displayName>
+            <description>Converts Lead records into Account/Contact (and optionally Opportunity).</description>
+        </component>
+    </subComponents>
+</component>

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Output Schema for soapDelete Operation",
+  "description": "Output schema for the soapDelete operation in the connector.",
+  "properties": {
+    "payload": {
+      "type": "object",
+      "description": "The main response payload from the soapDelete operation."
+    },
+    "headers": {
+      "type": "object",
+      "description": "Transport headers returned by the soapDelete operation.",
+      "additionalProperties": true
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Metadata about the soapDelete operation.",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "description": "HTTP status code of the API response.",
+          "minimum": 100,
+          "maximum": 599
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "statusCode"
+      ]
+    }
+  },
+  "required": [
+    "payload",
+    "headers",
+    "attributes"
+  ],
+  "additionalProperties": false
+}

@@ -29,11 +29,8 @@ public class SetupCRUDParams extends AbstractConnector {
         setDefaultValue(messageContext, SalesforceUtil.SALESFORCE_EXTERNALID, "Id");
     }
 
-    private void setDefaultValue(MessageContext messageContext, String strParamName,
-                                 String strDefaultValue) {
-        String strValue =
-                (String) ConnectorUtils.lookupTemplateParamater(messageContext,
-                        strParamName);
+    private void setDefaultValue(MessageContext messageContext, String strParamName, String strDefaultValue) {
+        String strValue = (String) ConnectorUtils.lookupTemplateParamater(messageContext, strParamName);
         if (strValue == null || "".equals(strValue)) {
             strValue = strDefaultValue;
         }

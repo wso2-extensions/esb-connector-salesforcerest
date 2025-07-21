@@ -54,7 +54,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
             String doneFlag = (String) messageContext.getProperty("salesforce.login.done");
 
             if (!forceLogin && "true".equals(doneFlag)) {
-                System.out.println("Skipping login: already done and forceLogin=false");
                 return;
             }
 
@@ -107,25 +106,16 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                     throw new ConnectException("sessionId or serverUrl not found in login response");
                 }
 
-                System.out.println("Parsed values → sessionId=" + sessionId
-                        + ", serverUrl=" + serverUrl);
-
                 messageContext.setProperty("salesforce.sessionId", sessionId);
                 messageContext.setProperty("salesforce.serviceUrl", serverUrl);
                 messageContext.setProperty("salesforce.login.done", "true");
-
-                System.out.println("Saved properties on MessageContext");
             }
 
         } catch (ConnectException ce) {
-            System.err.println("ConnectException: " + ce.getMessage());
             throw ce;
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
             e.printStackTrace();
             throw new ConnectException(e, "Error during Salesforce SOAP login");
-        } finally {
-            System.out.println("<<< Exiting SalesforceSOAPLoginHandler.connect()");
         }
     }
 }

@@ -17,6 +17,9 @@
 -->
 <template xmlns="http://ws.apache.org/ns/synapse" name="getSuccessfulResults">
     <parameter name="jobId" description="Job ID"/>
+    <parameter name="outputType" description="Output Type"/>
+    <parameter name="includeResultTo" description="Add Results To"/>
+    <parameter name="filePath" description="Output File Path"/>
     <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
     <parameter name="overwriteBody"
                description="Replace the Message Body in Message Context with the response of the operation."/>
@@ -26,6 +29,8 @@
                       expression="fn:concat('/services/data/{$version}/jobs/ingest/',$func:jobId,'/successfulResults')"/>
         </class>
         <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property name="messageType" expression="application/json" scope="axis2" type="STRING"/>
+        <property name="ContentType" expression="application/json" scope="axis2" type="STRING"/>
         <header name="Authorization" scope="transport"
                 expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))"/>
         <header name="Accept" scope="transport" value="application/json" action="set"/>

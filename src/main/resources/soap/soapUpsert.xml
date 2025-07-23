@@ -30,7 +30,7 @@
     <sequence>
         <class name="org.wso2.carbon.salesforce.connector.SetupCRUDParams"/>
         <property
-                expression="get-property('operation','salesforce.serviceUrl')"
+                expression="get-property('salesforce.serviceUrl')"
                 name="uri.var.salesforce.url"/>
         <payloadFactory>
             <format>
@@ -56,7 +56,7 @@
             <args>
                 <arg expression="get-property('salesforce.crud.allOrNone')"/>
                 <arg expression="get-property('salesforce.crud.allowFieldTruncate')"/>
-                <arg expression="get-property('operation','salesforce.sessionId')"/>
+                <arg expression="get-property('salesforce.sessionId')"/>
             </args>
         </payloadFactory>
         <class name="org.wso2.carbon.salesforce.connector.SetupUpsertSobjects"/>

@@ -51,6 +51,12 @@
         <filter xpath="get-property('connectionType') = 'basicauth'">
             <then>
                 <class name="org.wso2.carbon.salesforce.connector.SalesforceSOAPLoginHandler"/>
+                <log level="custom" separator=", ">
+                    <property name="ConnectionName" expression="$func:connectionName"/>
+                    <property name="LoginType"      expression="$func:connectionType"/>
+                    <property name="SessionId"      expression="$ctx:salesforce.sessionId"/>
+                    <property name="ServiceUrl"     expression="$ctx:salesforce.serviceUrl"/>
+                </log>
             </then>
             <else>
                 <class name="org.wso2.carbon.salesforce.connector.SalesforceOAuthAccessTokenHandler"/>

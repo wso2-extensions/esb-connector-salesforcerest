@@ -26,7 +26,7 @@
     <parameter name="overwriteBody"
                description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
-        <property expression="get-property('operation','salesforce.serviceUrl')"
+        <property expression="get-property('salesforce.serviceUrl')"
                   name="uri.var.salesforce.url"/>
         <payloadFactory>
             <format>
@@ -49,7 +49,7 @@
             </format>
             <args>
                 <arg expression="$func:batchSize"/>
-                <arg expression="get-property('operation','salesforce.sessionId')"/>
+                <arg expression="get-property('salesforce.sessionId')"/>
                 <arg expression="$func:queryString"/>
             </args>
         </payloadFactory>

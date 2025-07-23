@@ -26,7 +26,7 @@
                description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property
-                expression="get-property('operation','salesforce.serviceUrl')"
+                expression="get-property('salesforce.serviceUrl')"
                 name="uri.var.salesforce.url"/>
         <payloadFactory>
             <format>
@@ -44,7 +44,7 @@
                 </soapenv:Envelope>
             </format>
             <args>
-                <arg expression="get-property('operation','salesforce.sessionId')"/>
+                <arg expression="get-property('salesforce.sessionId')"/>
             </args>
         </payloadFactory>
         <class name="org.wso2.carbon.salesforce.connector.SetupDescribeSobjects"/>

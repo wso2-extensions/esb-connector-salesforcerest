@@ -1,0 +1,164 @@
+{
+  "connectorName": "salesforce",
+  "operationName": "createJob",
+  "title": "Create Job",
+  "help": "Creates a new job in Salesforce Bulk API",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Salesforce Configuration",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "Oauth2"
+              ],
+              "defaultType": "connection.Oauth2",
+              "required": "true",
+              "helpTip": "Select the Salesforce connection configuration to use for this operation."
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "operation",
+                    "displayName": "Operation",
+                    "inputType": "comboOrExpression",
+                    "comboValues": [
+                      "insert",
+                      "update",
+                      "upsert",
+                      "delete",
+                      "hardDelete"
+                    ],
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Bulk data action to perform on the records in this job."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "object",
+                    "displayName": "Object",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "API name of the Salesforce object (e.g., Account, Contact) that the job targets."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "contentType",
+                    "displayName": "Content Type",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Format of the data file to upload. Allowed values: CSV or JSON."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "columnDelimiter",
+                    "displayName": "Column Delimiter",
+                    "inputType": "comboOrExpression",
+                    "comboValues": [
+                      "COMMA",
+                      "SEMICOLON",
+                      "TAB",
+                      "PIPE",
+                      "CARET",
+                      "BACKQUOTE"
+                    ],
+                    "defaultValue": "COMMA",
+                    "required": "true",
+                    "helpTip": "Character used to separate column values in the CSV file."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "lineEnding",
+                    "displayName": "Line Ending",
+                    "inputType": "comboOrExpression",
+                    "comboValues": [
+                      "CRLF",
+                      "LF"
+                    ],
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Line terminator used in the CSV file: CRLF (Windows) or LF (Unix)."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "assignmentRuleId",
+                    "displayName": "Assignment Rule ID",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Optional ID of an assignment rule to apply when processing Case or Lead records."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "externalIdFieldName",
+                    "displayName": "External ID Field Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "API name of the external ID field used for matching records during UPSERT operations."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Output",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "responseVariable",
+                    "displayName": "Output Variable Name",
+                    "inputType": "string",
+                    "deriveResponseVariable": "true",
+                    "required": "true",
+                    "helpTip": "Variable that will store the API response payload."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwriteBody",
+                    "displayName": "Overwrite Message Body",
+                    "inputType": "checkbox",
+                    "defaultValue": "false",
+                    "helpTip": "When enabled, replaces the original message body with the operation result.",
+                    "required": "false"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "connectorName": "salesforcerest",
+  "connectorName": "salesforce",
   "operationName": "query",
   "title": "Query",
   "help": "<h1>Query</h1> <b>Retrieves data from an object.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/salesforce-rest-connector/sf-rest-connector-config/\"> More Help </a></li></ul>",
@@ -16,9 +16,9 @@
               "displayName": "Connection",
               "inputType": "connection",
               "allowedConnectionTypes": [
-                "init"
+                "Oauth2"
               ],
-              "defaultValue": "",
+              "defaultType": "connection.Oauth2",
               "required": "true",
               "helpTip": "Connection to be used"
             }
@@ -31,12 +31,53 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "queryString",
+                    "name": "q",
                     "displayName": "Query String",
                     "inputType": "stringOrExpression",
                     "defaultValue": "",
                     "required": "true",
-                    "helpTip": "The SOQL query to execute the search"
+                    "helpTip": "The SQL query to use to search for records"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "queryAll",
+                    "displayName": "Include Deleted",
+                    "inputType": "boolean",
+                    "defaultValue": false,
+                    "required": false,
+                    "helpTip": "Check if the deleted records should be included in the result"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Output",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "responseVariable",
+                    "displayName": "Output Variable Name",
+                    "inputType": "string",
+                    "deriveResponseVariable": "true",
+                    "required": "true",
+                    "helpTip": "Name of the variable to which the output of the operation should be assigned"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwriteBody",
+                    "displayName": "Overwrite Message Body",
+                    "inputType": "checkbox",
+                    "defaultValue": "false",
+                    "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+                    "required": "false"
                   }
                 }
               ]

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2025, WSO2 LLC. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 LLC. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<component name="bulkv2" type="synapse/template" displayName="Bulk V2">
+    <subComponents>
+        <component name="createJob">
+            <file>createJob.xml</file>
+            <displayName>Create Job</displayName>
+            <description>A operation to create a job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="uploadJobData">
+            <file>uploadJobData.xml</file>
+            <displayName>Upload Job Data</displayName>
+            <description>An operation to upload data to a job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="closeJob">
+            <file>closeJob.xml</file>
+            <displayName>Close Job</displayName>
+            <description>An operation to close a job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="abortJob">
+            <file>abortJob.xml</file>
+            <displayName>Abort Job</displayName>
+            <description>An operation to abort a job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="getAllJobInfo">
+            <file>getAllJobInfo.xml</file>
+            <displayName>Get All Job Info</displayName>
+            <description>An operation to get all job info in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="getJobInfo">
+            <file>getJobInfo.xml</file>
+            <displayName>Get Job Info</displayName>
+            <description>An operation to get job info in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="deleteJob">
+            <file>deleteJob.xml</file>
+            <displayName>Delete Job</displayName>
+            <description>An operation to delete a job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="getSuccessfulResults">
+            <file>getSuccessfulResults.xml</file>
+            <displayName>Get Successful Results</displayName>
+            <description>An operation to get successful results of a job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="getUnprocessedResults">
+            <file>getUnprocessedResults.xml</file>
+            <displayName>Get Unprocessed Results</displayName>
+            <description>An operation to get unprocessed results of a job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="getFailedResults">
+            <file>getFailedResults.xml</file>
+            <displayName>Get Failed Results</displayName>
+            <description>An operation to get failed results of a job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="abortQueryJob">
+            <file>abortQueryJob.xml</file>
+            <displayName>Abort Query Job</displayName>
+            <description>An operation to abort a running query job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="createQueryJob">
+            <file>createQueryJob.xml</file>
+            <displayName>Create Query Job</displayName>
+            <description>An operation to create a new query job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="deleteQueryJob">
+            <file>deleteQueryJob.xml</file>
+            <displayName>Delete Query Job</displayName>
+            <description>An operation to delete a query job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="getQueryJobInfo">
+            <file>getQueryJobInfo.xml</file>
+            <displayName>Get Query Job Info</displayName>
+            <description>An operation to get information about a query job in Salesforce using bulk api 2.0
+            </description>
+        </component>
+        <component name="getQueryJobResults">
+            <file>getQueryJobResults.xml</file>
+            <displayName>Get Query Job Results</displayName>
+            <description>An operation to get the results of a query job in Salesforce using bulk api 2.0</description>
+        </component>
+        <component name="getAllQueryJobInfo">
+            <file>getAllQueryJobInfo.xml</file>
+            <displayName>Get All Query Job Info</displayName>
+            <description>An operation to get the information of all the query jobs in Salesforce using bulk api 2.0
+            </description>
+        </component>
+    </subComponents>
+</component>

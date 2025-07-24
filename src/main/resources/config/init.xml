@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2025, WSO2 LLC. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 LLC. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<template name="init" xmlns="http://ws.apache.org/ns/synapse" onError="fault">
+
+    <!-- Common -->
+    <parameter name="connectionName" description="Unique name for this connection."/>
+    <parameter name="connectionType"
+               description="The type of authentication used to connect to Salesforce. (OAuth2 | BasicAuth)"/>
+    <parameter name="scope" description="Space-separated OAuth scopes (optional)."/>
+
+    <!-- OAuth2 Specific -->
+    <parameter name="clientId" description="Connected-App Consumer Key."/>
+    <parameter name="clientSecret" description="Connected-App Consumer Secret."/>
+    <parameter name="tokenUrl" description="Token endpoint (e.g. https://login.salesforce.com/services/oauth2/token)."/>
+    <parameter name="instanceUrl" description="Override instance URL for API calls (optional)."/>
+    <parameter name="apiVersion" description="Salesforce REST API version (e.g. v60.0)."/>
+
+    <!-- Password flow specifics -->
+    <parameter name="username" description="Org username (Password flow or Basic Auth)."/>
+    <parameter name="password" description="Password (append security token)."/>
+    <parameter name="loginUrl" description="The login URL to get the user access (Basic Auth)."/>
+    <parameter name="forceLogin" description="Whether to force new login (Basic Auth)."/>
+
+    <!-- Advanced -->
+    <parameter name="timeout" description="Connection timeout in ms (default 3000)."/>
+    <parameter name="blocking" description="True = blocking invocations."/>
+
+    <property name="salesforceRestBlocking" expression="$func:blocking"/>
+    <property name="timeout" expression="$func:timeout"/>
+
+    <sequence>
+        <property name="connectionType"
+                  expression="fn:lower-case($func:connectionType)"
+                  scope="default"/>
+        <filter xpath="get-property('connectionType') = 'basicauth'">
+            <then>
+                <class name="org.wso2.carbon.salesforce.connector.SalesforceSOAPLoginHandler"/>
+                <log level="custom" separator=", ">
+                    <property name="ConnectionName" expression="$func:connectionName"/>
+                    <property name="LoginType"      expression="$func:connectionType"/>
+                    <property name="SessionId"      expression="$ctx:salesforce.sessionId"/>
+                    <property name="ServiceUrl"     expression="$ctx:salesforce.serviceUrl"/>
+                </log>
+            </then>
+            <else>
+                <class name="org.wso2.carbon.salesforce.connector.SalesforceOAuthAccessTokenHandler"/>
+                <header name="Authorization"
+                        expression="fn:concat('Bearer ', $ctx:_OH_INTERNAL_ACCESS_TOKEN_)"
+                        scope="transport"/>
+            </else>
+        </filter>
+    </sequence>
+</template>

@@ -16,132 +16,26 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <groupId>org.wso2.integration.connector</groupId>
-    <artifactId>mi-connector-salesforcerest</artifactId>
-    <packaging>jar</packaging>
-    <version>2.0.2-SNAPSHOT</version>
-    <name>WSO2 Carbon - Mediation Library Connector For Salesforcerest</name>
+    <artifactId>mi-connector-salesforce</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+
+    <name>Salesforce Connector</name>
     <url>http://wso2.org</url>
-    <profiles>
-        <profile>
-            <id>EI6XX</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-                <property>
-                    <name>env</name>
-                    <value>EI6XX</value>
-                </property>
-            </activation>
-            <properties>
-                <product.name>wso2ei</product.name>
-                <product.version>6.5.0</product.version>
-                <management.port>9763</management.port>
-                <startup.script>integrator</startup.script>
-            </properties>
-        </profile>
-        <profile>
-            <id>EI7XX</id>
-            <activation>
-                <property>
-                    <name>env</name>
-                    <value>EI7XX</value>
-                </property>
-            </activation>
-            <properties>
-                <product.name>wso2mi</product.name>
-                <product.version>1.2.0-beta</product.version>
-                <management.port>9154</management.port>
-                <startup.script>micro-integrator</startup.script>
-            </properties>
-        </profile>
-    </profiles>
+    <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
     <properties>
-        <connector.name>salesforcerest</connector.name>
-        <automation.framework.version>4.5.0</automation.framework.version>
-        <integration.base.version>1.0.6</integration.base.version>
-        <automation.extension.version>1.3.0-SNAPSHOT</automation.extension.version>
-        <carbon.kernel.version>4.4.17</carbon.kernel.version>
-        <emma.version>2.1.5320</emma.version>
-        <synapse.version>2.1.7-wso2v95</synapse.version>
-        <carbon.mediation.version>4.7.53</carbon.mediation.version>
-        <json.version>3.0.0.wso2v1</json.version>
-        <org.testng.version>6.1.1</org.testng.version>
-        <jets3t.version>0.9.4</jets3t.version>
-        <bouncycastle.version>1.55</bouncycastle.version>
-        <rampart.apache.version>1.6.1-wso2v18</rampart.apache.version>
-        <rampart.wso2.version>1.6.1.wso2v18</rampart.wso2.version>
-        <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
-        <skip-tests>false</skip-tests>
+        <connector.name>salesforce</connector.name>
+        <synapse.version>4.0.0-wso2v20</synapse.version>
+        <com.google.code.gson.version>2.10.1</com.google.code.gson.version>
+        <connector.core.version>0.9.2</connector.core.version>
     </properties>
+
     <dependencies>
-        <!--Test Automation dependencies-->
-        <dependency>
-            <groupId>org.wso2.ei</groupId>
-            <artifactId>automation-extensions</artifactId>
-            <version>${automation.extension.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.admin.client</artifactId>
-            <version>${automation.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.extensions</artifactId>
-            <version>${automation.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.utils</artifactId>
-            <version>${automation.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.esb.integration</groupId>
-            <artifactId>integration-base</artifactId>
-            <version>${integration.base.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.wso2.carbon.automation</groupId>
-                    <artifactId>org.wso2.carbon.automation.engine</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.wso2.carbon.automation</groupId>
-                    <artifactId>org.wso2.carbon.automation.extensions</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.wso2.ei</groupId>
-                    <artifactId>automation-extensions</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.wso2.carbon.automationutils</groupId>
-                    <artifactId>org.wso2.carbon.integration.common.admin.client</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.wso2.carbon.automationutils</groupId>
-                    <artifactId>org.wso2.carbon.integration.common.extensions</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.wso2.carbon.automationutils</groupId>
-                    <artifactId>org.wso2.carbon.integration.common.utils</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.wso2.carbon.mediation</groupId>
-                    <artifactId>org.wso2.carbon.message.store.stub</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.jmeter</groupId>
-                    <artifactId>ApacheJMeter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.jmeter</groupId>
-                    <artifactId>ApacheJMeter_core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!--/Test Automation dependencies-->
         <dependency>
             <groupId>org.apache.synapse</groupId>
             <artifactId>synapse-core</artifactId>
@@ -153,89 +47,25 @@
             <version>${synapse.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.json.wso2</groupId>
-            <artifactId>json</artifactId>
-            <version>${json.version}</version>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${com.google.code.gson.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.mediation</groupId>
-            <artifactId>org.wso2.carbon.connector.core</artifactId>
-            <version>${carbon.mediation.version}</version>
+            <groupId>au.com.bytecode.opencsv.wso2</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>1.8.wso2v1</version>
         </dependency>
         <dependency>
-            <groupId>org.wso2.carbon.mediation</groupId>
-            <artifactId>org.wso2.carbon.mediation.library.stub</artifactId>
-            <version>${carbon.mediation.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>emma</groupId>
-            <artifactId>emma</artifactId>
-            <version>${emma.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${org.testng.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon</groupId>
-            <artifactId>SecVerifier</artifactId>
-            <version>${carbon.kernel.version}</version>
-            <type>aar</type>
-            <scope>test</scope>
-        </dependency>
-        <!--Dependency for Integration Tests-->
-        <dependency>
-            <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.logging</artifactId>
-            <version>${carbon.kernel.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>4.3.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20080701</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.admin.client</artifactId>
-            <version>${automation.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.extensions</artifactId>
-            <version>${automation.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.automationutils</groupId>
-            <artifactId>org.wso2.carbon.integration.common.utils</artifactId>
-            <version>${automation.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.mediation</groupId>
-            <artifactId>org.wso2.carbon.integrator.core</artifactId>
-            <version>${carbon.mediation.version}</version>
+            <groupId>org.wso2.integration.connector.core</groupId>
+            <artifactId>mi-connector-core</artifactId>
+            <version>${connector.core.version}</version>
         </dependency>
     </dependencies>
     <scm>
-        <connection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest.git
-        </connection>
+        <connection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest.git</connection>
         <url>https://github.com/wso2-extensions/esb-connector-salesforcerest.git</url>
-        <developerConnection>
-            scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest
+        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest
         </developerConnection>
         <tag>HEAD</tag>
     </scm>
@@ -251,7 +81,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
                 <configuration>
+                    <encoding>UTF-8</encoding>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
@@ -261,13 +93,13 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>email-library</id>
+                        <id>build-connector</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>${connector.name}-connector-${version}</finalName>
+                            <finalName>${connector.name}-connector-${project.version}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <filters>
                                 <filter>src/main/assembly/filter.properties</filter>
@@ -283,199 +115,21 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy</id>
-                        <phase>generate-test-resources</phase>
+                        <id>copy-mi-connector-core</id>
                         <goals>
                             <goal>copy</goal>
                         </goals>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.apache.commons</groupId>
-                                    <artifactId>commons-email</artifactId>
-                                    <version>1.2</version>
+                                    <groupId>org.wso2.integration.connector.core</groupId>
+                                    <artifactId>mi-connector-core</artifactId>
+                                    <version>${connector.core.version}</version>
                                     <type>jar</type>
-                                    <overWrite>true</overWrite>
+                                    <overWrite>false</overWrite>
                                     <outputDirectory>target/connector/dependencies</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-emma-dependencies</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/emma</outputDirectory>
-                            <includeTypes>jar</includeTypes>
-                            <includeArtifactIds>emma,
-                            </includeArtifactIds>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-secVerifier</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/target/security-verifier</outputDirectory>
-                            <includeTypes>aar</includeTypes>
-                            <includeArtifactIds>SecVerifier</includeArtifactIds>
-                            <stripVersion>true</stripVersion>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
-                <inherited>false</inherited>
-                <configuration>
-                    <skipTests>${skip-tests}</skipTests>
-                    <argLine>-Xms512m -Xmx1024m -XX:MaxPermSize=128m</argLine>
-                    <disableXmlReport>false</disableXmlReport>
-                    <parallel>false</parallel>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                    <systemProperties>
-                        <property>
-                            <name>framework.resource.location</name>
-                            <value>
-                                ${basedir}/src/test/resources/
-                            </value>
-                        </property>
-                        <property>
-                            <name>server.list</name>
-                            <value>
-                                ESB
-                            </value>
-                        </property>
-                        <property>
-                            <name>usedefaultlisteners</name>
-                            <value>false</value>
-                        </property>
-                        <sec.verifier.dir>${basedir}/target/security-verifier/</sec.verifier.dir>
-                        <maven.test.haltafterfailure>false</maven.test.haltafterfailure>
-                        <carbon.zip>
-                            ${basedir}/repository/${product.name}-${product.version}.zip
-                        </carbon.zip>
-                        <instr.file>${basedir}/src/test/resources/instrumentation.txt</instr.file>
-                        <filters.file>${basedir}/src/test/resources/filters.txt</filters.file>
-                        <property>
-                            <name>connector_repo</name>
-                            <value>${basedir}/target</value>
-                        </property>
-                        <property>
-                            <name>connector_name</name>
-                            <value>${connector.name}</value>
-                        </property>
-                        <property>
-                            <name>connector_version</name>
-                            <value>${project.version}</value>
-                        </property>
-                        <property>
-                            <name>managementPort</name>
-                            <value>${management.port}</value>
-                        </property>
-                        <property>
-                            <name>startupScript</name>
-                            <value>${startup.script}</value>
-                        </property>
-                    </systemProperties>
-                    <workingDirectory>${basedir}/target</workingDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources-jks</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/src/test/resources/keystores/products
-                            </outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>
-                                        ${basedir}/target/tobeCopied/${product.name}-${product.version}/repository/resources/security/
-                                    </directory>
-                                    <includes>
-                                        <include>**/*.jks</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-stratos-jks</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/src/test/resources/keystores/stratos
-                            </outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>
-                                        ${basedir}/target/tobeCopied/${product.name}-${product.version}/repository/resources/security/
-                                    </directory>
-                                    <includes>
-                                        <include>**/*.jks</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-axis2files</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/src/test/resources/axis2config
-                            </outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>
-                                        ${basedir}/target/tobeCopied/wso2ei-${project.version}/wso2/business-process/conf/axis2/
-                                    </directory>
-                                    <includes>
-                                        <include>**/*.xml</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-resources-mar</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/src/test/resources/client/modules
-                            </outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>
-                                        ${basedir}/target/tobeCopied/wso2ei-${project.version}/wso2/business-process/repository/deployment/client/modules
-                                    </directory>
-                                    <includes>
-                                        <include>**/*.mar</include>
-                                    </includes>
-                                </resource>
-                            </resources>
                         </configuration>
                     </execution>
                 </executions>

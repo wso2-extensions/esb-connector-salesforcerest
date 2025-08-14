@@ -24,16 +24,24 @@
     <parameter name="overwriteBody"
                description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
+        <property name="outputType" expression="$func:outputType" />
+        <property name="includeResultTo" expression="$func:includeResultTo" />
+        <property name="filePath" expression="$func:filePath" />
+        <filter source="get-property('outputType')" regex="^$">
+            <then>
+                <property name="outputType" value="JSON" />
+            </then>
+        </filter>
         <class name="org.wso2.carbon.salesforce.connector.RestURLBuilder">
             <property name="resourcePath"
                       expression="fn:concat('/services/data/{$version}/jobs/ingest/',$func:jobId,'/successfulResults')"/>
         </class>
         <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
-        <property name="messageType" expression="application/json" scope="axis2" type="STRING"/>
-        <property name="ContentType" expression="application/json" scope="axis2" type="STRING"/>
+        <property name="messageType" expression="text/csv" scope="axis2" type="STRING"/>
+        <property name="ContentType" expression="text/csv" scope="axis2" type="STRING"/>
         <header name="Authorization" scope="transport"
                 expression="fn:concat('Bearer ', get-property('_OH_INTERNAL_ACCESS_TOKEN_'))"/>
-        <header name="Accept" scope="transport" value="application/json" action="set"/>
+        <header name="Accept" scope="transport" value="text/csv" action="set"/>
         <filter source="$ctx:salesforceRestBlocking" regex="true">
             <then>
                 <call blocking="true">
@@ -60,7 +68,11 @@
         </filter>
         <filter regex="200" source="$axis2:HTTP_SC">
             <then>
-                <class name="org.wso2.carbon.salesforce.connector.ProcessResults"/>
+                <class name="org.wso2.carbon.salesforce.connector.ProcessResults">
+                    <property name="outputType" expression="get-property('outputType')" />
+                    <property name="includeResultTo" expression="get-property('includeResultTo')" />
+                    <property name="filePath" expression="get-property('filePath')" />
+                </class>
             </then>
             <else/>
         </filter>

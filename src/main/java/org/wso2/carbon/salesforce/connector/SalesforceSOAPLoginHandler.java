@@ -41,8 +41,11 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
             String doneFlag       = (String) messageContext.getProperty("salesforce.login.done");
 
             if (!forceLogin && "true".equals(doneFlag)) {
-                log.debug("Login already completed for connection '" + connectionName + "'. Skipping.");
                 return;
+            }
+            
+            if (username == null || password == null || loginUrl == null) {
+                throw new ConnectException("Missing required SOAP login parameters");
             }
 
             // -------- SOAP request body ----------
@@ -57,11 +60,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                             "</soapenv:Body>" +
                             "</soapenv:Envelope>";
 
-            // Masked log so credentials aren’t written in full
-            if (log.isDebugEnabled()) {
-                log.debug("SOAP-Login request built for connection '" + connectionName + "' (to " + loginUrl + ')');
-            }
-
             HttpPost post = new HttpPost(loginUrl);
             post.setHeader("Content-Type", "text/xml; charset=UTF-8");
             post.setHeader("SOAPAction", "urn:partner.soap.sforce.com/Soap/loginRequest");
@@ -72,7 +70,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                  CloseableHttpResponse response = client.execute(post)) {
 
                 int statusCode = response.getStatusLine().getStatusCode();
-                log.debug("SOAP-Login HTTP status = " + statusCode);
 
                 HttpEntity entity = response.getEntity();
                 if (entity == null) {
@@ -80,9 +77,6 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                 }
 
                 String responseXml = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-                if (log.isTraceEnabled()) {
-                    log.trace("SOAP-Login response payload:\n" + responseXml);
-                }
 
                 Document doc = DocumentBuilderFactory.newInstance()
                         .newDocumentBuilder()
@@ -105,22 +99,17 @@ public class SalesforceSOAPLoginHandler extends AbstractConnector {
                     throw new ConnectException("sessionId or serverUrl not found in login response");
                 }
 
-                // -------- persist & log ----------
+                // -------- persist ----------
                 messageContext.setProperty("salesforce.sessionId", sessionId);
                 messageContext.setProperty("salesforce.serviceUrl", serverUrl);
                 messageContext.setProperty("salesforce.login.done", "true");
-
-                log.info(String.format(
-                        "Salesforce SOAP login successful [connection=%s, sessionId=%s, serviceUrl=%s]",
-                        connectionName, sessionId, serverUrl));
 
             }
 
         } catch (ConnectException ce) {
             throw ce;
         } catch (Exception e) {
-            log.error("Error during Salesforce SOAP login", e);
-            throw new ConnectException(e, "Error during Salesforce SOAP login");
+            throw new ConnectException(e, "Error during Salesforce SOAP login: " + e.getMessage());
         }
     }
 }

@@ -60,6 +60,10 @@ public class QueryMoreIterator extends AbstractConnector {
                 String strQueryLocator = (String) synCtx
                         .getProperty("salesforce.query.queryLocator");
                 String strRecordSize = (String) synCtx.getProperty("salesforce.query.recordSize");
+                              
+                if (strQueryLocator == null || strRecordSize == null) {
+                    return;
+                }
 
                 String[] arrQueryLocator = strQueryLocator.split("-");
 
@@ -86,11 +90,10 @@ public class QueryMoreIterator extends AbstractConnector {
                     }
                 }
             } catch (NumberFormatException nfe) {
-                synLog.auditWarn("Saleforce adaptor - invalid value returned : " + nfe);
+                synLog.error("QueryMoreIterator - NumberFormatException: " + nfe.getMessage());
             } catch (Exception e) {
-                synLog.error("Saleforce adaptor - error generating the iterator payload : " + e);
+                synLog.error("QueryMoreIterator - Exception during processing: " + e.getMessage());
             }
-
         }
 
         if (synLog.isTraceOrDebugEnabled()) {

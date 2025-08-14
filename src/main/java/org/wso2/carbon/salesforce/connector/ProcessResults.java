@@ -66,26 +66,51 @@ public class ProcessResults extends AbstractConnector {
 
     private final String JSON = "JSON";
     private final String FILE = "FILE";
+    
+    private String outputType;
+    private String includeResultTo;
+    private String filePath;
+
+    public void setOutputType(String outputType) {
+        this.outputType = outputType;
+    }
+
+    public void setIncludeResultTo(String includeResultTo) {
+        this.includeResultTo = includeResultTo;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
     @Override
     public void connect(MessageContext messageContext) {
 
         try {
             String output = messageContext.getEnvelope().getBody().getFirstElement().getText();
-            // Using inlined constants
-            String outputType = (String) ConnectorUtils.lookupTemplateParamater(messageContext, OUTPUT_TYPE_PARAM);
-            String includeResultTo = (String) ConnectorUtils.lookupTemplateParamater(messageContext, INCLUDE_RESULT_TO_PARAM);
-            String filePath = (String) ConnectorUtils.lookupTemplateParamater(messageContext, FILE_PATH_PARAM);
-            if (JSON.equals(outputType)) { // Use .equals for string comparison
+            
+            // Use instance variables set by the XML template, fall back to lookup if not set
+            String currentOutputType = this.outputType != null ? this.outputType : 
+                (String) ConnectorUtils.lookupTemplateParamater(messageContext, OUTPUT_TYPE_PARAM);
+            String currentIncludeResultTo = this.includeResultTo != null ? this.includeResultTo : 
+                (String) ConnectorUtils.lookupTemplateParamater(messageContext, INCLUDE_RESULT_TO_PARAM);
+            String currentFilePath = this.filePath != null ? this.filePath : 
+                (String) ConnectorUtils.lookupTemplateParamater(messageContext, FILE_PATH_PARAM);
+                
+            // Default to JSON if not specified
+            if (currentOutputType == null || currentOutputType.trim().isEmpty()) {
+                currentOutputType = JSON;
+            }
+            
+            if (JSON.equals(currentOutputType)) {
                 output = toJson(output);
             }
-            if (FILE.equals(includeResultTo)) { // Use .equals for string comparison
-                storeInFile(filePath, output);
+            if (FILE.equals(currentIncludeResultTo)) {
+                storeInFile(currentFilePath, output);
                 String response = "{\"result\":\"success\"}";
-                // Using inlined constant
                 storeInPayload(messageContext, response, APPLICATION_JSON_CONTENT_TYPE);
             } else {
-                String contentType = getContentType(outputType);
+                String contentType = getContentType(currentOutputType);
                 storeInPayload(messageContext, output, contentType);
             }
         } catch (IOException e) {

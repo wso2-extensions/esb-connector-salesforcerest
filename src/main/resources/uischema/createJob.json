@@ -60,17 +60,6 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "contentType",
-                    "displayName": "Content Type",
-                    "inputType": "stringOrExpression",
-                    "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "Format of the data file to upload. Allowed values: CSV or JSON."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
                     "name": "columnDelimiter",
                     "displayName": "Column Delimiter",
                     "inputType": "comboOrExpression",

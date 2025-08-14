@@ -22,7 +22,6 @@
     <parameter name="lineEnding" description="lineEnding"/>
     <parameter name="assignmentRuleId" description="assignmentRuleId"/>
     <parameter name="externalIdFieldName" description="externalIdFieldName"/>
-    <parameter name="contentType" description="contentType"/>
     <parameter name="responseVariable" description="The name of the variable to which the response should be stored."/>
     <parameter name="overwriteBody"
                description="Replace the Message Body in Message Context with the response of the operation."/>
@@ -43,10 +42,7 @@
                 "object":     "${args.arg1}"        <#assign comma = true>
               </#if>
 
-              <#if args.arg7?? && args.arg7?has_content>
-                <#if comma>,</#if>
-                "contentType":"${args.arg7}"        <#assign comma = true>
-              </#if>
+              <#-- contentType is optional and defaults to CSV in Bulk API 2.0, so we omit it -->
 
               <#if args.arg3?? && args.arg3?has_content>
                 <#if comma>,</#if>
@@ -76,12 +72,11 @@
             ]]></format>
             <args>
                 <arg evaluator="xml" expression="$func:object"/>
-                <arg evaluator="xml" expression="$func:contentType"/>
+                <arg evaluator="xml" expression="$func:externalIdFieldName"/>
                 <arg evaluator="xml" expression="$func:operation"/>
                 <arg evaluator="xml" expression="$func:columnDelimiter"/>
                 <arg evaluator="xml" expression="$func:lineEnding"/>
                 <arg evaluator="xml" expression="$func:assignmentRuleId"/>
-                <arg evaluator="xml" expression="$func:externalIdFieldName"/>
             </args>
         </payloadFactory>
         <header name="Authorization" scope="transport"

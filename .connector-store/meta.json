@@ -15,575 +15,22 @@
     ],
     "releases": [
         {
-            "tagName": "v3.0.0",
+            "tagName": "v3.0.1",
             "products": [
                 "MI 4.4.0",
                 "MI 4.5.0"
             ],
             "operations": [
                 {
-                    "name": "soapQueryMore",
-                    "description": "Query More",
+                    "name": "getQueryJobInfo",
+                    "description": "Get Job Info",
                     "params": [
                         {
-                            "name": "batchSize",
-                            "type": "integerOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The number of records to return."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "getUnprocessedResults",
-                    "description": "Get Unprocessed Results",
-                    "params": [
-                        {
-                            "name": "jobId",
+                            "name": "queryJobId",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The ID of the job that you want to get the unprocessed results for."
-                        },
-                        {
-                            "name": "outputType",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "JSON",
-                            "description": "Output Content Type Supported values: JSON, CSV"
-                        },
-                        {
-                            "name": "includeResultTo",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "BODY",
-                            "description": "Supported values: FILE, BODY"
-                        },
-                        {
-                            "name": "filePath",
-                            "type": "stringOrExpression",
-                            "required": false,
-                            "defaultValue": "",
-                            "description": "The path to the file to write the results to."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "describeSObject",
-                    "description": "Describe sObject",
-                    "params": [
-                        {
-                            "name": "sObjectName",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The type of sObject"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "createQueryJob",
-                    "description": "Create Query Job",
-                    "params": [
-                        {
-                            "name": "operation",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The path of the file to be uploaded Supported values: QUERY, QUERY_ALL"
-                        },
-                        {
-                            "name": "query",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The path of the file to be uploaded"
-                        },
-                        {
-                            "name": "columnDelimiter",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "COMMA",
-                            "description": "The path of the file to be uploaded Supported values: COMMA, SEMICOLON, TAB, PIPE, CARET, BACKQUOTE"
-                        },
-                        {
-                            "name": "lineEnding",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The path of the file to be uploaded Supported values: CRLF, LF"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapGetDeleted",
-                    "description": "Get Delete Records",
-                    "params": [
-                        {
-                            "name": "sObjectType",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The sobject type"
-                        },
-                        {
-                            "name": "startDate",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The start date for deleted records lookup"
-                        },
-                        {
-                            "name": "endDate",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The end date for deleted records lookup"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "createJob",
-                    "description": "Create Job",
-                    "params": [
-                        {
-                            "name": "operation",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Bulk data action to perform on the records in this job. Supported values: insert, update, upsert, delete, hardDelete"
-                        },
-                        {
-                            "name": "object",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "API name of the Salesforce object (e.g., Account, Contact) that the job targets."
-                        },
-                        {
-                            "name": "columnDelimiter",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "COMMA",
-                            "description": "Character used to separate column values in the CSV file. Supported values: COMMA, SEMICOLON, TAB, PIPE, CARET, BACKQUOTE"
-                        },
-                        {
-                            "name": "lineEnding",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Line terminator used in the CSV file: CRLF (Windows) or LF (Unix). Supported values: CRLF, LF"
-                        },
-                        {
-                            "name": "assignmentRuleId",
-                            "type": "stringOrExpression",
-                            "required": false,
-                            "defaultValue": "",
-                            "description": "Optional ID of an assignment rule to apply when processing Case or Lead records."
-                        },
-                        {
-                            "name": "externalIdFieldName",
-                            "type": "stringOrExpression",
-                            "required": false,
-                            "defaultValue": "",
-                            "description": "API name of the external ID field used for matching records during UPSERT operations."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Variable that will store the API response payload."
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "When enabled, replaces the original message body with the operation result."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapDescribeSObjects",
-                    "description": "Describe SObjects",
-                    "params": [
-                        {
-                            "name": "sobjects",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The sobject types"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "abortJob",
-                    "description": "Abort Job",
-                    "params": [
-                        {
-                            "name": "jobId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The ID of the job to abort"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapSearch",
-                    "description": "Search",
-                    "params": [
-                        {
-                            "name": "searchString",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The searchString to get the Result."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapUndelete",
-                    "description": "Un-Delete Records",
-                    "params": [
-                        {
-                            "name": "allOrNone",
-                            "type": "integerOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Whether to rollback changes if an object fails(Default value is 0)."
-                        },
-                        {
-                            "name": "sobjects",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The sobject type"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapFindDuplicatesByIds",
-                    "description": "Find Duplicates By IDs",
-                    "params": [
-                        {
-                            "name": "ids",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Record ids"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "deleteJob",
-                    "description": "Delete Job",
-                    "params": [
-                        {
-                            "name": "jobId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The ID of the job to delete"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapRetrieve",
-                    "description": "Retrieve Field Values of Salesforce Record",
-                    "params": [
-                        {
-                            "name": "objectType",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The object type of the records."
-                        },
-                        {
-                            "name": "objectIDS",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "XML representation of the records to retrieve, as shown in the following example."
-                        },
-                        {
-                            "name": "fieldList",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "A comma-separated list of the fields you want to retrieve from the records."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapDescribeSObject",
-                    "description": "Describe SObject",
-                    "params": [
-                        {
-                            "name": "sobject",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The sobject type"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "upsert",
-                    "description": "Upsert",
-                    "params": [
-                        {
-                            "name": "sObjectName",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The object type whose metadata you want to use."
-                        },
-                        {
-                            "name": "fieldAndValue",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The value of the field of a particular sObject."
-                        },
-                        {
-                            "name": "Id",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The Id of the sobject will be update"
-                        },
-                        {
-                            "name": "externalIDField",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The external Id Field of the sobject"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "compositeBatch",
-                    "description": "Composite Batch",
-                    "params": [
-                        {
-                            "name": "fieldAndValue",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": ""
+                            "description": "The ID of the job to get the information for."
                         },
                         {
                             "name": "responseVariable",
@@ -666,43 +113,15 @@
                     "isHidden": false
                 },
                 {
-                    "name": "describeGlobal",
-                    "description": "Describe Global",
+                    "name": "resetPassword",
+                    "description": "Reset Password",
                     "params": [
                         {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "create",
-                    "description": "Create",
-                    "params": [
-                        {
-                            "name": "sObjectName",
+                            "name": "userId",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The object type whose metadata you want to use."
-                        },
-                        {
-                            "name": "fieldAndValue",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The value of the field of a particular sObject."
+                            "description": "The Id of the user."
                         },
                         {
                             "name": "responseVariable",
@@ -722,225 +141,8 @@
                     "isHidden": false
                 },
                 {
-                    "name": "getQueryJobInfo",
-                    "description": "Get Job Info",
-                    "params": [
-                        {
-                            "name": "queryJobId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The ID of the job to get the information for."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapCreate",
-                    "description": "Create Records",
-                    "params": [
-                        {
-                            "name": "allOrNone",
-                            "type": "integerOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Whether to rollback changes if an object fails(Default value is 0)."
-                        },
-                        {
-                            "name": "allowFieldTruncate",
-                            "type": "integerOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Whether to truncates strings that exceed the field length(Default value is 0)."
-                        },
-                        {
-                            "name": "sobjects",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The sobject type"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "getFailedResults",
-                    "description": "Get Failed Results",
-                    "params": [
-                        {
-                            "name": "jobId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The ID of the job that you want to get the failed results for."
-                        },
-                        {
-                            "name": "outputType",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "JSON",
-                            "description": "Output Content Type Supported values: JSON, CSV"
-                        },
-                        {
-                            "name": "includeResultTo",
-                            "type": "comboOrExpression",
-                            "required": true,
-                            "defaultValue": "BODY",
-                            "description": "Supported values: FILE, BODY"
-                        },
-                        {
-                            "name": "filePath",
-                            "type": "stringOrExpression",
-                            "required": false,
-                            "defaultValue": "",
-                            "description": "The path to the file to write the results to."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapLogout",
-                    "description": "Logout",
-                    "params": [
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "retrieveSObject",
-                    "description": "sObject Rows",
-                    "params": [
-                        {
-                            "name": "sObjectName",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The type of sObject"
-                        },
-                        {
-                            "name": "rowId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Specific object ID to access the record."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "getUpdated",
-                    "description": "Get Updated",
-                    "params": [
-                        {
-                            "name": "sObjectName",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The object type whose metadata you want to retrieve."
-                        },
-                        {
-                            "name": "start",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The start date and time for deleted lookup"
-                        },
-                        {
-                            "name": "end",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The end date and time for deleted lookup"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapQueryAll",
-                    "description": "Query All",
+                    "name": "soapQuery",
+                    "description": "Query",
                     "params": [
                         {
                             "name": "batchSize",
@@ -974,15 +176,85 @@
                     "isHidden": false
                 },
                 {
-                    "name": "getSuccessfulResults",
-                    "description": "Get Successful Results",
+                    "name": "soapRetrieve",
+                    "description": "Retrieve Field Values of Salesforce Record",
+                    "params": [
+                        {
+                            "name": "objectType",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The object type of the records."
+                        },
+                        {
+                            "name": "objectIDS",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "XML representation of the records to retrieve, as shown in the following example."
+                        },
+                        {
+                            "name": "fieldList",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "A comma-separated list of the fields you want to retrieve from the records."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "closeJob",
+                    "description": "Close Job",
                     "params": [
                         {
                             "name": "jobId",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The ID of the job that you want to get the successful results for."
+                            "description": "The ID of the job to abort"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "getUnprocessedResults",
+                    "description": "Get Unprocessed Results",
+                    "params": [
+                        {
+                            "name": "jobId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The ID of the job that you want to get the unprocessed results for."
                         },
                         {
                             "name": "outputType",
@@ -1023,22 +295,36 @@
                     "isHidden": false
                 },
                 {
-                    "name": "soapDelete",
-                    "description": "Delete Records",
+                    "name": "describeGlobal",
+                    "description": "Describe Global",
                     "params": [
                         {
-                            "name": "allOrNone",
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapQueryMore",
+                    "description": "Query More",
+                    "params": [
+                        {
+                            "name": "batchSize",
                             "type": "integerOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "Whether to rollback changes if an object fails(Default value is 0)."
-                        },
-                        {
-                            "name": "sobjects",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The sobject type"
+                            "description": "The number of records to return."
                         },
                         {
                             "name": "responseVariable",
@@ -1058,29 +344,246 @@
                     "isHidden": false
                 },
                 {
-                    "name": "getAllQueryJobInfo",
-                    "description": "Get All Job Info",
+                    "name": "describeSObject",
+                    "description": "Describe sObject",
                     "params": [
                         {
-                            "name": "isPkChunkingEnabled",
-                            "type": "booleanOrExpression",
-                            "required": false,
-                            "defaultValue": "",
-                            "description": "Is PK Chunking Enabled"
-                        },
-                        {
-                            "name": "jobType",
-                            "type": "comboOrExpression",
-                            "required": false,
-                            "defaultValue": "All",
-                            "description": "Job Type Supported values: Classic, V2Query, V2Ingest, All"
-                        },
-                        {
-                            "name": "queryLocator",
+                            "name": "sObjectName",
                             "type": "stringOrExpression",
-                            "required": false,
+                            "required": true,
                             "defaultValue": "",
-                            "description": "Query Locator"
+                            "description": "The type of sObject"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "abortJob",
+                    "description": "Abort Job",
+                    "params": [
+                        {
+                            "name": "jobId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The ID of the job to abort"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapGetDeleted",
+                    "description": "Get Delete Records",
+                    "params": [
+                        {
+                            "name": "sObjectType",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The sobject type"
+                        },
+                        {
+                            "name": "startDate",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The start date for deleted records lookup"
+                        },
+                        {
+                            "name": "endDate",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The end date for deleted records lookup"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "getJobInfo",
+                    "description": "Get Job Info",
+                    "params": [
+                        {
+                            "name": "jobId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The ID of the job to get the information for."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapGetServerTimestamp",
+                    "description": "Get Server Timestamp",
+                    "params": [
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapUpsert",
+                    "description": "Update or Insert Records",
+                    "params": [
+                        {
+                            "name": "allOrNone",
+                            "type": "integerOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Whether to rollback changes if an object fails(Default value is 0)."
+                        },
+                        {
+                            "name": "allowFieldTruncate",
+                            "type": "integerOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Whether to truncates strings that exceed the field length(Default value is 0)."
+                        },
+                        {
+                            "name": "sobjects",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The sobject type"
+                        },
+                        {
+                            "name": "externalId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The field containing the record ID"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "compositeBatch",
+                    "description": "Composite Batch",
+                    "params": [
+                        {
+                            "name": "fieldAndValue",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": ""
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "uploadJobData",
+                    "description": "Upload Job Data",
+                    "params": [
+                        {
+                            "name": "jobId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The ID of the job to upload data to"
+                        },
+                        {
+                            "name": "inputData",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The ID of the job to upload data to"
                         },
                         {
                             "name": "responseVariable",
@@ -1128,153 +631,6 @@
                     "isHidden": false
                 },
                 {
-                    "name": "resetPassword",
-                    "description": "Reset Password",
-                    "params": [
-                        {
-                            "name": "userId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The Id of the user."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapConvertLead",
-                    "description": "Convert Lead",
-                    "params": [
-                        {
-                            "name": "leadconvertrequests",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The convert lead requests"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapGetServerTimestamp",
-                    "description": "Get Server Timestamp",
-                    "params": [
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "closeJob",
-                    "description": "Close Job",
-                    "params": [
-                        {
-                            "name": "jobId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The ID of the job to abort"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "update",
-                    "description": "Update",
-                    "params": [
-                        {
-                            "name": "sObjectName",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The object type whose metadata you want to use."
-                        },
-                        {
-                            "name": "fieldAndValue",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The value of the field of a particular sObject."
-                        },
-                        {
-                            "name": "Id",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The Id of the sobject will be update"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
                     "name": "deleteQueryJob",
                     "description": "Delete Query Job",
                     "params": [
@@ -1284,41 +640,6 @@
                             "required": true,
                             "defaultValue": "",
                             "description": "The ID of the job to delete"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapSetPassword",
-                    "description": "Set Password",
-                    "params": [
-                        {
-                            "name": "userId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The user's Salesforce ID."
-                        },
-                        {
-                            "name": "password",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "If using setPassword, the new password to assign to the user."
                         },
                         {
                             "name": "responseVariable",
@@ -1422,8 +743,372 @@
                     "isHidden": false
                 },
                 {
-                    "name": "soapQuery",
-                    "description": "Query",
+                    "name": "abortQueryJob",
+                    "description": "Abort Query Job",
+                    "params": [
+                        {
+                            "name": "queryJobId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The ID of the job to abort"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapLogout",
+                    "description": "Logout",
+                    "params": [
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "compositeRequest",
+                    "description": "Send Multiple Requests Using Composite",
+                    "params": [
+                        {
+                            "name": "fieldAndValue",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": ""
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapGetUserInfo",
+                    "description": "Get User Info",
+                    "params": [
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapUndelete",
+                    "description": "Un-Delete Records",
+                    "params": [
+                        {
+                            "name": "allOrNone",
+                            "type": "integerOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Whether to rollback changes if an object fails(Default value is 0)."
+                        },
+                        {
+                            "name": "sobjects",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The sobject type"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "search",
+                    "description": "Search",
+                    "params": [
+                        {
+                            "name": "q",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The SOQL query to execute the search"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapDescribeSObject",
+                    "description": "Describe SObject",
+                    "params": [
+                        {
+                            "name": "sobject",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The sobject type"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapSearch",
+                    "description": "Search",
+                    "params": [
+                        {
+                            "name": "searchString",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The searchString to get the Result."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "update",
+                    "description": "Update",
+                    "params": [
+                        {
+                            "name": "sObjectName",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The object type whose metadata you want to use."
+                        },
+                        {
+                            "name": "fieldAndValue",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The value of the field of a particular sObject."
+                        },
+                        {
+                            "name": "Id",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The Id of the sobject will be update"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "getUpdated",
+                    "description": "Get Updated",
+                    "params": [
+                        {
+                            "name": "sObjectName",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The object type whose metadata you want to retrieve."
+                        },
+                        {
+                            "name": "start",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The start date and time for deleted lookup"
+                        },
+                        {
+                            "name": "end",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The end date and time for deleted lookup"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "getAllJobInfo",
+                    "description": "Get All Job Info",
+                    "params": [
+                        {
+                            "name": "isPkChunkingEnabled",
+                            "type": "booleanOrExpression",
+                            "required": false,
+                            "defaultValue": "",
+                            "description": "Is PK Chunking Enabled"
+                        },
+                        {
+                            "name": "jobType",
+                            "type": "comboOrExpression",
+                            "required": false,
+                            "defaultValue": "All",
+                            "description": "Job Type Supported values: Classic, BigObjectIngest, V2Ingest, All"
+                        },
+                        {
+                            "name": "queryLocator",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "",
+                            "description": "Query Locator"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapDescribeGlobal",
+                    "description": "DescribeGlobal",
+                    "params": [
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapQueryAll",
+                    "description": "Query All",
                     "params": [
                         {
                             "name": "batchSize",
@@ -1438,6 +1123,76 @@
                             "required": true,
                             "defaultValue": "",
                             "description": "The queryString to get the results from API."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "createBulk",
+                    "description": "Create Multiple Records",
+                    "params": [
+                        {
+                            "name": "sObjectName",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The object type whose metadata you want to retrieve."
+                        },
+                        {
+                            "name": "fieldAndValue",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The value of the field of a particular sObject."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "delete",
+                    "description": "Delete",
+                    "params": [
+                        {
+                            "name": "sObjectName",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The object type whose metadata you want to retrieve."
+                        },
+                        {
+                            "name": "idToDelete",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The Id of the object will be going to delete."
                         },
                         {
                             "name": "responseVariable",
@@ -1520,6 +1275,62 @@
                     "isHidden": false
                 },
                 {
+                    "name": "soapSendEmailMessage",
+                    "description": "Send Email Message",
+                    "params": [
+                        {
+                            "name": "sendEmailMessage",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "XML representation of the email IDs to send, as shown in the example."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "deleteJob",
+                    "description": "Delete Job",
+                    "params": [
+                        {
+                            "name": "jobId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The ID of the job to delete"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
                     "name": "compositeGraph",
                     "description": "Composite Graph",
                     "params": [
@@ -1529,6 +1340,195 @@
                             "required": true,
                             "defaultValue": "",
                             "description": ""
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "createJob",
+                    "description": "Create Job",
+                    "params": [
+                        {
+                            "name": "operation",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Bulk data action to perform on the records in this job. Supported values: insert, update, upsert, delete, hardDelete"
+                        },
+                        {
+                            "name": "object",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "API name of the Salesforce object (e.g., Account, Contact) that the job targets."
+                        },
+                        {
+                            "name": "columnDelimiter",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "COMMA",
+                            "description": "Character used to separate column values in the CSV file. Supported values: COMMA, SEMICOLON, TAB, PIPE, CARET, BACKQUOTE"
+                        },
+                        {
+                            "name": "lineEnding",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Line terminator used in the CSV file: CRLF (Windows) or LF (Unix). Supported values: CRLF, LF"
+                        },
+                        {
+                            "name": "assignmentRuleId",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "",
+                            "description": "Optional ID of an assignment rule to apply when processing Case or Lead records."
+                        },
+                        {
+                            "name": "externalIdFieldName",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "",
+                            "description": "API name of the external ID field used for matching records during UPSERT operations."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Variable that will store the API response payload."
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "When enabled, replaces the original message body with the operation result."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "getFailedResults",
+                    "description": "Get Failed Results",
+                    "params": [
+                        {
+                            "name": "jobId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The ID of the job that you want to get the failed results for."
+                        },
+                        {
+                            "name": "outputType",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "JSON",
+                            "description": "Output Content Type Supported values: JSON, CSV"
+                        },
+                        {
+                            "name": "includeResultTo",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "BODY",
+                            "description": "Supported values: FILE, BODY"
+                        },
+                        {
+                            "name": "filePath",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "",
+                            "description": "The path to the file to write the results to."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapResetPassword",
+                    "description": "Reset Password",
+                    "params": [
+                        {
+                            "name": "userId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The user's Salesforce ID."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "createQueryJob",
+                    "description": "Create Query Job",
+                    "params": [
+                        {
+                            "name": "operation",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The path of the file to be uploaded Supported values: QUERY, QUERY_ALL"
+                        },
+                        {
+                            "name": "query",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The path of the file to be uploaded"
+                        },
+                        {
+                            "name": "columnDelimiter",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "COMMA",
+                            "description": "The path of the file to be uploaded Supported values: COMMA, SEMICOLON, TAB, PIPE, CARET, BACKQUOTE"
+                        },
+                        {
+                            "name": "lineEnding",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The path of the file to be uploaded Supported values: CRLF, LF"
                         },
                         {
                             "name": "responseVariable",
@@ -1583,15 +1583,15 @@
                     "isHidden": false
                 },
                 {
-                    "name": "search",
-                    "description": "Search",
+                    "name": "soapDescribeSObjects",
+                    "description": "Describe SObjects",
                     "params": [
                         {
-                            "name": "q",
+                            "name": "sobjects",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The SOQL query to execute the search"
+                            "description": "The sobject types"
                         },
                         {
                             "name": "responseVariable",
@@ -1611,36 +1611,8 @@
                     "isHidden": false
                 },
                 {
-                    "name": "abortQueryJob",
-                    "description": "Abort Query Job",
-                    "params": [
-                        {
-                            "name": "queryJobId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The ID of the job to abort"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapResetPassword",
-                    "description": "Reset Password",
+                    "name": "soapSetPassword",
+                    "description": "Set Password",
                     "params": [
                         {
                             "name": "userId",
@@ -1650,6 +1622,13 @@
                             "description": "The user's Salesforce ID."
                         },
                         {
+                            "name": "password",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "If using setPassword, the new password to assign to the user."
+                        },
+                        {
                             "name": "responseVariable",
                             "type": "string",
                             "required": true,
@@ -1667,10 +1646,17 @@
                     "isHidden": false
                 },
                 {
-                    "name": "soapDescribeGlobal",
-                    "description": "DescribeGlobal",
+                    "name": "soapConvertLead",
+                    "description": "Convert Lead",
                     "params": [
                         {
+                            "name": "leadconvertrequests",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The convert lead requests"
+                        },
+                        {
                             "name": "responseVariable",
                             "type": "string",
                             "required": true,
@@ -1688,29 +1674,8 @@
                     "isHidden": false
                 },
                 {
-                    "name": "soapGetUserInfo",
-                    "description": "Get User Info",
-                    "params": [
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapUpsert",
-                    "description": "Update or Insert Records",
+                    "name": "soapCreate",
+                    "description": "Create Records",
                     "params": [
                         {
                             "name": "allOrNone",
@@ -1734,13 +1699,6 @@
                             "description": "The sobject type"
                         },
                         {
-                            "name": "externalId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The field containing the record ID"
-                        },
-                        {
                             "name": "responseVariable",
                             "type": "string",
                             "required": true,
@@ -1758,43 +1716,22 @@
                     "isHidden": false
                 },
                 {
-                    "name": "getJobInfo",
-                    "description": "Get Job Info",
+                    "name": "soapEmptyRecycleBin",
+                    "description": "Empty Recycle Bin",
                     "params": [
                         {
-                            "name": "jobId",
+                            "name": "allOrNone",
+                            "type": "integerOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Whether to rollback changes if an object fails(Default value is 0)."
+                        },
+                        {
+                            "name": "sobjects",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The ID of the job to get the information for."
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapSendEmail",
-                    "description": "Send Email",
-                    "params": [
-                        {
-                            "name": "sendEmail",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "XML representation of the email, as shown in the example."
+                            "description": "The sobject type"
                         },
                         {
                             "name": "responseVariable",
@@ -1856,42 +1793,7 @@
                     "isHidden": false
                 },
                 {
-                    "name": "uploadJobData",
-                    "description": "Upload Job Data",
-                    "params": [
-                        {
-                            "name": "jobId",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The ID of the job to upload data to"
-                        },
-                        {
-                            "name": "inputData",
-                            "type": "stringOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "The ID of the job to upload data to"
-                        },
-                        {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "getAllJobInfo",
+                    "name": "getAllQueryJobInfo",
                     "description": "Get All Job Info",
                     "params": [
                         {
@@ -1906,7 +1808,7 @@
                             "type": "comboOrExpression",
                             "required": false,
                             "defaultValue": "All",
-                            "description": "Job Type Supported values: Classic, BigObjectIngest, V2Ingest, All"
+                            "description": "Job Type Supported values: Classic, V2Query, V2Ingest, All"
                         },
                         {
                             "name": "queryLocator",
@@ -1933,15 +1835,113 @@
                     "isHidden": false
                 },
                 {
-                    "name": "createBulk",
-                    "description": "Create Multiple Records",
+                    "name": "retrieveSObject",
+                    "description": "sObject Rows",
                     "params": [
                         {
                             "name": "sObjectName",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The object type whose metadata you want to retrieve."
+                            "description": "The type of sObject"
+                        },
+                        {
+                            "name": "rowId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Specific object ID to access the record."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapDelete",
+                    "description": "Delete Records",
+                    "params": [
+                        {
+                            "name": "allOrNone",
+                            "type": "integerOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Whether to rollback changes if an object fails(Default value is 0)."
+                        },
+                        {
+                            "name": "sobjects",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The sobject type"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "soapFindDuplicatesByIds",
+                    "description": "Find Duplicates By IDs",
+                    "params": [
+                        {
+                            "name": "ids",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Record ids"
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "name": "create",
+                    "description": "Create",
+                    "params": [
+                        {
+                            "name": "sObjectName",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The object type whose metadata you want to use."
                         },
                         {
                             "name": "fieldAndValue",
@@ -1968,15 +1968,15 @@
                     "isHidden": false
                 },
                 {
-                    "name": "compositeRequest",
-                    "description": "Send Multiple Requests Using Composite",
+                    "name": "soapSendEmail",
+                    "description": "Send Email",
                     "params": [
                         {
-                            "name": "fieldAndValue",
+                            "name": "sendEmail",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": ""
+                            "description": "XML representation of the email, as shown in the example."
                         },
                         {
                             "name": "responseVariable",
@@ -2024,22 +2024,36 @@
                     "isHidden": false
                 },
                 {
-                    "name": "soapEmptyRecycleBin",
-                    "description": "Empty Recycle Bin",
+                    "name": "getSuccessfulResults",
+                    "description": "Get Successful Results",
                     "params": [
                         {
-                            "name": "allOrNone",
-                            "type": "integerOrExpression",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Whether to rollback changes if an object fails(Default value is 0)."
-                        },
-                        {
-                            "name": "sobjects",
+                            "name": "jobId",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The sobject type"
+                            "description": "The ID of the job that you want to get the successful results for."
+                        },
+                        {
+                            "name": "outputType",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "JSON",
+                            "description": "Output Content Type Supported values: JSON, CSV"
+                        },
+                        {
+                            "name": "includeResultTo",
+                            "type": "comboOrExpression",
+                            "required": true,
+                            "defaultValue": "BODY",
+                            "description": "Supported values: FILE, BODY"
+                        },
+                        {
+                            "name": "filePath",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "",
+                            "description": "The path to the file to write the results to."
                         },
                         {
                             "name": "responseVariable",
@@ -2059,50 +2073,36 @@
                     "isHidden": false
                 },
                 {
-                    "name": "delete",
-                    "description": "Delete",
+                    "name": "upsert",
+                    "description": "Upsert",
                     "params": [
                         {
                             "name": "sObjectName",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The object type whose metadata you want to retrieve."
+                            "description": "The object type whose metadata you want to use."
                         },
                         {
-                            "name": "idToDelete",
+                            "name": "fieldAndValue",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "The Id of the object will be going to delete."
+                            "description": "The value of the field of a particular sObject."
                         },
                         {
-                            "name": "responseVariable",
-                            "type": "string",
-                            "required": true,
-                            "defaultValue": "",
-                            "description": "Name of the variable to which the output of the operation should be assigned"
-                        },
-                        {
-                            "name": "overwriteBody",
-                            "type": "checkbox",
-                            "required": false,
-                            "defaultValue": "false",
-                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
-                        }
-                    ],
-                    "isHidden": false
-                },
-                {
-                    "name": "soapSendEmailMessage",
-                    "description": "Send Email Message",
-                    "params": [
-                        {
-                            "name": "sendEmailMessage",
+                            "name": "Id",
                             "type": "stringOrExpression",
                             "required": true,
                             "defaultValue": "",
-                            "description": "XML representation of the email IDs to send, as shown in the example."
+                            "description": "The Id of the sobject will be update"
+                        },
+                        {
+                            "name": "externalIDField",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "The external Id Field of the sobject"
                         },
                         {
                             "name": "responseVariable",

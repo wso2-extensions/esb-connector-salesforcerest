@@ -20,7 +20,7 @@
 
     <groupId>org.wso2.integration.connector</groupId>
     <artifactId>mi-connector-salesforcerest</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.0.1</version>
 
     <name>Salesforce Connector</name>
     <url>http://wso2.org</url>
@@ -67,7 +67,7 @@
         <url>https://github.com/wso2-extensions/esb-connector-salesforcerest.git</url>
         <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest
         </developerConnection>
-        <tag>HEAD</tag>
+        <tag>v3.0.1</tag>
     </scm>
     <build>
         <plugins>

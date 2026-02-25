@@ -12,7 +12,7 @@
         "displayName": "Connection Name",
         "inputType": "string",
         "defaultValue": "SALESFORCE_OAUTH_2",
-        "required": true,
+        "required": "true",
         "helpTip": "A logical name to identify this connection."
       }
     },
@@ -23,7 +23,7 @@
         "displayName": "Scope",
         "inputType": "stringOrExpression",
         "defaultValue": "",
-        "required": false,
+        "required": "false",
         "helpTip": "Space-separated OAuth scopes."
       }
     },
@@ -38,7 +38,7 @@
               "name": "clientId",
               "displayName": "Client ID",
               "inputType": "stringOrExpression",
-              "required": true,
+              "required": "true",
               "helpTip": "Consumer Key from your connected app."
             }
           },
@@ -48,7 +48,7 @@
               "name": "clientSecret",
               "displayName": "Client Secret",
               "inputType": "stringOrExpression",
-              "required": true,
+              "required": "true",
               "helpTip": "Consumer Secret from your connected app."
             }
           },
@@ -58,7 +58,7 @@
               "name": "tokenUrl",
               "displayName": "Token URL",
               "inputType": "stringOrExpression",
-              "required": true,
+              "required": "true",
               "helpTip": "Token endpoint URL."
             }
           }
@@ -76,7 +76,7 @@
               "name": "instanceUrl",
               "displayName": "Instance URL",
               "inputType": "stringOrExpression",
-              "required": true,
+              "required": "true",
               "helpTip": "Base URL for API requests."
             }
           },
@@ -87,7 +87,7 @@
               "displayName": "API Version",
               "inputType": "stringOrExpression",
               "defaultValue": "v60.0",
-              "required": false,
+              "required": "false",
               "helpTip": "Salesforce API version."
             }
           }
@@ -106,7 +106,7 @@
               "displayName": "Timeout",
               "inputType": "stringOrExpression",
               "defaultValue": "3000",
-              "required": false,
+              "required": "false",
               "helpTip": "Connection timeout in milliseconds."
             }
           },
@@ -116,8 +116,8 @@
               "name": "blocking",
               "displayName": "Blocking",
               "inputType": "boolean",
-              "defaultValue": false,
-              "required": false,
+              "defaultValue": "false",
+              "required": "false",
               "helpTip": "Enable blocking API calls."
             }
           }

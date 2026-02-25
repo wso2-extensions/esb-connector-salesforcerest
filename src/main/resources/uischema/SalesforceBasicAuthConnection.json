@@ -12,7 +12,7 @@
         "displayName": "Connection Name",
         "inputType": "string",
         "defaultValue": "SALESFORCE_OAUTH_2",
-        "required": true,
+        "required": "true",
         "helpTip": "A logical name to identify this connection."
       }
     },
@@ -22,7 +22,7 @@
         "name": "username",
         "displayName": "Username",
         "inputType": "stringOrExpression",
-        "required": true,
+        "required": "true",
         "helpTip": "Salesforce login username."
       }
     },
@@ -32,7 +32,7 @@
         "name": "password",
         "displayName": "Password + Security Token",
         "inputType": "stringOrExpression",
-        "required": true,
+        "required": "true",
         "helpTip": "Password followed by your security token."
       }
     },
@@ -42,7 +42,7 @@
         "name": "loginUrl",
         "displayName": "Login URL",
         "inputType": "stringOrExpression",
-        "required": true,
+        "required": "true",
         "helpTip": "Salesforce login endpoint URL."
       }
     },
@@ -52,8 +52,8 @@
         "name": "forceLogin",
         "displayName": "Force Login",
         "inputType": "boolean",
-        "defaultValue": false,
-        "required": false,
+        "defaultValue": "false",
+        "required": "false",
         "helpTip": "Always start a new session if enabled."
       }
     },
@@ -63,8 +63,8 @@
         "name": "blocking",
         "displayName": "Blocking",
         "inputType": "boolean",
-        "defaultValue": false,
-        "required": false,
+        "defaultValue": "false",
+        "required": "false",
         "helpTip": "Enable blocking API calls to Salesforce."
       }
     }

@@ -15,7 +15,7 @@
     ],
     "releases": [
         {
-            "tagName": "v3.0.1",
+            "tagName": "v3.0.2",
             "products": [
                 "MI 4.4.0",
                 "MI 4.5.0"
@@ -2120,6 +2120,125 @@
                         }
                     ],
                     "isHidden": false
+                }
+            ],
+            "connections": [
+                {
+                    "name": "Oauth2",
+                    "description": "Salesforce OAuth 2.0 Connection Type",
+                    "params": [
+                        {
+                            "name": "connectionName",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "SALESFORCE_OAUTH_2",
+                            "description": "A logical name to identify this connection."
+                        },
+                        {
+                            "name": "scope",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "",
+                            "description": "Space-separated OAuth scopes."
+                        },
+                        {
+                            "name": "clientId",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Consumer Key from your connected app."
+                        },
+                        {
+                            "name": "clientSecret",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Consumer Secret from your connected app."
+                        },
+                        {
+                            "name": "tokenUrl",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Token endpoint URL."
+                        },
+                        {
+                            "name": "instanceUrl",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Base URL for API requests."
+                        },
+                        {
+                            "name": "apiVersion",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "v60.0",
+                            "description": "Salesforce API version."
+                        },
+                        {
+                            "name": "timeout",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "3000",
+                            "description": "Connection timeout in milliseconds."
+                        },
+                        {
+                            "name": "blocking",
+                            "type": "boolean",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Enable blocking API calls."
+                        }
+                    ]
+                },
+                {
+                    "name": "BasicAuth",
+                    "description": "Salesforce OAuth 2.0 Connection Type",
+                    "params": [
+                        {
+                            "name": "connectionName",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "SALESFORCE_OAUTH_2",
+                            "description": "A logical name to identify this connection."
+                        },
+                        {
+                            "name": "username",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Salesforce login username."
+                        },
+                        {
+                            "name": "password",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Password followed by your security token."
+                        },
+                        {
+                            "name": "loginUrl",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Salesforce login endpoint URL."
+                        },
+                        {
+                            "name": "forceLogin",
+                            "type": "boolean",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Always start a new session if enabled."
+                        },
+                        {
+                            "name": "blocking",
+                            "type": "boolean",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Enable blocking API calls to Salesforce."
+                        }
+                    ]
                 }
             ]
         },

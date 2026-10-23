@@ -52,7 +52,9 @@
             <else>
                 <filter source="$ctx:uri.var.authType" regex="(?i)JWT">
                     <then>
-                        <!-- JWT bearer flow: on 401 (expired session) obtain a new token and retry once. -->
+                        <!-- JWT bearer flow: on 401 (expired session) obtain a new token and retry once. A blocking
+                             call reports a 401 as a fault unless it is listed as a non-error status code. -->
+                        <property name="non.error.http.status.codes" value="401" scope="axis2"/>
                         <filter source="$ctx:httpMethod" regex="(post|patch|put)">
                             <enrich>
                                 <source clone="true" type="body"/>
@@ -81,6 +83,7 @@
                                 <salesforcerest.callOptions/>
                             </then>
                         </filter>
+                        <property name="non.error.http.status.codes" scope="axis2" action="remove"/>
                     </then>
                     <else>
                         <header name="Authorization"

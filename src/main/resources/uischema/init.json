@@ -29,6 +29,104 @@
                 {
                   "type": "attribute",
                   "value": {
+                    "name": "authType",
+                    "displayName": "Authentication Type",
+                    "inputType": "combo",
+                    "comboValues": ["Default", "JWT"],
+                    "defaultValue": "Default",
+                    "required": "false",
+                    "helpTip": "Default: access token, refresh token or username-password flow, depending on the fields you fill. JWT: OAuth 2.0 JWT bearer flow (server-to-server, signed with a private key)."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "apiVersion",
+                    "displayName": "API Version",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Salesforce REST API version, for example v59.0."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "clientId",
+                    "displayName": "Client ID",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Consumer key of the connected app. Used by the refresh token, username-password and JWT flows."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "username",
+                    "displayName": "Username",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Salesforce username. Used by the username-password flow and, as the pre-authorized integration user, by the JWT flow."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "tokenEndpointHostname",
+                    "displayName": "Token Endpoint URL",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "URL used to obtain access tokens in the refresh token and JWT flows: https://login.salesforce.com (default), https://test.salesforce.com for sandboxes, or your My Domain URL."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "timeout",
+                    "displayName": "Timeout",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "3000",
+                    "required": "false",
+                    "helpTip": "Timeout in milliseconds for Salesforce calls, including token requests."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "blocking",
+                    "displayName": "Blocking",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Set to true to perform the blocking invocations to Salesforce."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Access Token, Refresh Token and Username-Password",
+              "enableCondition": ["NOT", {"authType": "JWT"}],
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "apiUrl",
+                    "displayName": "API URL",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The instance URL for your organization, for example https://mydomain.my.salesforce.com."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
                     "name": "accessToken",
                     "displayName": "Access Token",
                     "inputType": "stringOrExpresion",
@@ -40,23 +138,12 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "apiVersion",
-                    "displayName": "API Version",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "Access token of the organizational account."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
                     "name": "hostName",
                     "displayName": "Host Name",
                     "inputType": "stringOrExpresion",
                     "defaultValue": "",
                     "required": "true",
-                    "helpTip": "Value of the hostname to authenticate salesforce."
+                    "helpTip": "Value of the hostname to authenticate salesforce (username-password flow)."
                   }
                 },
                 {
@@ -73,67 +160,12 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "tokenEndpointHostname",
-                    "displayName": "Refresh Token Endpoint",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Endpoint of the refresh token."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
                     "name": "clientSecret",
                     "displayName": "Client Secret",
                     "inputType": "stringOrExpresion",
                     "defaultValue": "",
                     "required": "false",
                     "helpTip": "Value of your secret key given when you registered your application with salesforce."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "clientId",
-                    "displayName": "Client ID",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Value of your API Key given when you registered your application with salesforce."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "apiUrl",
-                    "displayName": "API URL",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "true",
-                    "helpTip": "The instance URL for your organization"
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "timeout",
-                    "displayName": "Timeout",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "3000",
-                    "required": "false",
-                    "helpTip": "Timeout duration of the API request."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "username",
-                    "displayName": "Username",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "The username for the salesforce."
                   }
                 },
                 {
@@ -146,16 +178,81 @@
                     "required": "false",
                     "helpTip": "The password for the salesforce which means the password with security key."
                   }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "JWT Bearer",
+              "enableCondition": [{"authType": "JWT"}],
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "instanceUrl",
+                    "displayName": "Instance URL",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Optional. By default, API calls go to the instance URL returned with the access token. Set it only to send them through another URL, such as a proxy."
+                  }
                 },
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "blocking",
-                    "displayName": "Blocking",
+                    "name": "keyStorePath",
+                    "displayName": "Keystore Path",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Location of the keystore (.p12/.jks) or PEM key file with the private key of the certificate uploaded to the Salesforce connected app. Relative paths are resolved against the MI home."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "keyStoreType",
+                    "displayName": "Keystore Type",
+                    "inputType": "comboOrExpression",
+                    "comboValues": ["PKCS12", "JKS", "PEM"],
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Format of the key file. Optional: inferred from the extension (.jks = JKS, .pem/.key = PEM, otherwise PKCS12). PEM files must contain a PKCS#8 key (BEGIN PRIVATE KEY or BEGIN ENCRYPTED PRIVATE KEY)."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "keyStorePassword",
+                    "displayName": "Keystore Password",
                     "inputType": "stringOrExpresion",
                     "defaultValue": "",
                     "required": "false",
-                    "helpTip": "Set to true to perform the blocking invocations to Salesforce."
+                    "helpTip": "Keystore password (JKS/PKCS12). Store it in Secure Vault: {wso2:vault-lookup('sf_keystore_password')}."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "keyAlias",
+                    "displayName": "Key Alias",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Alias of the signing key (JKS/PKCS12). Optional if the keystore holds a single key."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "keyPassword",
+                    "displayName": "Key Password",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Password of the private key if it differs from the keystore password, or of an encrypted PEM key. Store it in Secure Vault."
                   }
                 }
               ]

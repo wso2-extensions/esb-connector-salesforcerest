@@ -50,10 +50,45 @@
                 </filter>
             </then>
             <else>
-                <header name="Authorization"
-                        expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
-                        scope="transport"/>
-                <salesforcerest.callOptions/>
+                <filter source="$ctx:uri.var.authType" regex="(?i)JWT">
+                    <then>
+                        <!-- JWT bearer flow: on 401 (expired session) obtain a new token and retry once. -->
+                        <filter source="$ctx:httpMethod" regex="(post|patch|put)">
+                            <enrich>
+                                <source clone="true" type="body"/>
+                                <target property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                            </enrich>
+                        </filter>
+                        <header name="Authorization"
+                                expression="fn:concat('Bearer ', $ctx:uri.var.accessToken)"
+                                scope="transport"/>
+                        <salesforcerest.callOptions/>
+                        <property name="httpCode" expression="$axis2:HTTP_SC" scope="default" type="STRING"/>
+                        <filter source="$ctx:httpCode" regex="401">
+                            <then>
+                                <class name="org.wso2.carbon.connector.salesforcerest.JwtBearerTokenGenerator">
+                                    <property name="renew" value="true"/>
+                                </class>
+                                <header name="Authorization"
+                                        expression="fn:concat('Bearer ', $ctx:uri.var.accessToken)"
+                                        scope="transport"/>
+                                <filter source="$ctx:httpMethod" regex="(post|patch|put)">
+                                    <enrich>
+                                        <source clone="true" property="ORIGINAL_MSG_PAYLOAD" type="property"/>
+                                        <target type="body"/>
+                                    </enrich>
+                                </filter>
+                                <salesforcerest.callOptions/>
+                            </then>
+                        </filter>
+                    </then>
+                    <else>
+                        <header name="Authorization"
+                                expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )"
+                                scope="transport"/>
+                        <salesforcerest.callOptions/>
+                    </else>
+                </filter>
             </else>
         </filter>
     </sequence>

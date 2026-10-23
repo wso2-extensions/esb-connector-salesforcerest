@@ -244,14 +244,8 @@ Or if you want the connector to handle token expiry
 
 ### Connection Configuration Parameters for the OAuth 2.0 JWT bearer flow
 
-The JWT bearer flow is the flow Salesforce recommends for server-to-server integrations. The connector signs a
-short-lived JWT (RS256) with your private key and exchanges it for an access token. No client secret or user password
-is used. The token is kept in memory and reused, and it is renewed automatically when Salesforce reports an expired
-session (HTTP 401). The failed request is then retried once. Tokens are not written to disk; after a restart, a new
-token is obtained on first use.
-
-Each connection (by `name`) holds one token. If `username` changes from message to message, a new token is obtained
-each time it changes, so use a separate connection per user.
+The connector signs a short-lived JWT with your private key and exchanges it for an access token, which is reused and
+renewed automatically when it expires. No client secret or user password is needed.
 
 Salesforce setup:
 1. Create a key and certificate, for example:
@@ -269,7 +263,7 @@ Salesforce setup:
             <th>Required</th>
             <th>Sample Value</th>
         </tr>
-        <tr><td>name</td><td>Name of the connection. Each connection keeps its own token.</td><td>Yes</td><td>SALESFORCE_JWT</td></tr>
+        <tr><td>name</td><td>Name of the connection.</td><td>Yes</td><td>SALESFORCE_JWT</td></tr>
         <tr><td>authType</td><td>Set to <code>JWT</code>.</td><td>Yes</td><td>JWT</td></tr>
         <tr><td>clientId</td><td>Consumer key of the connected app.</td><td>Yes</td><td>3MVG9XXXXXXXX</td></tr>
         <tr><td>username</td><td>Pre-authorized Salesforce user.</td><td>Yes</td><td>integration@example.com</td></tr>
@@ -290,20 +284,11 @@ Salesforce setup:
             encrypted PEM key. Use Secure Vault.</td><td>No</td><td>{wso2:vault-lookup('sf_jwt_key_password')}</td></tr>
 </table>
 
-A PEM key file must contain a PKCS#8 RSA key: `-----BEGIN PRIVATE KEY-----`, or `-----BEGIN ENCRYPTED PRIVATE KEY-----`
-together with `keyPassword`. Other blocks in the file, such as the certificate, are ignored. Convert a PKCS#1 key
-(`-----BEGIN RSA PRIVATE KEY-----`) with `openssl pkcs8 -topk8 -in key.pem -out key-pkcs8.pem`.
+A PEM key file must contain a PKCS#8 RSA key (`BEGIN PRIVATE KEY`, or `BEGIN ENCRYPTED PRIVATE KEY` with
+`keyPassword`). Convert a PKCS#1 key (`BEGIN RSA PRIVATE KEY`) with `openssl pkcs8 -topk8 -in key.pem -out key-pkcs8.pem`.
 
-`password`, `refreshToken` and `accessToken` must not be set when `authType` is `JWT`. On failure the fault sequence
-runs with `ERROR_CODE` `SF_JWT_CONFIG` (invalid configuration or key) or `SF_JWT_TOKEN` (Salesforce rejected the
-request, e.g. `invalid_grant`, the endpoint could not be reached, or Salesforce rejected a token whose session is
-still valid, which happens when `instanceUrl` belongs to another org or the org locks sessions to an IP address).
-
-Limitations:
-- The JWT audience is `https://test.salesforce.com` for `test.salesforce.com`, sandbox and scratch org login URLs,
-  and `https://login.salesforce.com` otherwise. Experience Cloud site login URLs are not supported.
-- The token request uses the JVM proxy settings (`https.proxyHost`, `https.proxyPort`), not the proxy of the MI
-  HTTP transport.
+On failure the fault sequence runs with `ERROR_CODE` `SF_JWT_CONFIG` (invalid configuration or key) or `SF_JWT_TOKEN`
+(Salesforce rejected the request or could not be reached), and `ERROR_MESSAGE` explains the cause.
 
 ```xml
     <salesforcerest.init>

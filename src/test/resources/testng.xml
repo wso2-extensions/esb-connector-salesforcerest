@@ -10,6 +10,12 @@
     </listeners>
 
 
+    <test name="salesforcerest-Unit-Test" verbose="2">
+        <packages>
+            <package name="org.wso2.carbon.connector.salesforcerest"/>
+        </packages>
+    </test>
+
     <test name="salesforcerest-Connector-Test" preserve-order="true" verbose="2">
         <packages>
             <package name="org.wso2.carbon.connector.integration.test.salesforcerest"/>

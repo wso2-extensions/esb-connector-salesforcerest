@@ -94,7 +94,7 @@ public class TokenCacheTest {
         String rejected = obtain(connection, "id", null, sameSession);
         String message = JwtTestUtils.expectError(ERROR_TOKEN,
                 () -> obtain(connection, "id", rejected, sameSession));
-        Assert.assertTrue(message.contains("instanceUrl"), message);
+        Assert.assertTrue(message.contains("apiUrl"), message);
         // Further 401s within the hold time are reported without logging in again.
         JwtTestUtils.expectError(ERROR_TOKEN, () -> obtain(connection, "id", rejected, sameSession));
         Assert.assertEquals(fetches.get(), 2);

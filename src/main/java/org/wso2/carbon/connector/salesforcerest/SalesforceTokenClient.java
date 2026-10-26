@@ -56,10 +56,13 @@ final class SalesforceTokenClient {
 
     /**
      * Signs an assertion for the user and exchanges it for an access token.
+     *
+     * @param audience the aud claim, or null to derive it from the token endpoint host
      */
-    static Token requestToken(URL tokenUrl, String clientId, String username, PrivateKey key, int timeout)
-            throws JwtException {
-        String assertion = buildAssertion(clientId, username, audience(tokenUrl.getHost()),
+    static Token requestToken(URL tokenUrl, String clientId, String username, String audience, PrivateKey key,
+                              int timeout) throws JwtException {
+        String aud = audience != null ? audience : audience(tokenUrl.getHost());
+        String assertion = buildAssertion(clientId, username, aud,
                 System.currentTimeMillis() / 1000 + ASSERTION_LIFETIME_SECONDS, key);
         return exchange(tokenUrl, assertion, timeout);
     }

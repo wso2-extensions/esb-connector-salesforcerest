@@ -267,9 +267,11 @@ Salesforce setup:
         <tr><td>authType</td><td>Set to <code>JWT</code>.</td><td>Yes</td><td>JWT</td></tr>
         <tr><td>clientId</td><td>Consumer key of the connected app.</td><td>Yes</td><td>3MVG9XXXXXXXX</td></tr>
         <tr><td>username</td><td>Pre-authorized Salesforce user.</td><td>Yes</td><td>integration@example.com</td></tr>
-        <tr><td>instanceUrl</td><td>URL for the API calls. If omitted, the instance URL returned with the access token
-            is used. Set it only to send the calls through another URL, such as a proxy. <code>apiUrl</code> is not
-            used with JWT.</td><td>No</td><td>https://mydomain.my.salesforce.com</td></tr>
+        <tr><td>audience</td><td>The <code>aud</code> claim of the JWT. If omitted, <code>https://test.salesforce.com</code>
+            for sandbox and scratch org login URLs, otherwise <code>https://login.salesforce.com</code>. Set it only if
+            Salesforce expects another value.</td><td>No</td><td>https://login.salesforce.com</td></tr>
+        <tr><td>apiUrl</td><td>URL for the API calls. If omitted, the instance URL returned with the access token is
+            used. Set it only to send the calls through another URL, such as a proxy.</td><td>No</td><td>https://mydomain.my.salesforce.com</td></tr>
         <tr><td>tokenEndpointHostname</td><td>Login URL, https with only a host: <code>https://login.salesforce.com</code> (default),
             <code>https://test.salesforce.com</code> for sandboxes, or your My Domain URL.</td><td>No</td><td>https://login.salesforce.com</td></tr>
         <tr><td>keyStorePath</td><td>Location of the keystore or PEM key file with the signing key (RSA, at least 2048

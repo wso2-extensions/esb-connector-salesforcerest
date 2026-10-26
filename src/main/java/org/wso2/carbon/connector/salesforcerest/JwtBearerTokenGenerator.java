@@ -44,8 +44,8 @@ import static org.wso2.carbon.connector.salesforcerest.JwtException.ERROR_CONFIG
  * <ul>
  * <li>From salesforcerest.init: validates the connection, loads the signing key ({@link SigningKeyLoader}) and sets
  * uri.var.accessToken to the connection's current token ({@link TokenCache}), or obtains a new one
- * ({@link SalesforceTokenClient}). Sets uri.var.apiUrl to the configured instanceUrl, or else to the instance URL
- * returned with the token; apiUrl is not used.</li>
+ * ({@link SalesforceTokenClient}). Sets uri.var.apiUrl to the configured apiUrl, or else to the instance URL
+ * returned with the token.</li>
  * <li>From salesforcerest.callWithRetry with property renew=true: obtains a new token after a 401.</li>
  * </ul>
  * Tokens are kept in memory only. Passwords and keys are never put into message context properties, and no secret
@@ -126,7 +126,7 @@ public class JwtBearerTokenGenerator extends AbstractConnector {
                 () -> SigningKeyLoader.load(path, keyStoreType, keyStorePassword, keyAlias, keyPassword));
 
         Connection connection = new Connection(name, clientId, username, tokenEndpoint,
-                parameter(messageContext, "instanceUrl"), keyHandle,
+                parameter(messageContext, "audience"), parameter(messageContext, "apiUrl"), keyHandle,
                 identity(clientId, username, tokenEndpoint, KEYS.key(keyHandle)));
         messageContext.setProperty(CONNECTION_PROPERTY, connection);
         Token token = TOKENS.knownToken(name, connection.identity);
@@ -152,7 +152,7 @@ public class JwtBearerTokenGenerator extends AbstractConnector {
     private static void setToken(MessageContext messageContext, Connection connection, Token token) {
         messageContext.setProperty(ACCESS_TOKEN_PROPERTY, token.accessToken);
         messageContext.setProperty(API_URL_PROPERTY,
-                connection.instanceUrl != null ? connection.instanceUrl : token.instanceUrl);
+                connection.apiUrl != null ? connection.apiUrl : token.instanceUrl);
     }
 
     /**
@@ -174,11 +174,11 @@ public class JwtBearerTokenGenerator extends AbstractConnector {
             throw new JwtException(ERROR_CONFIG, "tokenEndpointHostname is not a valid URL");
         }
         Token token = SalesforceTokenClient.requestToken(tokenUrl, connection.clientId, connection.username,
-                KEYS.key(connection.keyHandle), timeout);
-        if (connection.instanceUrl != null
-                && !token.instanceUrl.equals(SalesforceTokenClient.origin(connection.instanceUrl))) {
-            log.warn("The instanceUrl of connection '" + connection.name + "' differs from the instance URL "
-                    + "returned by Salesforce (" + token.instanceUrl + "); API calls are sent to instanceUrl");
+                connection.audience, KEYS.key(connection.keyHandle), timeout);
+        if (connection.apiUrl != null
+                && !token.instanceUrl.equals(SalesforceTokenClient.origin(connection.apiUrl))) {
+            log.warn("The apiUrl of connection '" + connection.name + "' differs from the instance URL "
+                    + "returned by Salesforce (" + token.instanceUrl + "); API calls are sent to apiUrl");
         }
         if (log.isDebugEnabled()) {
             log.debug("Obtained a Salesforce access token with the JWT bearer flow for connection '"
@@ -250,17 +250,19 @@ public class JwtBearerTokenGenerator extends AbstractConnector {
         private final String clientId;
         private final String username;
         private final String tokenEndpoint;
-        private final String instanceUrl;
+        private final String audience;
+        private final String apiUrl;
         private final String keyHandle;
         private final String identity;
 
-        Connection(String name, String clientId, String username, String tokenEndpoint, String instanceUrl,
-                   String keyHandle, String identity) {
+        Connection(String name, String clientId, String username, String tokenEndpoint, String audience,
+                   String apiUrl, String keyHandle, String identity) {
             this.name = name;
             this.clientId = clientId;
             this.username = username;
             this.tokenEndpoint = tokenEndpoint;
-            this.instanceUrl = instanceUrl;
+            this.audience = audience;
+            this.apiUrl = apiUrl;
             this.keyHandle = keyHandle;
             this.identity = identity;
         }

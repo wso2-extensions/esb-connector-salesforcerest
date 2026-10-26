@@ -26,7 +26,8 @@
                description="Value of your secret key given when you registered your application with salesforce."/>
     <parameter name="clientId"
                description="Value of your API Key given when you registered your application with salesforce."/>
-    <parameter name="apiUrl" description="The instance URL for your organization. Not used with JWT (see instanceUrl)."/>
+    <parameter name="apiUrl"
+               description="The instance URL for your organization. Optional with JWT: defaults to the instance URL returned with the access token."/>
     <parameter name="timeout" description="Timeout duration of the API request."/>
     <parameter name="name" description="Name of the connection"/>
     <parameter name="username" description="The username for the salesforce."/>
@@ -36,8 +37,8 @@
     <parameter name="tokenEndpointHostname" description="Instance url for OAuth 2.0 token endpoint when issuing authentication requests in your application."/>
     <parameter name="authType"
                description="Set to JWT to use the OAuth 2.0 JWT bearer flow. Any other value (Default) or no value uses the access token, refresh token or username-password flow."/>
-    <parameter name="instanceUrl"
-               description="JWT bearer flow: URL for the API calls. Optional: defaults to the instance URL returned with the access token."/>
+    <parameter name="audience"
+               description="JWT bearer flow: aud claim of the JWT. Optional: https://test.salesforce.com for sandbox and scratch org login URLs, otherwise https://login.salesforce.com."/>
     <parameter name="keyStorePath"
                description="JWT bearer flow: location of the keystore or PEM key file with the signing key (relative to the MI home)."/>
     <parameter name="keyStoreType"

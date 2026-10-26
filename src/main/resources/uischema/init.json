@@ -247,12 +247,23 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "instanceUrl",
-                    "displayName": "Instance URL",
+                    "name": "apiUrl",
+                    "displayName": "API URL",
                     "inputType": "stringOrExpresion",
                     "defaultValue": "",
                     "required": "false",
-                    "helpTip": "Optional. By default, API calls go to the instance URL returned with the access token. Set it only to send them through another URL, such as a proxy."
+                    "helpTip": "Optional. If empty, the instance URL returned with the access token is used."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "audience",
+                    "displayName": "Audience",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Optional. The JWT aud claim. If empty, it is derived from the Token Endpoint URL."
                   }
                 }
               ]

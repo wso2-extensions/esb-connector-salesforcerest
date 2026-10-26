@@ -53,8 +53,19 @@
                 <filter source="$ctx:uri.var.authType" regex="(?i)JWT">
                     <then>
                         <!-- JWT bearer flow: on 401 (expired session) obtain a new token and retry once. A blocking
-                             call reports a 401 as a fault unless it is listed as a non-error status code. -->
-                        <property name="non.error.http.status.codes" value="401" scope="axis2"/>
+                             call reports a 401 as a fault unless it is listed as a non-error status code, so 401 is
+                             added to the codes the flow already set, which are restored afterwards. -->
+                        <property name="sfJwtNonErrorCodes" expression="$axis2:non.error.http.status.codes"
+                                  scope="default" type="STRING"/>
+                        <filter source="boolean($ctx:sfJwtNonErrorCodes)" regex="true">
+                            <then>
+                                <property name="non.error.http.status.codes"
+                                          expression="fn:concat($ctx:sfJwtNonErrorCodes, ',401')" scope="axis2"/>
+                            </then>
+                            <else>
+                                <property name="non.error.http.status.codes" value="401" scope="axis2"/>
+                            </else>
+                        </filter>
                         <filter source="$ctx:httpMethod" regex="(post|patch|put)">
                             <enrich>
                                 <source clone="true" type="body"/>
@@ -83,7 +94,16 @@
                                 <salesforcerest.callOptions/>
                             </then>
                         </filter>
-                        <property name="non.error.http.status.codes" scope="axis2" action="remove"/>
+                        <filter source="boolean($ctx:sfJwtNonErrorCodes)" regex="true">
+                            <then>
+                                <property name="non.error.http.status.codes" expression="$ctx:sfJwtNonErrorCodes"
+                                          scope="axis2"/>
+                            </then>
+                            <else>
+                                <property name="non.error.http.status.codes" scope="axis2" action="remove"/>
+                            </else>
+                        </filter>
+                        <property name="sfJwtNonErrorCodes" scope="default" action="remove"/>
                     </then>
                     <else>
                         <header name="Authorization"

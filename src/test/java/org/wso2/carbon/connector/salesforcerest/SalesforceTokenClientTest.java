@@ -28,6 +28,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
+import java.security.PrivateKey;
 import java.security.Signature;
 import java.util.Arrays;
 import java.util.Base64;
@@ -130,6 +131,23 @@ public class SalesforceTokenClientTest {
         Assert.assertTrue(server.lastContentType.startsWith("application/x-www-form-urlencoded"));
         Assert.assertEquals(URLDecoder.decode(server.lastBody, "UTF-8"),
                 "grant_type=" + SalesforceTokenClient.GRANT_TYPE + "&assertion=" + ASSERTION);
+    }
+
+    @Test
+    public void usesTheConfiguredAudienceOrDerivesIt() throws Exception {
+        server.handler = (exchange, body) -> HttpsTestServer.respond(exchange, 200,
+                "{\"access_token\":\"token\",\"instance_url\":\"https://acme.my.salesforce.com\"}");
+        PrivateKey key = JwtTestUtils.sharedKeyPair().getPrivate();
+        SalesforceTokenClient.requestToken(tokenUrl, "client", "user", "https://audience.example.com", key, 5000);
+        Assert.assertEquals(sentClaims().getString("aud"), "https://audience.example.com");
+        // Without a configured audience it is derived from the token endpoint host (localhost: production).
+        SalesforceTokenClient.requestToken(tokenUrl, "client", "user", null, key, 5000);
+        Assert.assertEquals(sentClaims().getString("aud"), SalesforceTokenClient.PRODUCTION_AUDIENCE);
+    }
+
+    private JSONObject sentClaims() throws Exception {
+        String assertion = URLDecoder.decode(server.lastBody, "UTF-8").split("&assertion=")[1];
+        return new JSONObject(decode(assertion.split("\\.")[1]));
     }
 
     @Test

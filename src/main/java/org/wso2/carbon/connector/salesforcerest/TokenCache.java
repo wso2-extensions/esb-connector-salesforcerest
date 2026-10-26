@@ -81,7 +81,7 @@ final class TokenCache {
                 token = fetcher.fetch();
                 if (token.accessToken.equals(rejected)) {
                     throw new JwtException(ERROR_TOKEN, "Salesforce rejected an access token whose session is still "
-                            + "valid (HTTP 401). Check that instanceUrl, if set, is the instance URL of the user's "
+                            + "valid (HTTP 401). Check that apiUrl, if set, is the instance URL of the user's "
                             + "org, and that the org does not lock sessions to another IP address");
                 }
             } catch (JwtException e) {

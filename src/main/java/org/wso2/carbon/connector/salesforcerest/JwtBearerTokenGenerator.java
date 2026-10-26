@@ -208,6 +208,9 @@ public class JwtBearerTokenGenerator extends AbstractConnector {
         }
     }
 
+    /**
+     * Trims the value; an empty value counts as not set (null).
+     */
     private static String text(Object value) {
         String text = value == null ? "" : value.toString().trim();
         return text.isEmpty() ? null : text;

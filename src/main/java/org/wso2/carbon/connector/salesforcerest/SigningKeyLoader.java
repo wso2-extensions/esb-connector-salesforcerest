@@ -55,7 +55,8 @@ import javax.crypto.spec.PBEKeySpec;
  * <ul>
  * <li>JKS / PKCS12: a keystore protected by keyStorePassword; the key password defaults to the store password.</li>
  * <li>PEM: a file with a PKCS#8 private key ("BEGIN PRIVATE KEY", or "BEGIN ENCRYPTED PRIVATE KEY" decrypted with
- * keyPassword). Other blocks in the file, such as the certificate chain, are ignored.</li>
+ * keyPassword, or keyStorePassword if not set). Other blocks in the file, such as the certificate chain, are
+ * ignored.</li>
  * </ul>
  * Each loaded key is found by a random handle, which is safe to put in the message context.
  */
@@ -112,6 +113,9 @@ final class SigningKeyLoader {
         return handle;
     }
 
+    /**
+     * Loads the key through the loader and records or clears the key file's last failure.
+     */
     private PrivateKey load(String keyFileId, long lastModified, KeyLoader loader) throws JwtException {
         try {
             PrivateKey key = loader.load();
@@ -169,7 +173,9 @@ final class SigningKeyLoader {
     }
 
     /**
-     * @param type JKS, PKCS12 or PEM; null to infer it from the file extension (.jks, .pem, otherwise PKCS12)
+     * Returns the key file type: the configured one, or one inferred from the file name.
+     *
+     * @param type JKS, PKCS12 or PEM; null to infer it from the extension (.jks: JKS, .pem/.key: PEM, else PKCS12)
      */
     static String resolveType(String type, Path path) throws JwtException {
         if (type == null) {
@@ -186,6 +192,9 @@ final class SigningKeyLoader {
         throw new JwtException(JwtException.ERROR_CONFIG, "keyStoreType must be JKS, PKCS12 or PEM");
     }
 
+    /**
+     * Resolves keyStorePath to a local file path: URLs are rejected, relative paths are resolved against the MI home.
+     */
     static Path resolvePath(String keyStorePath) throws JwtException {
         if (keyStorePath.indexOf('\u0000') >= 0 || URL_SCHEME.matcher(keyStorePath).matches()) {
             throw config("keyStorePath must be a path to a local file, not a URL");
@@ -203,10 +212,11 @@ final class SigningKeyLoader {
     }
 
     /**
-     * @param storePassword keystore password (JKS / PKCS12); not used for PEM
+     * Reads the key file and returns its RSA private key (at least 2048 bits).
+     *
+     * @param storePassword keystore password (JKS / PKCS12); for PEM, the key password when keyPassword is not set
      * @param alias         key alias (JKS / PKCS12); optional when the keystore holds a single key
-     * @param keyPassword   key password; defaults to the store password. Required (either one) for an encrypted
-     *                      PEM key
+     * @param keyPassword   key password; defaults to storePassword. One of them is required for an encrypted PEM key
      */
     static PrivateKey load(Path path, String type, String storePassword, String alias, String keyPassword)
             throws JwtException {

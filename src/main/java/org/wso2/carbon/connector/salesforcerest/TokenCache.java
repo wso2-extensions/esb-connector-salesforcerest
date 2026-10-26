@@ -38,7 +38,7 @@ final class TokenCache {
 
     private static final Log log = LogFactory.getLog(TokenCache.class);
 
-    // How long a failed token request is reported to further requests of the same identity.
+    // How long a failed token request (and a failed key load, see SigningKeyLoader) is reported again without retrying.
     static final long FAILURE_HOLD_MILLIS = 5000;
 
     // Token state of each connection (by name). Each state object is also the lock for obtaining that connection's

@@ -147,6 +147,9 @@ final class SalesforceTokenClient {
         }
     }
 
+    /**
+     * Builds the signed JWT bearer assertion (RS256).
+     */
     static String buildAssertion(String issuer, String subject, String audience, long expiresAt, PrivateKey key)
             throws JwtException {
         Base64.Encoder encoder = Base64.getUrlEncoder().withoutPadding();
@@ -165,6 +168,9 @@ final class SalesforceTokenClient {
         }
     }
 
+    /**
+     * Returns the aud claim for the token endpoint host.
+     */
     static String audience(String tokenHost) {
         String host = tokenHost.toLowerCase(Locale.ROOT);
         // Sandboxes and scratch orgs log in through test.salesforce.com.
@@ -201,6 +207,9 @@ final class SalesforceTokenClient {
         }
     }
 
+    /**
+     * Reads the response body, failing if it is larger than MAX_RESPONSE_BYTES.
+     */
     private static String read(InputStream in) throws IOException {
         if (in == null) {
             return "";

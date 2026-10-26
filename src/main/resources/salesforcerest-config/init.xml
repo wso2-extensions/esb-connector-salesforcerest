@@ -26,7 +26,8 @@
                description="Value of your secret key given when you registered your application with salesforce."/>
     <parameter name="clientId"
                description="Value of your API Key given when you registered your application with salesforce."/>
-    <parameter name="apiUrl" description="The instance URL for your organization"/>
+    <parameter name="apiUrl"
+               description="The instance URL for your organization. Optional with JWT: defaults to the instance URL returned with the access token."/>
     <parameter name="timeout" description="Timeout duration of the API request."/>
     <parameter name="name" description="Name of the connection"/>
     <parameter name="username" description="The username for the salesforce."/>
@@ -34,6 +35,19 @@
                description="The password for the salesforce which means the password with security key."/>
     <parameter name="blocking" description="Set to true to perform the blocking invocations to Salesforce."/>
     <parameter name="tokenEndpointHostname" description="Instance url for OAuth 2.0 token endpoint when issuing authentication requests in your application."/>
+    <parameter name="authType"
+               description="Set to JWT to use the OAuth 2.0 JWT bearer flow. Any other value (Default) or no value uses the access token, refresh token or username-password flow."/>
+    <parameter name="audience"
+               description="JWT bearer flow: aud claim of the JWT. Optional: https://test.salesforce.com for sandbox and scratch org login URLs, otherwise https://login.salesforce.com."/>
+    <parameter name="keyStorePath"
+               description="JWT bearer flow: location of the keystore or PEM key file with the signing key (relative to the MI home)."/>
+    <parameter name="keyStoreType"
+               description="JWT bearer flow: JKS, PKCS12 or PEM. Optional: inferred from the file extension (.jks, .pem/.key, otherwise PKCS12)."/>
+    <parameter name="keyStorePassword" description="JWT bearer flow: keystore password (JKS/PKCS12). Use Secure Vault."/>
+    <parameter name="keyAlias"
+               description="JWT bearer flow: alias of the signing key (JKS/PKCS12). Optional if the keystore holds a single key."/>
+    <parameter name="keyPassword"
+               description="JWT bearer flow: password of the private key, if it differs from the keystore password, or of an encrypted PEM key. Use Secure Vault."/>
     <sequence>
         <!--todo: remove uri.var-->
         <property name="uri.var.accessToken" expression="$func:accessToken"/>
@@ -48,6 +62,7 @@
         <property name="uri.var.username" expression="$func:username"/>
         <property name="uri.var.password" expression="$func:password"/>
         <property name="uri.var.tokenEndpointHostname" expression="$func:tokenEndpointHostname"/>
+        <property name="uri.var.authType" expression="$func:authType"/>
         <property name="timeout" expression="$func:timeout"/>
         <property name="salesforceRestBlocking" expression="$func:blocking"/>
         <filter source="boolean($ctx:uri.var.tokenEndpointHostname)" regex="false">
@@ -66,6 +81,13 @@
                 mc.setProperty("timeout", timeout.toString());
             ]]>
         </script>
+        <!-- OAuth 2.0 JWT bearer flow: reuses the connection's access token or obtains one. The class reads the keystore
+             parameters directly, so the password is never copied into a message context property. -->
+        <filter source="$ctx:uri.var.authType" regex="(?i)JWT">
+            <then>
+                <class name="org.wso2.carbon.connector.salesforcerest.JwtBearerTokenGenerator"/>
+            </then>
+        </filter>
         <filter source="boolean($ctx:uri.var.username) and boolean($ctx:uri.var.password) and boolean($ctx:uri.var.clientSecret) and boolean($ctx:uri.var.clientId)"
                 regex="true">
             <then>

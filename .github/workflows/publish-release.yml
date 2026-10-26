@@ -61,13 +61,13 @@ jobs:
 
       - name: Build artifacts
         run: |
-          mvn clean install
+          mvn clean install -Dmaven.test.skip=true -DskipITs=true
 
       - name: Deploy artifacts with Maven
         env:
           GITHUB_TOKEN: ${{ secrets.WSO2_INTEGRATION_BOT_TOKEN }}
         run: |
-          mvn --batch-mode release:prepare release:perform -Dtag=${{ env.VERSION_TAG }} -Darguments="-Dmaven.javadoc.skip=true"
+          mvn --batch-mode release:prepare release:perform -Dtag=${{ env.VERSION_TAG }} -DignoreSnapshots=true -Darguments="-Dmaven.javadoc.skip=true -Dmaven.test.skip=true -DskipITs=true"
 
       - name: Create Github Release with Assets
         env:

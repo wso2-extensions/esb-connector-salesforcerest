@@ -29,18 +29,6 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "authType",
-                    "displayName": "Authentication Type",
-                    "inputType": "combo",
-                    "comboValues": ["Default", "JWT"],
-                    "defaultValue": "Default",
-                    "required": "false",
-                    "helpTip": "Default: access token, refresh token or username-password flow, depending on the fields you fill. JWT: OAuth 2.0 JWT bearer flow (server-to-server, signed with a private key)."
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
                     "name": "apiVersion",
                     "displayName": "API Version",
                     "inputType": "stringOrExpresion",
@@ -103,6 +91,18 @@
                     "required": "false",
                     "helpTip": "Set to true to perform the blocking invocations to Salesforce."
                   }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "authType",
+                    "displayName": "Authentication Type",
+                    "inputType": "combo",
+                    "comboValues": ["Default", "JWT"],
+                    "defaultValue": "Default",
+                    "required": "false",
+                    "helpTip": "Default: access token, refresh token or username-password flow, depending on the fields you fill. JWT: OAuth 2.0 JWT bearer flow (server-to-server, signed with a private key)."
+                  }
                 }
               ]
             }
@@ -127,23 +127,23 @@
                 {
                   "type": "attribute",
                   "value": {
-                    "name": "accessToken",
-                    "displayName": "Access Token",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Value of the Access Token to access the api via request"
-                  }
-                },
-                {
-                  "type": "attribute",
-                  "value": {
                     "name": "hostName",
                     "displayName": "Host Name",
                     "inputType": "stringOrExpresion",
                     "defaultValue": "",
                     "required": "true",
                     "helpTip": "Value of the hostname to authenticate salesforce (username-password flow)."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "accessToken",
+                    "displayName": "Access Token",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Value of the Access Token to access the api via request"
                   }
                 },
                 {
@@ -188,17 +188,6 @@
               "groupName": "JWT Bearer",
               "enableCondition": [{"authType": "JWT"}],
               "elements": [
-                {
-                  "type": "attribute",
-                  "value": {
-                    "name": "instanceUrl",
-                    "displayName": "Instance URL",
-                    "inputType": "stringOrExpresion",
-                    "defaultValue": "",
-                    "required": "false",
-                    "helpTip": "Optional. By default, API calls go to the instance URL returned with the access token. Set it only to send them through another URL, such as a proxy."
-                  }
-                },
                 {
                   "type": "attribute",
                   "value": {
@@ -253,6 +242,17 @@
                     "defaultValue": "",
                     "required": "false",
                     "helpTip": "Password of the private key if it differs from the keystore password, or of an encrypted PEM key. Store it in Secure Vault."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "instanceUrl",
+                    "displayName": "Instance URL",
+                    "inputType": "stringOrExpresion",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Optional. By default, API calls go to the instance URL returned with the access token. Set it only to send them through another URL, such as a proxy."
                   }
                 }
               ]
